@@ -1,0 +1,199 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="light" (click)="navigate()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Sign Up</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <div class="lower-div">
+    <div class="button-group">
+      <button class="btn" [ngClass]="userType === 'Patient' ? 'active' : ''" (click)="switchUser('Patient')">
+        Patient</button>
+      <button class="btn" [ngClass]="userType === 'Hospital' ? 'active' : ''" (click)="switchUser('Hospital')">Hospital</button>
+    </div>
+    <p class="para">Register Account</p>
+    <form [formGroup]="patientForm" (ngSubmit)="submitPatientForm()" novalidate *ngIf="userType === 'Patient'">
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend>Name</legend>
+          <ion-input formControlName="name" type="text"></ion-input>
+        </fieldset>
+      </ion-item>
+      <div class="error-div" *ngIf="this.patientForm.controls?.name.touched && this.patientForm.controls?.name.invalid">
+        <div class="ion-padding" *ngIf="this.patientForm.controls?.name.errors?.required">
+          <ion-text color="danger">Name is required.</ion-text>
+        </div>
+        <div class="ion-padding" color="danger" *ngIf="this.patientForm.controls?.name.errors?.minlength">
+          <ion-text color="danger">Name should be min 4 chars long.</ion-text>
+        </div>
+      </div>
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend>Date of Birth</legend>
+          <ion-input formControlName="dob" type="date" />
+        </fieldset>
+      </ion-item>
+      <div class="error-div" *ngIf="this.patientForm.controls?.dob.touched && this.patientForm.controls?.dob.invalid">
+        <div class="error ion-padding" *ngIf="errorPatientControl.dob.errors?.required">
+          <ion-text color="danger">Date of Birth is required.</ion-text>
+        </div>
+        <div class="ion-padding" *ngIf="errorPatientControl.dob.errors?.pattern">
+          <ion-text color="danger">Please provide valid Date of Birth.</ion-text>
+        </div>
+      </div>
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend>Email Id</legend>
+          <ion-input formControlName="email" type="email" />
+        </fieldset>
+      </ion-item>
+      <div class="error-div" *ngIf="this.patientForm.controls?.email.touched && this.patientForm.controls?.email.invalid">
+        <div class="error ion-padding" *ngIf="errorPatientControl.email.errors?.required">
+          <ion-text color="danger">Email is required.</ion-text>
+        </div>
+        <div class="ion-padding" *ngIf="errorPatientControl.email.errors?.pattern">
+          <ion-text color="danger">Please provide valid email.</ion-text>
+        </div>
+      </div>
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend>Phone</legend>
+          <ion-input formControlName="phone" pattern="[0-9]{9}" type="number" required></ion-input>
+        </fieldset>
+      </ion-item>
+      <div class="error-div" *ngIf="this.patientForm.controls?.phone.touched && this.patientForm.controls?.phone.invalid">
+        <div class="error ion-padding" *ngIf="errorPatientControl.phone.errors?.required">
+          <ion-text color="danger">Phone number is required.</ion-text>
+        </div>
+        <div class="error ion-padding" *ngIf="errorPatientControl.phone.errors?.pattern">
+          <ion-text color="danger">Please provide valid Phone Number</ion-text>
+        </div>
+      </div>
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend>Password</legend>
+          <ion-input formControlName="password" type="password" />
+        </fieldset>
+      </ion-item>
+      <div class="error-div" *ngIf="this.patientForm.controls?.password.touched && this.patientForm.controls?.password.invalid">
+        <div class="error ion-padding" *ngIf="errorPatientControl.password.errors?.required">
+          <ion-text color="danger">Password is required.</ion-text>
+        </div>
+        <div class="error ion-padding" *ngIf="errorPatientControl.password.errors?.pattern">
+          <ion-text color="danger">Wrong Pattern</ion-text>
+        </div>
+      </div>
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend>Confirm Password</legend>
+          <ion-input formControlName="confirmPassword" type="password" />
+        </fieldset>
+      </ion-item>
+      <div class="error-div" *ngIf="this.patientForm.controls?.confirmPassword.touched && this.patientForm.controls?.confirmPassword.invalid">
+        <div class="error ion-padding" *ngIf="errorPatientControl.confirmPassword.errors?.required">
+          <ion-text color="danger">Password is required.</ion-text>
+        </div>
+        <div class="error ion-padding" *ngIf="errorPatientControl.confirmPassword.errors?.pattern">
+          <ion-text color="danger">Wrong Pattern</ion-text>
+        </div>
+      </div>
+      <ion-row>
+        <ion-col>
+          <ion-button [disabled]="isLoading" class="login-button" type="submit" expand="block">
+            <ion-icon name="person"></ion-icon>
+            Register</ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+
+    <form [formGroup]="hospitalForm" (ngSubmit)="submitHospitalForm()" novalidate *ngIf="userType === 'Hospital'">
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend>Hospital Name</legend>
+          <ion-input formControlName="name" type="text"></ion-input>
+        </fieldset>
+      </ion-item>
+      <div class="error-div" *ngIf="this.hospitalForm.controls?.name.touched && this.hospitalForm.controls?.name.invalid">
+        <div class="ion-padding" *ngIf="this.hospitalForm.controls?.name.errors?.required">
+          <ion-text color="danger">Name is required.</ion-text>
+        </div>
+        <div class="ion-padding" color="danger" *ngIf="this.hospitalForm.controls?.name.errors?.minlength">
+          <ion-text color="danger">Name should be min 2 chars long.</ion-text>
+        </div>
+      </div>
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend>Email</legend>
+          <ion-input formControlName="email" type="email" />
+        </fieldset>
+      </ion-item>
+      <div class="error-div" *ngIf="this.hospitalForm.controls?.email.touched && this.hospitalForm.controls?.email.invalid">
+        <div class="error ion-padding" *ngIf="errorHospitalControl.email.errors?.required">
+          <ion-text color="danger">email is required.</ion-text>
+        </div>
+        <div class="ion-padding" *ngIf="errorHospitalControl.email.errors?.pattern">
+          <ion-text color="danger">Please provide valid email.</ion-text>
+        </div>
+      </div>
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend>Phone</legend>
+          <ion-input minlength="10" maxlength="10" formControlName="phone" type="text" required></ion-input>
+        </fieldset>
+      </ion-item>
+      <div class="error-div" *ngIf="this.hospitalForm.controls?.phone.touched && this.hospitalForm.controls?.phone.invalid">
+        <div class="error ion-padding" *ngIf="errorHospitalControl.phone.errors?.required">
+          <ion-text color="danger">Phone number is required.</ion-text>
+        </div>
+        <div class="error ion-padding" *ngIf="errorHospitalControl.phone.errors?.minlength">
+          <ion-text color="danger">Min length is 10 characters.</ion-text>
+        </div>
+        <div class="error ion-padding" *ngIf="errorHospitalControl.phone.errors?.pattern">
+          <ion-text color="danger">Only numerical values allowed.</ion-text>
+        </div>
+      </div>
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend>Password</legend>
+          <ion-input formControlName="password" type="password" />
+        </fieldset>
+      </ion-item>
+      <div class="error-div" *ngIf="this.hospitalForm.controls?.password.touched && this.hospitalForm.controls?.password.invalid">
+        <div class="error ion-padding" *ngIf="errorHospitalControl.password.errors?.required">
+          <ion-text color="danger">password number is required.</ion-text>
+        </div>
+        <div class="error ion-padding" *ngIf="errorHospitalControl.password.errors?.minlength">
+          <ion-text color="danger">min 8 charcets.</ion-text>
+        </div>
+        <div class="error ion-padding" *ngIf="errorHospitalControl.password.errors?.pattern">
+          <ion-text color="danger">Wrong Pattern</ion-text>
+        </div>
+      </div>
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend>Confirm Password</legend>
+          <ion-input formControlName="confirmPassword" type="password" />
+        </fieldset>
+      </ion-item>
+      <div class="error-div" *ngIf="this.hospitalForm.controls?.confirmPassword.touched && this.hospitalForm.controls?.confirmPassword.invalid">
+        <div class="error ion-padding" *ngIf="errorHospitalControl.confirmPassword.errors?.required">
+          <ion-text color="danger">confirmPassword number is required.</ion-text>
+        </div>
+        <div class="error ion-padding" *ngIf="errorHospitalControl.confirmPassword.errors?.minlength">
+          <ion-text color="danger">min 8 charcets.</ion-text>
+        </div>
+      </div>
+      <ion-row>
+        <ion-col>
+          <ion-button [disabled]="isLoading" class="login-button" type="submit" expand="block">
+            <ion-icon aria-hidden="true" name="person"></ion-icon>
+            Register</ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </div>
+</ion-content>

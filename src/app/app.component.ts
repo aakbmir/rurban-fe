@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { AuthService } from './api/auth.service';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,9 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  constructor(
+    private app: AuthService,
+    private http: HttpClient,
+    private router: Router
+  ) {}
 }

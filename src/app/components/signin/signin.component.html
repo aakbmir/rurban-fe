@@ -1,0 +1,89 @@
+<!-- <h1 class="heading">Welcome<br><br></h1>
+<p class="para">Sign in to continue</p>
+<form [formGroup]="formData">
+  <ion-item lines="none" class="ion-item">
+    <fieldset class="input-item">
+      <legend>Email Id</legend>
+      <ion-input formControlName="email" type="email" placeholder="name@domain.com"></ion-input>
+    </fieldset>
+  </ion-item>
+  <ion-item lines="none" class="ion-item">
+    <fieldset class="input-item">
+      <legend>Password</legend>
+      <ion-input formControlName="password" type="password" placeholder="*******"></ion-input>
+    </fieldset>
+  </ion-item>
+  <p class="forget-text"><a (click)="change('forget')">Forgot Password?</a></p>
+  <p class="signup-text">I'm a new user&nbsp;<a (click)="change('signup')">Sign Up?</a></p>
+  <ion-button class="login-button" (click)="login()" expand="block">Login</ion-button>
+</form>
+<div class="container" *ngIf="screen === 'forget'">
+  <h1 class="heading">Forget Password?<br><br></h1>
+  <p class="para">Enter email to reset</p>
+  <ion-item lines="none" class="ion-item">
+    <fieldset class="input-item">
+      <legend>Email Id</legend>
+      <ion-input type="email" placeholder="name@domain.com"></ion-input>
+    </fieldset>
+  </ion-item>
+  <p class="signup-text">Rememberd Password&nbsp;<a (click)="change('signin')">Sign In?</a></p>
+  <ion-button class="login-button" expand="block">Reset Password</ion-button>
+</div> -->
+
+<ion-content>
+  <div class="main-div">
+    <div class="logo-div">
+      <img class="logo-img" src="../../assets//images/2.png">
+    </div>
+    <div style="margin-left: 2em;color: #fff;">
+      <h1 class="heading">Welcome to</h1>
+      <p class="logo-text">Rurban</p>
+    </div>
+    <div class="lower-div">
+      <div class="button-group">
+        <button class="btn" [ngClass]="userType === 'Patient' ? 'active' : ''" (click)="switchUser('Patient')">
+          Patient</button>
+        <button class="btn" [ngClass]="userType === 'Hospital' ? 'active' : ''" (click)="switchUser('Hospital')">Hospital</button>
+      </div>
+      <p class="para">Sign in to continue</p>
+      <form [formGroup]="signInForm" (ngSubmit)="submitForm()" novalidate>
+        <ion-item lines="none" class="ion-item">
+          <fieldset class="input-item">
+            <legend>Email or Phone Number</legend>
+            <ion-input formControlName="username" type="text"></ion-input>
+          </fieldset>
+        </ion-item>
+        <div class="error-div" *ngIf="this.signInForm.invalid && this.signInForm.controls?.username.touched && this.signInForm.controls?.username.invalid">
+          <div class="ion-padding" *ngIf="this.signInForm.controls?.username.errors?.required">
+            <ion-text color="danger">Email or Phone is required.</ion-text>
+          </div>
+          <div class="ion-padding" color="danger" *ngIf="this.signInForm.controls?.username.errors?.minlength">
+            <ion-text color="danger">username should be min 2 chars long.</ion-text>
+          </div>
+        </div>
+        <ion-item lines="none" class="ion-item">
+          <fieldset class="input-item">
+            <legend>Password</legend>
+            <ion-input formControlName="password" type="password" />
+          </fieldset>
+        </ion-item>
+        <div class="error-div" *ngIf="this.signInForm.controls?.password.touched && this.signInForm.controls?.password.invalid">
+          <div class="error ion-padding" *ngIf="errorControl.password.errors?.required">
+            <ion-text color="danger">Password is required.</ion-text>
+          </div>
+        </div>
+        <ion-row>
+          <ion-col>
+            <p class="forget-text"><a (click)="navigate('forget')">Forgot Password?</a></p>
+            <ion-button class="login-button" type="submit" expand="block">
+              <ion-icon name="log-in-outline"></ion-icon>
+              Login</ion-button>
+          </ion-col>
+        </ion-row>
+      </form>
+      <div class="clear">
+        <p class="para signup-text">Don't have an account?&nbsp;<a (click)="navigate('signup')">Please Register</a></p>
+      </div>
+    </div>
+  </div>
+</ion-content>
