@@ -116,14 +116,14 @@ const hospitalList = [
 ];
 
 function UserDashboard() {
-  const [hospitals, setHospitals] = useState(hospitalList);
-  const [filteredHospitals, setFilteredHospitals] = useState(hospitalList);
+  const [hospitals, setHospitals] = useState([]);
+  const [filteredHospitals, setFilteredHospitals] = useState([]);
 
   useEffect(() => {
     async function fetchHospoitals() {
       const data = await fetchHospitals();
-      //setHospitals(data);
-      //setFilteredHospitals(data);
+      setHospitals(data);
+      setFilteredHospitals(data);
     }
 
     fetchHospoitals();
@@ -144,7 +144,10 @@ function UserDashboard() {
   };
   return (
     <>
-      <DashboardNavbar searchValue={(e) => searchHospitals(e)} />
+      <DashboardNavbar
+        searchValue={(e) => searchHospitals(e)}
+        feature="Hospitals"
+      />
       <div className={styles.navTabName}>
         <span className={styles.navTabDesc}>Hospitals</span> for you
       </div>

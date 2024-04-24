@@ -17,7 +17,8 @@ function Signin() {
   const { mutate } = useMutation({
     mutationFn: userLogin,
     onSuccess: (data) => {
-      localStorage.setItem("username", "Aaqib");
+      console.log(data);
+      localStorage.setItem("username", data.username);
       // toast.success("User logged successfully!", {
       //   position: "top-center",
       // });

@@ -114,7 +114,7 @@ const hospitalList = [
 ];
 
 function HospitalDashboard() {
-  const [filteredHospitals, setFilteredHospitals] = useState(hospitalList);
+  const [filteredHospitals, setFilteredHospitals] = useState([]);
   const hospitals = filteredHospitals;
   const searchHospitals = (e) => {
     const val = e;
@@ -130,9 +130,12 @@ function HospitalDashboard() {
   };
   return (
     <>
-      <DashboardNavbar searchValue={(e) => searchHospitals(e)} />
+      <DashboardNavbar
+        searchValue={(e) => searchHospitals(e)}
+        feature="Patients"
+      />
       <div className={styles.navTabName}>
-        <span className={styles.navTabDesc}>Hospitals</span> for you
+        <span className={styles.navTabDesc}>Patients</span> for you
       </div>
       <CardList dataList={filteredHospitals} />
     </>

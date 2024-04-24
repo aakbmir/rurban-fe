@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import styles from "./DashboardNavbar.module.css";
 import { FaSearch } from "react-icons/fa";
 
-function DashboardNavbar({ searchValue }) {
+function DashboardNavbar({ searchValue, feature }) {
   const username = localStorage.getItem("username");
   const [nav, setNav] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -23,7 +23,7 @@ function DashboardNavbar({ searchValue }) {
     <div className={styles.navbarSection}>
       <h1 className={styles.navbarTitle}>
         <Link to="/">
-          Health <span className={styles.navbarSign}>+</span>
+          Rurban <span className={styles.navbarSign}>+</span>
         </Link>
       </h1>
       {/* Desktop */}
@@ -89,9 +89,9 @@ function DashboardNavbar({ searchValue }) {
 
       {/* Hamburger Icon */}
       <div className={styles.mobileNav}>
-        <div className={styles.navtabuser}>Hi, Gloria</div>
+        <div className={styles.navtabuser}>Hi, {username}</div>
         <div className={styles.navtabuser}>
-          <div className={styles.navTabName}>Hospitals</div> for you
+          <div className={styles.navTabName}>{feature}</div> for you
         </div>
         <div className={styles.searchContainer}>
           <input
