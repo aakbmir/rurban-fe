@@ -301,7 +301,7 @@ function Signin() {
                 </span>
               )}
 
-              <button className={styles.btnUser}>Sign in</button>
+              <button className={styles.btnUser}>Sign up</button>
             </form>
           </div>
         </div>

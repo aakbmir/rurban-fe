@@ -29,7 +29,7 @@ function Signin() {
       }
     },
     onError: () => {
-      alert("error while logging in");
+      alert("Invalid Credentials");
     },
   });
 

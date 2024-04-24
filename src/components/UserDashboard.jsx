@@ -151,7 +151,7 @@ function UserDashboard() {
       <div className={styles.navTabName}>
         <span className={styles.navTabDesc}>Hospitals</span> for you
       </div>
-      <CardList dataList={filteredHospitals} />
+      <CardList dataList={filteredHospitals} feature="Hospitals" />
 
       <div></div>
     </>
