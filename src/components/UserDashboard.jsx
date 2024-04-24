@@ -3,7 +3,6 @@ import DashboardNavbar from "./DashboardNavbar";
 import styles from "./UserDashboard.module.css";
 import CardList from "./CardList";
 import { fetchHospitals } from "../services/data.service";
-import Map from "./Map";
 
 const hospitalList = [
   {

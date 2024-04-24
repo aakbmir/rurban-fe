@@ -1,19 +1,13 @@
 import Navbar from "../src/components/AccessNavbar";
 import styles from "./Signup.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
-// import { useForm } from "react-hook-form";
-// import { useMutation } from "@tanstack/react-query";
-// import { userLogin } from "../src/services/login.service";
 
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
-import { userLogin, userRegister } from "../src/services/login.service";
-import { IoIosArrowBack } from "react-icons/io";
-import Map from "../src/components/Map";
+import { userRegister } from "../src/services/login.service";
 import { useGeoLocation } from "../src/hooks/useGeoLocation";
 import { useUrlPosition } from "../src/hooks/useUrlPosition";
-import Button from "../src/components/Button";
 
 function Signin() {
   const { pathname } = useLocation();
@@ -25,7 +19,7 @@ function Signin() {
 
   const navigate = useNavigate();
 
-  const { register, handleSubmit, reset, getValues, formState } = useForm({
+  const { register, handleSubmit, getValues, formState } = useForm({
     mode: "onBlur",
     reValidateMode: "onBlur",
   });

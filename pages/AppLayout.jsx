@@ -2,7 +2,6 @@ import { useSearchParams } from "react-router-dom";
 import Styles from "./AppLayout.module.css";
 import HospitalDashboard from "../src/components/HospitalDashboard";
 import UserDashboard from "../src/components/UserDashboard";
-import Map from "../src/components/Map";
 
 export default function AppLayout() {
   const [searchParams] = useSearchParams();
