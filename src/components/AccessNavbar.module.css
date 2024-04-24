@@ -1,0 +1,29 @@
+.navbarSection {  
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  height: 6em;
+  background-color: #32518b;
+  color: white
+}
+
+.navbarbutton {
+  cursor: pointer;
+  padding: 10px;
+  background: none;
+  border: none;
+  margin-right: 2em
+}
+
+.navbarTitle {
+  font-family: 'Poppins', sans-serif;
+}
+
+
+/* Responsive */
+@media screen and (min-width: 600px) {
+  .navbarSection{
+      display: none;
+  }
+}
+

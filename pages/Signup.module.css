@@ -1,0 +1,228 @@
+body, html {
+  font-size:90%
+}
+
+.herosection {
+  height: 100vh;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  background: linear-gradient(to right, #ECF2FF, #FBFCFF);
+}
+
+.backbtn {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  font-size: 20px;
+  color: black
+}
+
+.imgBtn {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.navbarbutton {
+  color: black;
+  border: none;
+  background: none
+}
+
+.heroimagesection {
+  background: url('/back.png');
+  background-size: cover;
+  min-width: 30%;
+  max-width: 30%;
+  height: 100vh;
+  text-align: center
+}
+
+.heroimage1 {
+  visibility: hidden
+}
+
+.formsection {
+  height: 100vh;
+  width: 70%;
+  padding: 0 12px;
+  text-align: center;
+}
+
+.logoImg {
+  margin: auto;
+  max-width: 20em;
+  margin-top: 2%;
+  border-radius: 100px 10cm 120px/100%;
+  border: 2px solid grey;
+  padding: 3em;
+}
+
+.textdescription {
+  font-family: 'Rubik', sans-serif;
+  font-size: 18px;
+  text-align:center
+}
+
+.textdescription h3 {
+  font-family: 'Rubik', sans-serif;
+  margin: 0;
+
+}
+
+.form {
+  margin-left: 15%;
+}
+
+.inputFieldset {
+  width: 85%;
+  border-radius: 1em;
+  border: 2px solid #b0aaaa;
+  color: black;
+  margin-bottom:1em;
+}
+
+.errorFieldset {
+  width: 85%;
+  border-radius: 1em;
+  border: 2px solid red;
+  color: black;
+}
+
+.inputVal {
+  background:none !important;
+  padding:1.2em;
+  font-size:16px
+}
+
+.errorMessage {
+  color: #ee0b0b
+}
+
+.btnUser { 
+  float: left;
+  width: 85%;
+  height: 8vh;
+  color: #fff;
+  font-size: 1.1em;
+  background: #1a65eb;
+  border-radius: 1em;
+  margin-bottom: em; 
+  border: none
+}
+
+.passwordPattern {
+  margin-left:1em;
+}
+
+@media screen and (max-width: 900px) {
+  .herosection {
+    align-items: baseline;    
+  }
+  
+  .formsection {
+    width: 100%;
+  }
+
+  .form {
+    margin-left: 0%;
+  }
+
+  .inputFieldset {
+    margin-bottom: 1em;
+  }
+
+  .logoImg {
+    width: inherit;
+    max-width: 30em;
+    margin-bottom: 4em;
+  }
+
+  .textdescription h3 {
+    font-family: 'Rubik', sans-serif;
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+
+  .heroimagesection {
+    display: none;
+  }
+
+  .inputFieldset {
+    width: 100%;
+  }
+  
+  .errorFieldset {
+    width: 100%;
+  }
+
+  .btnUser { 
+    float: left;
+    width: 100%;
+    margin-bottom: 1em;
+    margin-top: 3em;
+  }
+}
+
+/* Responsive */
+@media screen and (max-width: 600px) {
+
+  .imgBtn {
+    display:none
+  }
+
+  .herosection {  
+    align-items: baseline;    
+  }
+
+  .backbtn {
+    display: none
+  }
+
+  .formsection {
+    width: 100%;
+  }
+
+  .form {
+    margin-left: 0%;
+  }
+  
+  .heroimagesection {
+    display: none;
+  }
+
+  .inputFieldset {
+    width: 100%;
+  }
+  
+  .errorFieldset {
+    width: 100%;
+  }
+
+  .btnUser { 
+    float: left;
+    width: 100%;
+  }
+}
+ /* @media screen and (max-width: 600px) {
+  .heroimagesection {
+    display: none;
+  }
+
+  .formsection {
+    width: 100%;
+  }
+
+  .logoImg {
+    display: none
+  }
+  
+  .texttitle {
+    font-size: 28px;
+  }
+
+  .textdescritpion {
+    font-size: 16px;
+  }
+}  */

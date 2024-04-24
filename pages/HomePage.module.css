@@ -1,0 +1,154 @@
+.herosection {
+  height:100vh;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  background: linear-gradient(to right, #ECF2FF, #FBFCFF); 
+  //background: url('/back.png');
+  //background-size:cover
+}
+
+.textdescritpion {
+  display: -webkit-inline-box;
+  color:black;
+  width: 475px;
+  margin: 32px 0;
+  color: rgb(77, 75, 75);
+  font-family: 'Rubik', sans-serif;
+  font-size: 18px;
+  letter-spacing: .7px;
+  line-height: 1.6rem;
+}
+
+.heroimagesection {
+  width: 40%;
+  max-width: 100%;
+  text-align: center;
+}
+
+.heroimage1{
+  border-radius: 100px 0cm 120px/30%;
+  padding:1em;
+  width: 100%;
+  height: auto;
+}
+
+.textsection {
+  width: 60%;
+  padding: 0 32px;
+}
+
+.logoImg {
+  display: none;
+}
+
+.container {
+  color:#1a65eb;
+  /* color: #1A8EFD; */
+  text-align: center;
+  padding-top: 2em;
+}
+
+.container h1 {
+  line-height: 22px;
+  font-family: 'Rubik', sans-serif;
+  margin: 0;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
+.btnGroup {  
+  display: flex;
+  justify-content: center;
+}
+
+.btnSignin { 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:#1a65eb;
+  font-size: 18px;
+  align-items:center;
+  font-family: Rubik, sans-serif;
+  background-color: #fff;
+  border: 1px solid #0000;
+  border-radius: 28px;
+  cursor: pointer;
+  letter-spacing: .8px;
+  outline: #0000;
+  padding: 14px 20px;
+  transition: all .4s ease;
+  width: 70%;
+  margin-bottom: 2em;
+}
+
+.btnSignUpPatient {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: #fff;
+  align-items: center;
+  font-family: Rubik, sans-serif;
+  background-color: #1a65eb;
+  border: 1px solid #0000;
+  border-radius: 28px;
+  cursor: pointer;
+  letter-spacing: .8px;
+  outline: #0000;
+  padding: 14px 20px;
+  transition: all .4s ease;
+  width: 70%;
+  margin-top: 0.6em;
+  margin-bottom: 1em;
+}
+
+.registerText {
+  font-size: 1.1em
+}
+
+/* Responsive */
+@media screen and (max-width: 900px) {
+  .herosection {
+    padding-top:3em;
+    align-items: baseline;    
+  }
+
+  .heroimagesection {
+    display: none;
+  }
+
+  .container {
+    padding-top: 4em;
+  }
+
+  .logoImg {
+    display: block;
+    height: 30vh;
+    border-radius: 100px 0cm 120px/30%;
+    width: 96%;
+    margin: auto;
+    padding-top: 2em;
+  }
+
+  .textsection {
+    width: 100%;
+    padding: 0;
+  }
+
+  .textdescritpion {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .texttitle {
+    font-size: 28px;
+  }
+
+  .textdescritpion {
+    font-size: 16px;
+}
+}

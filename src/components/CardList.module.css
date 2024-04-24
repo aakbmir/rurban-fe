@@ -1,0 +1,47 @@
+.cardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin:2em;
+    border-radius:20px
+  }
+  
+  .card {
+    width: calc(25% - 10px); /* Each card takes up 33.33% width with spacing */
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    height: 35em;
+    cursor: pointer;
+  }
+
+  .imgImage {
+    height: 75%;
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px
+  }
+
+  .itemDesc {
+    margin-left: 1em;
+    margin-top: 1em
+  }
+
+  .phone {
+    margin-top:5px;
+    margin-bottom:5px
+  }
+
+  .icon {
+    margin-right:6px
+  }
+
+  
+/* Responsive */
+@media screen and (max-width: 600px) {
+    .card {
+        width: calc(100% - 10px); /* Each card takes up 33.33% width with spacing */
+    }
+  }
