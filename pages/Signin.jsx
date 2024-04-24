@@ -1,22 +1,14 @@
 import Navbar from "../src/components/AccessNavbar";
 import styles from "./Signin.module.css";
 import { useNavigate } from "react-router-dom";
-// import { useForm } from "react-hook-form";
-// import { useMutation } from "@tanstack/react-query";
-// import { userLogin } from "../src/services/login.service";
-
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { userLogin } from "../src/services/login.service";
-import { IoIosArrowBack } from "react-icons/io";
-import { toast } from "react-toastify";
 
 function Signin() {
-  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
-  const { register, handleSubmit, reset, getValues, formState } = useForm({
+  const { register, handleSubmit, formState } = useForm({
     mode: "onBlur",
     reValidateMode: "onBlur",
   });
@@ -25,7 +17,6 @@ function Signin() {
   const { mutate } = useMutation({
     mutationFn: userLogin,
     onSuccess: (data) => {
-      setIsOpen(true);
       localStorage.setItem("username", "Aaqib");
       // toast.success("User logged successfully!", {
       //   position: "top-center",

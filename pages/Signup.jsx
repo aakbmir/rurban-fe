@@ -5,11 +5,15 @@ import { useLocation, useNavigate } from "react-router-dom";
 // import { useMutation } from "@tanstack/react-query";
 // import { userLogin } from "../src/services/login.service";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { userLogin, userRegister } from "../src/services/login.service";
 import { IoIosArrowBack } from "react-icons/io";
+import Map from "../src/components/Map";
+import { useGeoLocation } from "../src/hooks/useGeoLocation";
+import { useUrlPosition } from "../src/hooks/useUrlPosition";
+import Button from "../src/components/Button";
 
 function Signin() {
   const { pathname } = useLocation();
@@ -41,12 +45,38 @@ function Signin() {
 
   function onSubmit(data) {
     data["registerType"] = userType;
+    console.log(position);
+    data["position"] = position;
     mutate(data);
   }
 
   function onError(error) {
     console.log("error", error);
   }
+
+  const {
+    position: geoLocationPosition,
+    isLoading: isLoadingPosition,
+    getPosition,
+  } = useGeoLocation();
+
+  const [position, setPosition] = useState(null);
+
+  console.log(position);
+  const [lat, lng] = useUrlPosition();
+
+  useEffect(() => {
+    if (lat && lng) {
+      setPosition(`${lat}, ${lng}`);
+    }
+    getPosition();
+  }, [lat, lng]);
+
+  useEffect(() => {
+    if (geoLocationPosition) {
+      setPosition(`${geoLocationPosition.lat}, ${geoLocationPosition.lng}`);
+    }
+  }, [geoLocationPosition]);
 
   return (
     <>

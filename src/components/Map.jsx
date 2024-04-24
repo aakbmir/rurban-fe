@@ -9,7 +9,6 @@ import {
   useMapEvents,
 } from "react-leaflet";
 import { useEffect, useState } from "react";
-import { useCities } from "../context/CitiesContext";
 import { useGeoLocation } from "../hooks/useGeoLocation";
 import Button from "./Button";
 import { useUrlPosition } from "../hooks/useUrlPosition";
@@ -21,7 +20,6 @@ function Map() {
     getPosition,
   } = useGeoLocation();
 
-  const { cities } = useCities();
   const [position, setPosition] = useState([40, 0]);
 
   const [lat, lng] = useUrlPosition();
@@ -37,36 +35,28 @@ function Map() {
   }, [geoLocationPosition]);
 
   return (
-    <div className={Styles.mapContainer}>
+    // <div className={Styles.mapContainer}>
+    <div>
+      Hello
       {!geoLocationPosition && (
         <Button type="position" onClick={getPosition}>
           {isLoadingPosition ? "Loading" : "Use your Position"}
         </Button>
       )}
-      <MapContainer
-        center={position}
-        zoom={9}
-        scrollWheelZoom={true}
-        className={Styles.map}
-      >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
-        />
+      {/* // <MapContainer
+      //   center={position}
+      //   zoom={9}
+      //   scrollWheelZoom={true}
+      //   className={Styles.map}
+      // >
+      //   <TileLayer
+      //     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      //     url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
+      //   />
 
-        {cities.map((city) => (
-          <Marker
-            position={[city.position.lat, city.position.lng]}
-            key={city.id}
-          >
-            <Popup>
-              <span>{city.cityName}</span>
-            </Popup>
-          </Marker>
-        ))}
-        <ChangeCenter position={position} />
-        <DetectClick />
-      </MapContainer>
+      //   <ChangeCenter position={position} />
+      //   <DetectClick />
+      // </MapContainer> */}
     </div>
   );
 }

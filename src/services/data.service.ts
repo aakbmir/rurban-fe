@@ -1,16 +1,12 @@
-export async function userLogin(data: any) {
-  console.log("made a call", data);
-  const res = await fetch(`https://rurban.onrender.com/api/v1/auth/login`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      username: data["username"],
-      password: data["password"],
-      registerType: data["registerType"],
-    }),
-  });
+export async function fetchHospitals() {
+  const res = await fetch(
+    "https://rurban.onrender.com/api/v1/data/fetch-hospitals",
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
   console.log(res.ok);
   if (!res.ok) {
     throw new Error("Cabin could not be Added");
@@ -20,7 +16,7 @@ export async function userLogin(data: any) {
 
 export async function userRegister(data: any) {
   console.log("made a call", data);
-  const res = await fetch(`https://rurban.onrender.com/api/v1/auth/register`, {
+  const res = await fetch("https://rurban.onrender.com/api/v1/auth/register", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -32,7 +28,6 @@ export async function userRegister(data: any) {
       password: data["password"],
       phone: data["phone"],
       registerType: data["registerType"],
-      position: data["position"],
     }),
   });
   if (!res.ok) {

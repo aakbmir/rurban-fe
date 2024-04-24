@@ -15,7 +15,7 @@ function DashboardNavbar({ searchValue }) {
 
   function handleSearch(e) {
     setSearchTerm((prevState) => e);
-    console.log(e);
+    console.log("eeee", e);
     searchValue(e);
   }
 
@@ -99,7 +99,7 @@ function DashboardNavbar({ searchValue }) {
             placeholder="Search..."
             className={styles.searchInput}
             value={searchTerm}
-            onChange={(e) => handleSearch(e)}
+            onChange={(e) => handleSearch(e.target.value)}
           />
           <FaSearch color="black" className={styles.searchIcon} />
         </div>

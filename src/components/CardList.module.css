@@ -1,4 +1,73 @@
+.mobileNav {
+  display: none;
+}
+
 .cardContainer {
+  /* margin:2em;
+  border-radius:20px */
+  margin-left: 7em;
+  margin-right: 7em;
+  margin-top: 2em;
+}
+
+.card {
+width: calc(100% - 10px); /* Each card takes up 33.33% width with spacing */
+margin-bottom: 20px;
+background-color: #ffffff;
+border: 1px solid #dddddd;
+border-radius: 4px;
+box-sizing: border-box;
+height: 10em;
+}
+
+.imgImage {
+width: 120%;
+padding-left: 12px;
+height: 100%;
+/* width: 100%;
+border-top-left-radius: 10px;
+border-top-right-radius: 10px */
+}
+
+.itemDesc {
+margin-left: 1em;
+margin-top: 1em;
+float: left;
+width: 60%;
+}
+
+.bookingDesc {
+margin-right: 1em;
+margin-top: 1em;
+display:flex
+}
+
+.phone {
+margin-top:5px;
+margin-bottom:5px
+}
+
+.icon {
+margin-right:6px
+}
+
+
+
+
+
+
+
+/* Responsive */
+@media screen and (max-width: 600px) {
+  .desktopNav {
+    display:none;
+  }
+
+  .mobileNav {
+    display:block;
+  }
+  
+  .cardContainer {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -7,7 +76,7 @@
   }
   
   .card {
-    width: calc(25% - 10px); /* Each card takes up 33.33% width with spacing */
+    width: calc(100% - 10px); /* Each card takes up 33.33% width with spacing */
     margin-bottom: 20px;
     background-color: #ffffff;
     border: 1px solid #dddddd;
@@ -18,7 +87,7 @@
   }
 
   .imgImage {
-    height: 75%;
+    height: 60%;
     width: 100%;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px
@@ -26,6 +95,12 @@
 
   .itemDesc {
     margin-left: 1em;
+    margin-top: 1em;
+    width: 60%;
+  }
+
+  .bookingDesc {
+    margin-right: 1em;
     margin-top: 1em
   }
 
@@ -39,9 +114,5 @@
   }
 
   
-/* Responsive */
-@media screen and (max-width: 600px) {
-    .card {
-        width: calc(100% - 10px); /* Each card takes up 33.33% width with spacing */
-    }
+
   }

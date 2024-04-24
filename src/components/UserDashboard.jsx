@@ -1,7 +1,9 @@
+import React, { useEffect, useState } from "react";
 import DashboardNavbar from "./DashboardNavbar";
-import styles from "./HospitalDashboard.module.css";
+import styles from "./UserDashboard.module.css";
 import CardList from "./CardList";
-import { useState } from "react";
+import { fetchHospitals } from "../services/data.service";
+import Map from "./Map";
 
 const hospitalList = [
   {
@@ -113,11 +115,23 @@ const hospitalList = [
   },
 ];
 
-function HospitalDashboard() {
+function UserDashboard() {
+  const [hospitals, setHospitals] = useState(hospitalList);
   const [filteredHospitals, setFilteredHospitals] = useState(hospitalList);
-  const hospitals = filteredHospitals;
+
+  useEffect(() => {
+    async function fetchHospoitals() {
+      const data = await fetchHospitals();
+      //setHospitals(data);
+      //setFilteredHospitals(data);
+    }
+
+    fetchHospoitals();
+  }, []);
+
   const searchHospitals = (e) => {
     const val = e;
+    console.log("val", val);
     if (val === "") {
       setFilteredHospitals(hospitals);
     } else {
@@ -135,8 +149,10 @@ function HospitalDashboard() {
         <span className={styles.navTabDesc}>Hospitals</span> for you
       </div>
       <CardList dataList={filteredHospitals} />
+
+      <div></div>
     </>
   );
 }
 
-export default HospitalDashboard;
+export default UserDashboard;
