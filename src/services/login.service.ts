@@ -42,7 +42,7 @@ export async function RegisterUser(data: any) {
 
 export async function RegisterEr(data: any) {
   await axios
-    .post("http://localhost:8084/api/v1/auth/register-er", {
+    .post("https://rurban.onrender.com/api/v1/auth/register-er", {
       name: data["name"],
       dob: data["dob"],
       email: data["email"],
