@@ -130,7 +130,6 @@ function UserDashboard() {
 
   const searchHospitals = (e) => {
     const val = e;
-    console.log("val", val);
     if (val === "") {
       setFilteredHospitals(hospitals);
     } else {

@@ -22,7 +22,6 @@ function DashboardNavbar({ searchValue, feature }) {
 
   function handleSearch(e) {
     setSearchTerm((prevState) => e);
-    console.log("eeee", e);
     searchValue(e);
   }
 

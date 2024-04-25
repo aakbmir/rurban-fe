@@ -7,7 +7,6 @@ export async function fetchHospitals() {
       },
     }
   );
-  console.log(res.ok);
   if (!res.ok) {
     throw new Error("Cabin could not be Added");
   }
@@ -23,7 +22,6 @@ export async function fetchPatients() {
       },
     }
   );
-  console.log(res.ok);
   if (!res.ok) {
     throw new Error("Cabin could not be Added");
   }

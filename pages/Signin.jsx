@@ -10,7 +10,7 @@ import { useState } from "react";
 
 function Signin() {
   const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState("show");
+  const [showPassword, setShowPassword] = useState(false);
   const { register, handleSubmit, formState } = useForm({
     mode: "onBlur",
     reValidateMode: "onBlur",
@@ -20,7 +20,6 @@ function Signin() {
   const { mutate } = useMutation({
     mutationFn: userLogin,
     onSuccess: (data) => {
-      console.log(data);
       localStorage.setItem("username", data.username);
       toast.success("Login Successful!!", {
         position: "bottom-center",

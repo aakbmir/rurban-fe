@@ -9,28 +9,26 @@ import { userRegister } from "../src/services/login.service";
 import { useGeoLocation } from "../src/hooks/useGeoLocation";
 import { useUrlPosition } from "../src/hooks/useUrlPosition";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaLocationCrosshairs } from "react-icons/fa6";
 
 function Signin() {
   const { pathname } = useLocation();
-  const [showPassword, setShowPassword] = useState("show");
-  const [isOpen, setIsOpen] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [isHintOpen, setIsHintOpen] = useState(false);
-  const [userType, setUserType] = useState(
-    pathname === "/signup/er" ? "Hospital" : "Patient"
-  );
+  const userType = pathname === "/signup/er" ? "Hospital" : "Patient";
 
   const navigate = useNavigate();
 
-  const { register, handleSubmit, getValues, formState } = useForm({
+  const { register, handleSubmit, getValues, formState, setValue } = useForm({
     mode: "onBlur",
     reValidateMode: "onBlur",
   });
+
   const { errors } = formState;
 
   const { mutate } = useMutation({
     mutationFn: userRegister,
     onSuccess: () => {
-      setIsOpen(true);
       localStorage.setItem("username", "Aaqib");
       navigate("/signin");
     },
@@ -41,8 +39,6 @@ function Signin() {
 
   function onSubmit(data) {
     data["registerType"] = userType;
-    console.log(position);
-    data["position"] = position;
     mutate(data);
   }
 
@@ -50,22 +46,20 @@ function Signin() {
     console.log("error", error);
   }
 
-  const {
-    position: geoLocationPosition,
-    isLoading: isLoadingPosition,
-    getPosition,
-  } = useGeoLocation();
-
+  const { position: geoLocationPosition, getPosition } = useGeoLocation();
   const [position, setPosition] = useState(null);
-
-  console.log(position);
   const [lat, lng] = useUrlPosition();
+
+  function getPositionValue() {
+    getPosition();
+    setPosition(`${lat}, ${lng}`);
+    setValue("location", position);
+  }
 
   useEffect(() => {
     if (lat && lng) {
       setPosition(`${lat}, ${lng}`);
     }
-    getPosition();
   }, [lat, lng]);
 
   useEffect(() => {
@@ -80,14 +74,14 @@ function Signin() {
 
       <div className={styles.herosection}>
         <div className={styles.heroimagesection}>
-          <img className={styles.heroimage1} src="l1.png" alt="background" />
+          <img className={styles.heroimage1} src="/l1.png" alt="background" />
         </div>
         <div className={styles.formsection}>
-          <button className={styles.imgBtn} onClick={() => navigate("/")}>
+          {/* <button className={styles.imgBtn} onClick={() => navigate("/")}>
             <img className={styles.logoImg} alt="hello" src="/l1.png"></img>
-          </button>
+          </button> */}
           <div className={styles.textdescription}>
-            <h3>Register Yourself</h3>
+            <h1>Register Yourself</h1>
             <form
               className={styles.form}
               onSubmit={handleSubmit(onSubmit, onError)}
@@ -182,33 +176,102 @@ function Signin() {
 
               <fieldset
                 className={
-                  errors?.phone?.message
+                  errors?.contact?.message
                     ? styles.errorFieldset
                     : styles.inputFieldset
                 }
               >
                 <input
-                  placeholder="Phone"
+                  placeholder="Contact Number"
                   className={styles.inputVal}
                   type="text"
-                  id="phone"
-                  {...register("phone", {
+                  id="contact"
+                  {...register("contact", {
                     required: "This field is required",
                     minLength: {
                       value: 10,
-                      message: "Invalid Phone Number",
+                      message: "Invalid contact Number",
                     },
                     maxLength: {
                       value: 10,
-                      message: "Invalid Phone Number",
+                      message: "Invalid contact Number",
                     },
                   })}
                 ></input>
               </fieldset>
 
-              {errors?.phone?.message && (
+              {errors?.contact?.message && (
                 <span className={styles.errorMessage}>
-                  {errors?.phone?.message}
+                  {errors?.contact?.message}
+                </span>
+              )}
+              {userType === "Clinic" && (
+                <>
+                  <fieldset
+                    className={
+                      errors?.website?.message
+                        ? styles.errorFieldset
+                        : styles.inputFieldset
+                    }
+                  >
+                    <input
+                      placeholder="website"
+                      className={styles.inputVal}
+                      type="text"
+                      id="website"
+                      {...register("website", {
+                        required: "This field is required",
+                        minLength: {
+                          value: 10,
+                          message: "Invalid website ",
+                        },
+                        maxLength: {
+                          value: 10,
+                          message: "Invalid website Number",
+                        },
+                      })}
+                    ></input>
+                  </fieldset>
+
+                  {errors?.website?.message && (
+                    <span className={styles.errorMessage}>
+                      {errors?.website?.message}
+                    </span>
+                  )}
+                </>
+              )}
+              <fieldset
+                className={
+                  errors?.location?.message
+                    ? styles.errorFieldset
+                    : styles.inputFieldset
+                }
+              >
+                <input
+                  disabled={true}
+                  placeholder="Location"
+                  className={styles.inputVal}
+                  type="text"
+                  id="location"
+                  {...register("location", {
+                    required: "This field is required",
+                  })}
+                ></input>
+                <button
+                  style={{ background: "none", border: "none" }}
+                  type="button"
+                  onClick={() => getPositionValue()}
+                >
+                  <FaLocationCrosshairs
+                    color="#666464"
+                    className={styles.searchIcon}
+                  />
+                </button>
+              </fieldset>
+
+              {errors?.location?.message && (
+                <span className={styles.errorMessage}>
+                  {errors?.location?.message}
                 </span>
               )}
 

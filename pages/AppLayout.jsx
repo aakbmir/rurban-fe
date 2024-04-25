@@ -6,7 +6,6 @@ import UserDashboard from "../src/components/UserDashboard";
 export default function AppLayout() {
   const [searchParams] = useSearchParams();
   const user = searchParams.get("user");
-  console.log(user);
   return (
     <div className={Styles.app}>
       {user === "patient" && <UserDashboard />}

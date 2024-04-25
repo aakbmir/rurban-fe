@@ -1,5 +1,4 @@
 export async function userLogin(data: any) {
-  console.log("made a call", data);
   const res = await fetch(`https://rurban.onrender.com/api/v1/auth/login`, {
     method: "POST",
     headers: {
@@ -11,7 +10,6 @@ export async function userLogin(data: any) {
       registerType: data["registerType"],
     }),
   });
-  console.log(res.ok);
   if (!res.ok) {
     throw new Error("Cabin could not be Added");
   }
@@ -19,7 +17,6 @@ export async function userLogin(data: any) {
 }
 
 export async function userRegister(data: any) {
-  console.log("made a call", data);
   const res = await fetch(`https://rurban.onrender.com/api/v1/auth/register`, {
     method: "POST",
     headers: {
