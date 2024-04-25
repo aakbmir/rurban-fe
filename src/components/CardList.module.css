@@ -63,7 +63,10 @@ margin-right:6px
   }
 
   .mobileNav {
-    display:block;
+    
+    display: grid;
+        width: 97%;
+        margin: auto;
   }
   
   .cardContainer {

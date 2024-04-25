@@ -5,10 +5,12 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { userLogin } from "../src/services/login.service";
 import { toast } from "react-toastify";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useState } from "react";
 
 function Signin() {
   const navigate = useNavigate();
-
+  const [showPassword, setShowPassword] = useState("show");
   const { register, handleSubmit, formState } = useForm({
     mode: "onBlur",
     reValidateMode: "onBlur",
@@ -97,12 +99,24 @@ function Signin() {
                 <input
                   className={styles.inputVal}
                   placeholder="Password"
-                  type="password"
+                  type={`${showPassword ? "text" : "password"}`}
                   id="password"
                   {...register("password", {
                     required: "This field is required",
                   })}
                 ></input>
+                <button
+                  style={{ background: "none", border: "none" }}
+                  type="button"
+                  onClick={() => setShowPassword((pre) => !pre)}
+                >
+                  {!showPassword && (
+                    <FaEyeSlash color="#666464" className={styles.searchIcon} />
+                  )}
+                  {showPassword && (
+                    <FaEye color="#666464" className={styles.searchIcon} />
+                  )}
+                </button>
               </fieldset>
 
               {errors?.password?.message && (

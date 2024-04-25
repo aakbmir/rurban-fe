@@ -8,9 +8,11 @@ import { useMutation } from "@tanstack/react-query";
 import { userRegister } from "../src/services/login.service";
 import { useGeoLocation } from "../src/hooks/useGeoLocation";
 import { useUrlPosition } from "../src/hooks/useUrlPosition";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 function Signin() {
   const { pathname } = useLocation();
+  const [showPassword, setShowPassword] = useState("show");
   const [isOpen, setIsOpen] = useState(false);
   const [isHintOpen, setIsHintOpen] = useState(false);
   const [userType, setUserType] = useState(
@@ -220,7 +222,7 @@ function Signin() {
                 <input
                   placeholder="Password"
                   className={styles.inputVal}
-                  type="password"
+                  type={`${showPassword ? "text" : "password"}`}
                   id="password"
                   {...register("password", {
                     required: "This field is required",
@@ -231,6 +233,18 @@ function Signin() {
                     },
                   })}
                 ></input>
+                <button
+                  style={{ background: "none", border: "none" }}
+                  type="button"
+                  onClick={() => setShowPassword((pre) => !pre)}
+                >
+                  {!showPassword && (
+                    <FaEyeSlash color="#666464" className={styles.searchIcon} />
+                  )}
+                  {showPassword && (
+                    <FaEye color="#666464" className={styles.searchIcon} />
+                  )}
+                </button>
               </fieldset>
 
               {errors?.password?.message && (
