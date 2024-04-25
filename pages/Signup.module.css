@@ -43,7 +43,8 @@ body, html {
 }
 
 .heroimage1 {
-  height:22%
+  height:22%;
+  width:-webkit-fill-available
 }
 
 .formsection {

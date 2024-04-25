@@ -5,11 +5,12 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
-import { userRegister } from "../src/services/login.service";
+import { RegisterEr, RegisterUser } from "../src/services/login.service";
 import { useGeoLocation } from "../src/hooks/useGeoLocation";
 import { useUrlPosition } from "../src/hooks/useUrlPosition";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FaLocationCrosshairs } from "react-icons/fa6";
+import { toast } from "react-toastify";
 
 function Signin() {
   const { pathname } = useLocation();
@@ -27,12 +28,23 @@ function Signin() {
   const { errors } = formState;
 
   const { mutate } = useMutation({
-    mutationFn: userRegister,
+    mutationFn: userType === "Hospital" ? RegisterEr : RegisterUser,
     onSuccess: () => {
+      toast.success(
+        `${
+          userType === "Hospital"
+            ? "ER Successfully Registered"
+            : "User Successfully Registered"
+        } `,
+        {
+          position: "bottom-center",
+        }
+      );
       localStorage.setItem("username", "Aaqib");
       navigate("/signin");
     },
-    onError: () => {
+    onError: (e) => {
+      alert(e);
       alert("error while logging in");
     },
   });
