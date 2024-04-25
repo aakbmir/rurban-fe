@@ -11,50 +11,41 @@
 }
 
 .card {
-width: calc(100% - 10px); /* Each card takes up 33.33% width with spacing */
-margin-bottom: 20px;
-background-color: #ffffff;
-border: 1px solid #dddddd;
-border-radius: 4px;
-box-sizing: border-box;
-height: 10em;
+  width: calc(100% - 10px); /* Each card takes up 33.33% width with spacing */
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  height: 10em;
 }
 
 .imgImage {
-width: 120%;
-height: 100%;
-/* width: 100%;
-border-top-left-radius: 10px;
-border-top-right-radius: 10px */
+  //width: 120%;
+  height: 100%;
+  /* width: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px */
 }
 
 .itemDesc {
-margin-left: 1em;
-margin-top: 1em;
-float: left;
-width: 60%;
+  float: left;
+  width: 30%;
+  padding-top: 1.7em;
 }
 
 .bookingDesc {
-margin-right: 1em;
-margin-top: 1em;
-display:flex
+  
 }
 
 .phone {
-margin-top:5px;
-margin-bottom:5px
+  margin-top:5px;
+  margin-bottom:5px
 }
 
 .icon {
-margin-right:6px
+  margin-right:6px
 }
-
-
-
-
-
-
 
 /* Responsive */
 @media screen and (max-width: 600px) {
@@ -96,9 +87,8 @@ margin-right:6px
   }
 
   .itemDesc {
-    margin-left: 1em;
-    margin-top: 1em;
-    width: 60%;
+    width: 85%;
+    padding-top: 0em;
   }
 
   .bookingDesc {

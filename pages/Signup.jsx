@@ -41,11 +41,11 @@ function Signin() {
         }
       );
       localStorage.setItem("username", "Aaqib");
-      navigate("/signin");
+      navigate("/");
     },
-    onError: (e) => {
-      alert(e);
-      alert("error while logging in");
+    onError: (error) => {
+      //alert(error.message);
+      toast.error(error.message, { position: "bottom-center" });
     },
   });
 

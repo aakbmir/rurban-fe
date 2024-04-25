@@ -140,8 +140,9 @@ function HospitalDashboard() {
       );
     }
   };
+
   return (
-    <>
+    <div style={{ margin: "1em" }}>
       <DashboardNavbar
         searchValue={(e) => searchHospitals(e)}
         feature="Patients"
@@ -149,8 +150,11 @@ function HospitalDashboard() {
       <div className={styles.navTabName}>
         <span className={styles.navTabDesc}>Patients</span> for you
       </div>
-      <CardList dataList={filteredHospitals} feature="Patients" />
-    </>
+      {hospitals.length > 0 && (
+        <CardList dataList={filteredHospitals} feature="Patients" />
+      )}
+      {hospitals.length === 0 && <span>No upcoming Appointments</span>}
+    </div>
   );
 }
 

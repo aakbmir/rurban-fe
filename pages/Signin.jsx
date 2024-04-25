@@ -17,9 +17,24 @@ function Signin() {
   });
   const { errors } = formState;
 
-  const { mutate } = useMutation({
+  const { mutateAsync } = useMutation({
     mutationFn: userLogin,
+    // onSettled: (responseData, error) => {
+    //   // Check if there was an error
+    //   if (error) {
+    //     // Handle error
+    //     alert("Invalid Credentials");
+    //   } else if (responseData) {
+    //     // Access the response data and do something with it
+    //     console.log('Response data:', responseData);
+    //     // You can also update state or perform any other action here
+    //   } else {
+    //     console.error('Response data is undefined');
+    //   }
+    //  },
+
     onSuccess: (data) => {
+      console.log("dataaaa", data);
       localStorage.setItem("username", data.username);
       toast.success("Login Successful!!", {
         position: "bottom-center",
@@ -35,8 +50,8 @@ function Signin() {
     },
   });
 
-  function onSubmit(data) {
-    mutate(data);
+  async function onSubmit(data) {
+    await mutateAsync(data);
   }
 
   function onError(error) {

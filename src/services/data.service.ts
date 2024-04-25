@@ -1,6 +1,6 @@
 export async function fetchHospitals() {
   const res = await fetch(
-    "https://rurban.onrender.com/api/v1/data/fetch-hospitals",
+    "https://rurban.onrender.com/api/v1/data/fetch-clinics",
     {
       headers: {
         "Content-Type": "application/json",

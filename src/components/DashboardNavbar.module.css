@@ -195,7 +195,7 @@
   }
   
   .navbarSection {
-    padding: 0 10px;
+    padding: 0 0px;
     display: flex;
     justify-content: space-between;
     align-items: start;

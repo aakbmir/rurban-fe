@@ -6,10 +6,6 @@ import { FaUserAlt } from "react-icons/fa";
 function HomePage() {
   const navigate = useNavigate();
 
-  const handleBookAppointmentClick = () => {
-    navigate("/appointment");
-  };
-
   return (
     <div className={styles.herosection}>
       <div className={styles.heroimagesection}>

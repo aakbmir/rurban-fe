@@ -141,7 +141,7 @@ function UserDashboard() {
     }
   };
   return (
-    <>
+    <div style={{ margin: "1em" }}>
       <DashboardNavbar
         searchValue={(e) => searchHospitals(e)}
         feature="Hospitals"
@@ -152,7 +152,7 @@ function UserDashboard() {
       <CardList dataList={filteredHospitals} feature="Hospitals" />
 
       <div></div>
-    </>
+    </div>
   );
 }
 

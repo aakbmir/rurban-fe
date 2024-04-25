@@ -15,19 +15,19 @@ const CardList = ({ dataList, feature }) => {
       <div className={styles.mobileNav}>
         <div className={styles.cardContainer}>
           {dataList.map((item, index) => (
-            <div onClick={handleClick} key={index} className={styles.card}>
+            <div key={index} className={styles.card}>
               <img
                 alt="hospital"
                 className={styles.imgImage}
-                src={feature === "Hospital" ? patImage : hosImage}
+                src={feature === "Hospitals" ? hosImage : patImage}
               ></img>
+              <h2>{feature === "Hospitals" ? item.clinicName : item.name}</h2>
               <div style={{ display: "flex", alignItems: "center" }}>
                 <div className={styles.itemDesc}>
-                  <h2>{item.name}</h2>
-                  {item.phone ? (
+                  {item.clinicContact ? (
                     <p className={styles.phone}>
                       <FaPhoneAlt className={styles.icon} />
-                      {item.phone}
+                      {item.clinicContact}
                     </p>
                   ) : (
                     <p className={styles.phone}>
@@ -35,15 +35,24 @@ const CardList = ({ dataList, feature }) => {
                       Not Available
                     </p>
                   )}
-                  {item.position ? (
+
+                  {item.phone && (
+                    <p className={styles.phone}>
+                      <FaPhoneAlt className={styles.icon} />
+                      {item.phone}
+                    </p>
+                  )}
+                  {item.clinicLocation && (
                     <p>
                       <FaLocationDot className={styles.icon} />
-                      {item.position}
+                      {item.clinicLocation}
                     </p>
-                  ) : (
-                    <p className={styles.phone}>
+                  )}
+
+                  {item.clinicWebsite && (
+                    <p>
                       <FaLocationDot className={styles.icon} />
-                      Not Available
+                      {item.clinicWebsite}
                     </p>
                   )}
                 </div>
@@ -78,20 +87,20 @@ const CardList = ({ dataList, feature }) => {
               className={styles.card}
               style={{ display: "flex", justifyContent: "space-between" }}
             >
-              <div style={{ width: "18em" }}>
+              <div style={{}}>
                 <img
                   alt="hospital"
                   className={styles.imgImage}
-                  src={feature === "Hospital" ? patImage : hosImage}
+                  src={feature === "Hospitals" ? hosImage : patImage}
                 ></img>
               </div>
 
               <div className={styles.itemDesc}>
-                <h2>{item.name}</h2>
-                {item.phone ? (
+                <h2>{item.clinicName}</h2>
+                {item.clinicContact ? (
                   <p className={styles.phone}>
                     <FaPhoneAlt className={styles.icon} />
-                    {item.phone}
+                    {item.clinicContact}
                   </p>
                 ) : (
                   <p className={styles.phone}>
@@ -99,10 +108,35 @@ const CardList = ({ dataList, feature }) => {
                     Not Available
                   </p>
                 )}
-                {item.position ? (
+                {item.clinicLocation ? (
                   <p>
                     <FaLocationDot className={styles.icon} />
-                    {item.position}
+                    {item.clinicLocation}
+                  </p>
+                ) : (
+                  <p className={styles.phone}>
+                    <FaLocationDot className={styles.icon} />
+                    Not Available
+                  </p>
+                )}
+              </div>
+              <div className={styles.itemDesc}>
+                <h2>{item.clinicName}</h2>
+                {item.clinicContact ? (
+                  <p className={styles.phone}>
+                    <FaPhoneAlt className={styles.icon} />
+                    {item.clinicContact}
+                  </p>
+                ) : (
+                  <p className={styles.phone}>
+                    <FaPhoneAlt className={styles.icon} />
+                    Not Available
+                  </p>
+                )}
+                {item.clinicLocation ? (
+                  <p>
+                    <FaLocationDot className={styles.icon} />
+                    {item.clinicLocation}
                   </p>
                 ) : (
                   <p className={styles.phone}>
