@@ -6,7 +6,9 @@ import { Suspense, lazy } from "react";
 import Signin from "../pages/Signin";
 import Signup from "../pages/Signup";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+
 import HomePage from "../pages/HomePage";
 
 const PageNotFound = lazy(() => import("../pages/PageNotFound"));

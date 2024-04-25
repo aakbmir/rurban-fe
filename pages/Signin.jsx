@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { userLogin } from "../src/services/login.service";
+import { toast } from "react-toastify";
 
 function Signin() {
   const navigate = useNavigate();
@@ -19,9 +20,9 @@ function Signin() {
     onSuccess: (data) => {
       console.log(data);
       localStorage.setItem("username", data.username);
-      // toast.success("User logged successfully!", {
-      //   position: "top-center",
-      // });
+      toast.success("Login Successful!!", {
+        position: "bottom-center",
+      });
       if (data.registerType === "Patient") {
         navigate("/dashboard?user=patient");
       } else {
