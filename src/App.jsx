@@ -1,35 +1,45 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-
-import { AuthProvider } from "./context/AuthContext";
-import SpinnerFullPage from "./components/SpinnerFullPage";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Suspense, lazy } from "react";
-import Signin from "../pages/Signin";
-import Signup from "../pages/Signup";
+import { AuthProvider } from "./context/AuthContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import "react-toastify/dist/ReactToastify.css";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-import HomePage from "../pages/HomePage";
+import SpinnerFullPage from "./features/common/SpinnerFullPage";
+import Signin from "./features/login/Signin";
+import Signup from "./features/login/Signup";
+import HomePage from "./features/login/HomePage";
 
 const PageNotFound = lazy(() => import("../pages/PageNotFound"));
 const AppLayout = lazy(() => import("../pages/AppLayout"));
 
 function App() {
   const queryClient = new QueryClient({
-    defaultOptions: {},
+    defaultOptions: {
+      queries: {
+        // staleTime: 60 * 1000,
+        staleTime: 3000,
+        refetchOnWindowFocus: true,
+      },
+    },
   });
+
   return (
     <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools />
       <AuthProvider>
-        <ToastContainer />
+        <ToastContainer autoClose={2000} />
         <BrowserRouter>
           <Suspense fallback={<SpinnerFullPage />}>
             <Routes>
-              <Route index element={<HomePage />} />
+              <Route index element={<Navigate replace to="home" />} />
+              <Route path="home" element={<HomePage />} />
               <Route path="signin" element={<Signin />} />
               <Route path="signup/:user" element={<Signup />} />
-              <Route path="/login" element={<HomePage />} />
-              <Route path="dashboard" element={<AppLayout />} />
+              <Route path="login" element={<HomePage />} />
+              <Route path="dashboard/*" element={<AppLayout />} />
+
               {/* <Route exact index element={<Navigate replace to="cities" />} />
                 <Route exact path="cities" element={<CityList />} />
                 <Route exact path="cities/:id" element={<City />} />

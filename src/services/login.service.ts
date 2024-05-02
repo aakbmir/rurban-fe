@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export async function userLogin(data: any) {
-  const res = await fetch(`https://rurban.onrender.com/api/v1/auth/login`, {
+  const res = await fetch(`http://localhost:8084/api/v1/auth/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -13,14 +13,14 @@ export async function userLogin(data: any) {
     }),
   });
   if (!res.ok) {
-    throw new Error("Cabin could not be Added");
+    throw new Error("User could not be logged In");
   }
   return await res.json();
 }
 
 export async function RegisterUser(data: any) {
   await axios
-    .post("https://rurban.onrender.com/api/v1/auth/register-user", {
+    .post("http://localhost:8084/api/v1/auth/register-user", {
       name: data["name"],
       dob: data["dob"],
       email: data["email"],
@@ -42,14 +42,15 @@ export async function RegisterUser(data: any) {
 
 export async function RegisterEr(data: any) {
   await axios
-    .post("https://rurban.onrender.com/api/v1/auth/register-er", {
+    .post("http://localhost:8084/api/v1/auth/register-er", {
       name: data["name"],
       dob: data["dob"],
       email: data["email"],
       password: data["password"],
       contact: data["contact"],
       registerType: data["registerType"],
-      location: data["location"],
+      location: data["location"].toString(),
+      website: data["website"],
     })
     .then(
       (response) => {

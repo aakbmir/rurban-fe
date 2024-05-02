@@ -1,0 +1,150 @@
+.navbarSection {
+  padding: 0 2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4.5em;
+  background-color: white;
+  box-shadow: 1px 1px 6px -3px gray;
+}
+
+.navbarTitle {
+  font-weight: bold;
+  font-family: Cambria, sans-serif;
+  width: 20%;
+  display: flex;
+  align-items: center;
+}
+
+.navbarImg {
+  height:3em;
+  margin-right: 1em;
+}
+
+.navbarLinks {
+  text-decoration: none;
+  color: #656363;
+  font-size: 16px;
+  letter-spacing: .8px;
+}
+
+.navbarItems {
+  list-style-type: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 4em;
+  font-family: Cambria, sans-serif;
+  width:100%
+}
+
+.navbarItems > li {
+  list-style-type: none;
+}
+
+.mobileNavbar {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  background-color: white;
+  z-index: 20;
+  justify-content: center;
+  align-items: center;
+  transition: left .5s ease-in-out;
+}
+
+.openNav {
+  left: 0;
+}
+
+.closeNav {
+}
+
+.mobileNavbarClose {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+}
+
+.mobileNavbarClose .hambIcon:hover {
+  color: rgb(255, 22, 22);
+}
+
+.mobileNavbarLinks {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  font-size: 24px;
+  gap: 24px;
+  text-align: center;
+}
+
+.mobileNavbarLinks > li > a,
+.mobileNavbarLinks > li > div
+{
+  text-decoration: none;
+  color: black;
+  font-family: Cambria, sans-serif;
+  font-weight: bold;
+  transition: color .3s ease-in-out;
+  cursor:pointer
+}
+
+.mobileNavbarLinks > li > a:hover,
+.mobileNavbarLinks > li > div:hover {
+  cursor:pointer;
+  color: #0cc2ea;
+}
+
+.mobileNav {
+  display: none;
+}
+
+/* .hambIcon {
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+}
+
+.hambIcon:hover {
+  color: #0cc2ea;
+} */
+
+@media screen and (max-width: 600px) {
+    
+  .navbarSection {
+    padding: 0 10px;
+    height: fit-content;
+    color:#656363;
+    padding-bottom:1em;
+  }
+
+  .navbarTitle {
+    font-weight: bold;
+    font-family: Cambria, sans-serif;
+    width: 65%;
+    display: flex;
+    align-items: center;
+  }
+
+  .desktopNavbar {
+    display:none;
+  }
+
+  .navTabUser {
+    margin-top:0.4em;
+    display:flex;
+    font-size:16px;
+    justify-content: flex-end;
+    align-items:center;
+  }
+    
+  .mobileNav {
+    display: block;
+    width:100%
+  }
+}

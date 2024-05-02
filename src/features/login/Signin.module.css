@@ -1,0 +1,229 @@
+.mainDiv {
+  height: 100vh;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  /* background: linear-gradient(to right, #ECF2FF, #FBFCFF); */
+}
+
+.leftDivSection {
+  background: url('/back.png');
+  background-size: cover;
+  min-width: 35%;
+  max-width: 35%;
+  height: 100%;
+  text-align: center;
+}
+
+.leftDivLogo {
+  visibility: hidden
+}
+
+.formDivSection {
+  width: 65%;
+  padding: 0 32px;
+  text-align: center;
+}
+
+.logoImg {
+  width: inherit;
+  max-width: 20em;
+  padding: 3em; 
+}
+
+.textDescription {
+  font-family: Cambria, sans-serif;
+  font-size: 20px;
+  margin-top: 1em;
+}
+
+.textDescription h5 {
+  font-family: Cambria, sans-serif;
+  margin: 0;
+  margin-bottom: 2em;
+}
+
+.form {
+    margin-left: 25%;
+}
+
+.inputFieldset {
+  width: 65%;
+  border-radius: 10px;
+  border: 2px solid #b0aaaa;
+  color: black;
+  margin-bottom: 1em;
+}
+
+.errorFieldset {
+  width: 65%;
+  border-radius: 10px;
+  border: 2px solid red;
+  color: black;
+  margin-bottom: 1em;
+}
+
+.locationError {
+  float: left;
+  width: 65%;
+  margin-bottom: 0.5em;
+  background: none;
+  font-size: 12px;
+  border: none;
+}
+
+.inputVal {
+  background: none !important;
+  padding: 0.8em;
+  font-size: 16px;
+  width: 90%;
+  border: none;
+  outline: none;
+}
+
+.errorMessage {
+  color: #ee0b0b
+}
+
+.transparentButton {
+	background: none;
+	border: none
+}
+
+.btnUser { 
+  float: left;
+  width: 65%;
+  height: 6vh;
+  color: #fff;
+  font-size: 18px;
+  background: #33528b;
+  border-radius: 10px;
+  margin-bottom: 2em;
+  margin-top: 1em;
+  border: none
+}
+
+.disabledBtn {
+  background: grey
+}
+
+.register {
+  float: left;
+  font-size: 15px;
+  color: black;
+  background: none;
+  border: none;
+  width: 65%;
+}
+
+.homeBtn {
+  background: none;
+  border: none;
+  color: #33528b;
+  margin-left: 0.5em;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* @media screen and (max-width: 900px) {
+  .mobileLogin {
+    display: none;
+  }
+
+  .register { 
+    width: 100%;
+  }
+ 
+  .mainDiv {
+    height: 90vh;
+    padding-top: 1em;
+    align-items: baseline;    
+  }
+
+  
+  .formDivSection {
+    width: 100%;
+  }
+
+  .form {
+    margin-left: 0%;
+  }
+
+  .inputFieldset {
+    margin-bottom: 1em;
+  }
+
+  .logoImg {
+    width: inherit;
+    max-width: 10em;
+    padding: 0em;
+  }
+
+  .textDescription h5 {
+    font-family: Cambria, sans-serif;
+    margin: 0;
+    margin-bottom: 3em;
+  }
+
+  .leftDivSection {
+    display: none;
+  }
+
+  .inputFieldset {
+    width: 100%;
+  }
+  
+  .errorFieldset {
+    width: 100%;
+  }
+
+  .btnUser { 
+    float: left;
+    width: 100%;
+    margin-bottom: 1em;
+    margin-top: 1em;
+  }
+} */
+
+/* Responsive */
+@media screen and (max-width: 600px) {
+  .mainDiv {
+    padding-top: 3em;
+    align-items: baseline;    
+  }
+
+  .formDivSection {
+    width: 100%;
+  }
+
+  .form {
+    margin-left: 0%;
+  }
+  
+  .leftDivSection {
+    display: none;
+  }
+
+  .inputFieldset {
+    width: 100%;
+  }
+  
+  .errorFieldset {
+    width: 100%;
+  }
+
+  .btnUser { 
+    float: left;
+    width: 100%;
+    margin-bottom: 1em;
+    margin-top: 1em;
+  }
+
+  .locationError {
+    width: 100%;
+  }
+
+  .register {
+    width: 100%;
+  }
+}

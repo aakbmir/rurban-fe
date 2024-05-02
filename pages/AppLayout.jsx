@@ -1,15 +1,34 @@
-import { useSearchParams } from "react-router-dom";
-import Styles from "./AppLayout.module.css";
-import HospitalDashboard from "../src/components/HospitalDashboard";
-import UserDashboard from "../src/components/UserDashboard";
+import { Route, Routes } from "react-router-dom";
+import Dashboard from "../src/features/common/Dashboard";
+import UserAppointments from "../src/features/patient/UserAppointments";
+import DashboardNavbar from "../src/features/common/DashboardNavbar";
+import HospitalsList from "../src/features/patient/HospitalsList";
 
 export default function AppLayout() {
-  const [searchParams] = useSearchParams();
-  const user = searchParams.get("user");
+  console.log("In AppLayout");
   return (
-    <div className={Styles.app}>
-      {user === "patient" && <UserDashboard />}
-      {user === "er" && <HospitalDashboard />}
-    </div>
+    <>
+      <Routes>
+        <Route path=":user/home" element={<Dashboard />} />
+        <Route
+          path=":user/hospitals"
+          element={
+            <>
+              <DashboardNavbar feature="Hospitals" />
+              <HospitalsList records="all" />
+            </>
+          }
+        />
+        <Route
+          path=":user/checkIns"
+          element={
+            <>
+              <DashboardNavbar feature="Hospitals" />
+              <UserAppointments records="all" />
+            </>
+          }
+        />
+      </Routes>
+    </>
   );
 }

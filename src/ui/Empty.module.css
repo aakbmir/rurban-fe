@@ -1,0 +1,17 @@
+.emptyListText{
+  padding-left: 6.3em;
+  padding-top: 1em;
+  font-size: 13px;
+  padding-bottom: 2em;
+}
+
+
+@media screen and (max-width: 600px) {
+  .emptyListText{
+    padding-left: 1.6em;
+    padding-top: 1em;
+    font-size: 13px
+  }
+}
+
+

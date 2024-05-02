@@ -1,0 +1,182 @@
+body {
+  background: linear-gradient(to right, #ECF2FF, #FBFCFF); 
+}
+
+.mobileNav {
+  display: none;
+}
+
+.cardContainer {
+  margin-left: 7em;
+  margin-right: 7em;
+  margin-top: 2em;
+}
+
+.card {
+  width: calc(100% - 10px);
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  height: 10em;
+}
+
+.imgImage {
+  height: 100%;
+}
+
+.itemDesc {
+  float: left;
+  width: 30%;
+  padding-top: 1.7em;
+}
+
+.checkInDesc {
+}
+
+.phone {
+  margin-top: 5px;
+  margin-bottom: 5px
+}
+
+.icon {
+  margin-right: 6px
+}
+
+.table {
+  border: 1px solid #c1c3c4;
+  font-size: 1rem;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 0.7em;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr 2fr 2fr;
+  column-gap: 0.2em;
+  align-items: center;
+  background-color: #33528b;
+  color: #fff;
+  border-bottom: 1px solid #c1c3c4;
+  font-weight: bolder;
+  padding: 0.5em;
+  padding-bottom: 1em;
+  padding-top: 1em; 
+} 
+
+.tableData {
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr 2fr 2fr;
+  column-gap: 0.2em;
+  align-items: center;
+  padding: 0.5rem;
+  border-bottom: 1px solid #c1c3c4;
+}
+
+.tableColumn {
+  font-size: 1.15em;
+  padding-top: 0.1em;
+  padding-bottom: 0.1em;
+  display: flex;
+}
+
+.table:nth-child(even) { 
+  background-color: #f3f3f3; 
+} 
+
+.confirm {
+  color: limegreen !important;
+}
+
+.cancel {
+  color: red !important;
+}
+
+.cancelBtnn {
+  text-align: center;
+  margin-left: 35%;  
+  background: none;
+  border: none;
+}
+
+.navTabName {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1em;
+  margin-left: 3.5em;
+  font-size: 2em;
+  font-weight: normal;
+  /* font-family: 'Rubik', sans-serif; */
+  font-family: Cambria, sans-serif;
+  width:88%;
+}
+
+@media screen and (max-width: 600px) {
+  .desktopNav {
+    display: none;
+  }
+
+  .mobileNav {    
+    display: grid;
+    width: 97%;
+    margin: auto;
+  }
+  
+  .cardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 1em;
+  }
+  
+  .card {
+    width: calc(100% - 10px);
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    box-sizing: border-box;
+    height: fit-content;
+    padding: 10px
+  }
+
+  .imgImage {
+    height: 90%;
+    width: 70%;
+  }
+
+  .itemDesc {
+    width: 85%;
+    padding-top: 0em;
+  }
+  .firstDiv {
+    display: flex
+  }
+
+  .firstLeftSection {
+    width: 40%
+  }
+
+  .firstLeftSectionButtonGroup {
+    width:60%
+  }
+  .phone {
+    margin-top: 5px;
+    margin-bottom: 5px
+  }
+
+  .icon {
+    margin-right: 6px
+  }
+
+  .navTabName {
+    font-size: 1.4em;
+    font-weight: normal;
+    width:88%;
+    margin-left: 0em;
+    padding-top: 1em;
+    margin:auto;
+  }
+}
