@@ -1,9 +1,12 @@
 export async function fetchClinics() {
-  const res = await fetch("http://localhost:8084/api/v1/data/fetch-clinics", {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const res = await fetch(
+    "https://rurban.onrender.com/api/v1/data/fetch-clinics",
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
   if (!res.ok) {
     throw new Error("Error while fetching Hospitals");
   }
@@ -13,7 +16,7 @@ export async function fetchClinics() {
 export async function fetchCheckInsForUser(records: any) {
   const userId = localStorage.getItem("rurban_cro_id_ddi");
   const res = await fetch(
-    `http://localhost:8084/api/v1/data/fetch-user-checkins?userId=${userId}&records=${records}`,
+    `https://rurban.onrender.com/api/v1/data/fetch-user-checkins?userId=${userId}&records=${records}`,
     {
       headers: {
         "Content-Type": "application/json",
@@ -27,13 +30,16 @@ export async function fetchCheckInsForUser(records: any) {
 }
 
 export async function createCheckIn(data: any) {
-  const res = await fetch(`http://localhost:8084/api/v1/data/create-checkin`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
+  const res = await fetch(
+    `https://rurban.onrender.com/api/v1/data/create-checkin`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }
+  );
   if (!res.ok) {
     throw new Error("Error while booking your check in");
   }
@@ -42,7 +48,7 @@ export async function createCheckIn(data: any) {
 
 export async function cancelCheckIn(id: any) {
   const res = await fetch(
-    `http://localhost:8084/api/v1/data/cancel-checkin?id=${id}`,
+    `https://rurban.onrender.com/api/v1/data/cancel-checkin?id=${id}`,
     {
       method: "DELETE",
       headers: {
@@ -59,7 +65,7 @@ export async function cancelCheckIn(id: any) {
 export async function fetchHospitalCheckins() {
   const clinicId = localStorage.getItem("rurban_cro_id_ddi");
   const res = await fetch(
-    `http://localhost:8084/api/v1/data/fetch-hospital-checkins?clinicId=${clinicId}`,
+    `https://rurban.onrender.com/api/v1/data/fetch-hospital-checkins?clinicId=${clinicId}`,
     {
       headers: {
         "Content-Type": "application/json",

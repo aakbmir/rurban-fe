@@ -6,6 +6,7 @@ import { userLogin } from "../../services/login.service";
 import { toast } from "react-toastify";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
+import FormRow from "../common/FormRow";
 
 function Signin() {
   const navigate = useNavigate();
@@ -61,13 +62,7 @@ function Signin() {
             className={styles.form}
             onSubmit={handleSubmit(onSubmit, onError)}
           >
-            <fieldset
-              className={
-                errors?.username?.message
-                  ? styles.errorFieldset
-                  : styles.inputFieldset
-              }
-            >
+            <FormRow error={errors?.name?.message}>
               <input
                 className={styles.inputVal}
                 placeholder="Username"
@@ -81,14 +76,7 @@ function Signin() {
                   },
                 })}
               ></input>
-            </fieldset>
-            <div className={styles.locationError}>
-              {errors?.username?.message && (
-                <span className={styles.errorMessage}>
-                  {errors?.username?.message}
-                </span>
-              )}
-            </div>
+            </FormRow>
             <fieldset
               className={
                 errors?.password?.message
