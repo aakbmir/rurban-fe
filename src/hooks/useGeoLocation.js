@@ -6,10 +6,12 @@ export function useGeoLocation(defaultPosition = null) {
   const [error, setError] = useState(null);
 
   function getPosition() {
+    console.log("geolocation");
     if (!navigator.geolocation)
       return setError("Your browser does not support geolocation");
 
     setIsLoading(true);
+    console.log("loading");
     navigator.geolocation.getCurrentPosition(
       (pos) => {
         setPosition({
@@ -23,6 +25,8 @@ export function useGeoLocation(defaultPosition = null) {
         setIsLoading(false);
       }
     );
+    console.log("done");
+    console.log(position);
   }
 
   return { position, isLoading, error, getPosition };

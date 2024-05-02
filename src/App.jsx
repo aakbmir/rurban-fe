@@ -27,7 +27,7 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools />
+      {/* <ReactQueryDevtools /> */}
       <AuthProvider>
         <ToastContainer autoClose={2000} />
         <BrowserRouter>

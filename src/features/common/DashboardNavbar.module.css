@@ -10,7 +10,7 @@
 
 .navbarTitle {
   font-weight: bold;
-  font-family: Cambria, sans-serif;
+  
   width: 20%;
   display: flex;
   align-items: center;
@@ -34,7 +34,7 @@
   justify-content: flex-end;
   align-items: center;
   gap: 4em;
-  font-family: Cambria, sans-serif;
+  
   width:100%
 }
 
@@ -88,7 +88,7 @@
 {
   text-decoration: none;
   color: black;
-  font-family: Cambria, sans-serif;
+  
   font-weight: bold;
   transition: color .3s ease-in-out;
   cursor:pointer
@@ -125,7 +125,7 @@
 
   .navbarTitle {
     font-weight: bold;
-    font-family: Cambria, sans-serif;
+    
     width: 65%;
     display: flex;
     align-items: center;

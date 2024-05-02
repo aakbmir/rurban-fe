@@ -76,142 +76,153 @@ const HospitalsList = () => {
     },
   });
 
-  if (isHospitalLoading) return <Spinner />;
-  if (hospitals && hospitals.length === 0)
-    return <Empty resourceName="Hospitals" />;
-
   return (
     <>
       <div className={styles.navTabName}>Hospitals</div>;
-      <div className={styles.mobileNav}>
-        <div className={styles.cardContainer}>
-          {hospitals.map((item, index) => (
-            <div key={index} className={styles.card}>
-              <div className={styles.firstDiv}>
-                <div className={styles.firstLeftSection}>
-                  <img
-                    alt="hospital"
-                    className={styles.imgImage}
-                    src={hosImage}
-                  ></img>
-                </div>
-                <div>
-                  <h2>{item.clinicName}</h2>
-                  {item.clinicContact ? (
-                    <p className={styles.phone}>
-                      <FaPhoneAlt className={styles.icon} />
-                      {item.clinicContact}
-                    </p>
-                  ) : (
-                    <p className={styles.phone}>
-                      <FaPhoneAlt className={styles.icon} />
-                      Not Available
-                    </p>
-                  )}
-                  {item.clinicWebsite && (
-                    <p>
-                      <FaLocationDot className={styles.icon} />
-                      {item.clinicWebsite}
-                    </p>
-                  )}
-                </div>
-              </div>
+      {isHospitalLoading ? (
+        <Spinner />
+      ) : hospitals && hospitals.length === 0 ? (
+        <Empty resourceName="Hospitals" />
+      ) : (
+        <>
+          <div className={styles.mobileNav}>
+            <div className={styles.cardContainer}>
+              {hospitals.map((item, index) => (
+                <div key={index} className={styles.card}>
+                  <div className={styles.firstDiv}>
+                    <div className={styles.firstLeftSection}>
+                      <img
+                        alt="hospital"
+                        className={styles.imgImage}
+                        src={hosImage}
+                      ></img>
+                    </div>
+                    <div>
+                      <h2>{item.clinicName}</h2>
+                      {item.clinicContact ? (
+                        <p className={styles.phone}>
+                          <FaPhoneAlt className={styles.icon} />
+                          {item.clinicContact}
+                        </p>
+                      ) : (
+                        <p className={styles.phone}>
+                          <FaPhoneAlt className={styles.icon} />
+                          Not Available
+                        </p>
+                      )}
+                      {item.clinicWebsite && (
+                        <p>
+                          <FaLocationDot className={styles.icon} />
+                          {item.clinicWebsite}
+                        </p>
+                      )}
+                    </div>
+                  </div>
 
-              <div className={styles.firstDiv} style={{ marginTop: "1em" }}>
-                <div className={styles.firstLeftSectionButtonGroup}>
-                  <button
-                    onClick={() => getDirections(item.clinicLocation)}
-                    style={{
-                      marginRight: "1em",
-                      padding: "0.5em",
-                      background: "#1a8efd",
-                      border: "1px solid grey",
-                      borderRadius: "6px",
-                      color: "white",
-                    }}
-                    disabled={isPending}
-                  >
-                    <FaLocationArrow style={{ marginRight: "1em" }} />
-                    Get Directions
-                  </button>
-                </div>
-                <div>
-                  <button
-                    onClick={() => handleAppointments(item)}
-                    style={{
-                      marginRight: "1em",
+                  <div className={styles.firstDiv} style={{ marginTop: "1em" }}>
+                    <div className={styles.firstLeftSectionButtonGroup}>
+                      <button
+                        onClick={() => getDirections(item.clinicLocation)}
+                        style={{
+                          marginRight: "1em",
+                          padding: "0.5em",
+                          background: "#1a8efd",
+                          border: "1px solid grey",
+                          borderRadius: "6px",
+                          color: "white",
+                        }}
+                        disabled={isPending}
+                      >
+                        <FaLocationArrow style={{ marginRight: "1em" }} />
+                        Get Directions
+                      </button>
+                    </div>
+                    <div>
+                      <button
+                        onClick={() => handleAppointments(item)}
+                        style={{
+                          marginRight: "1em",
 
-                      padding: "0.5em",
-                      background: "#1a8efd",
-                      border: "1px solid grey",
-                      borderRadius: "6px",
-                      color: "white",
-                    }}
-                    disabled={isPending}
-                  >
-                    Check In
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className={styles.desktopNav}>
-        <div className={styles.cardContainer}>
-          <div role="table" className={`${styles.desktopNav} ${styles.table}`}>
-            <header role="row" className={styles.header}>
-              <div>Name</div>
-              <div>Contact</div>
-              <div>Website</div>
-              <div>Location</div>
-              <div></div>
-            </header>
-
-            {hospitals.map((item, index) => (
-              <div role="row" key={item.id} className={styles.tableData}>
-                <div className={styles.tableColumn}>{item.clinicName}</div>
-                <div className={styles.tableColumn}>{item.clinicContact}</div>
-                <div className={styles.tableColumn}>{item.clinicWebsite}</div>
-                <div className={styles.tableColumn}>
-                  <button
-                    style={{
-                      marginRight: "1em",
-                      padding: "0.5em",
-                      background: "#1a8efd",
-                      border: "none",
-                      borderRadius: "6px",
-                      color: "white",
-                    }}
-                    onClick={() => getDirections(item.clinicLocation)}
-                  >
-                    <FaLocationArrow style={{ marginRight: "1em" }} />
-                    Get Directions
-                  </button>
-                </div>
-                <div className={styles.tableColumn}>
-                  <div style={{ marginLeft: "3em" }}>
-                    <button
-                      onClick={() => handleAppointments(item)}
-                      style={{
-                        marginRight: "1em",
-                        padding: "0.5em",
-                        background: "#1a8efd",
-                        border: "none",
-                        borderRadius: "6px",
-                        color: "white",
-                      }}
-                      disabled={isPending}
-                    >
-                      Check In
-                    </button>
+                          padding: "0.5em",
+                          background: "#1a8efd",
+                          border: "1px solid grey",
+                          borderRadius: "6px",
+                          color: "white",
+                        }}
+                        disabled={isPending}
+                      >
+                        Check In
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </div>
+          <div className={styles.desktopNav}>
+            <div className={styles.cardContainer}>
+              <div
+                role="table"
+                className={`${styles.desktopNav} ${styles.table}`}
+              >
+                <header role="row" className={styles.header}>
+                  <div>Name</div>
+                  <div>Contact</div>
+                  <div>Website</div>
+                  <div>Location</div>
+                  <div></div>
+                </header>
+
+                {hospitals.map((item, index) => (
+                  <div role="row" key={item.id} className={styles.tableData}>
+                    <div className={styles.tableColumn}>{item.clinicName}</div>
+                    <div className={styles.tableColumn}>
+                      {item.clinicContact}
+                    </div>
+                    <div className={styles.tableColumn}>
+                      {item.clinicWebsite}
+                    </div>
+                    <div className={styles.tableColumn}>
+                      <button
+                        style={{
+                          marginRight: "1em",
+                          padding: "0.5em",
+                          background: "#1a8efd",
+                          border: "none",
+                          borderRadius: "6px",
+                          color: "white",
+                        }}
+                        onClick={() => getDirections(item.clinicLocation)}
+                      >
+                        <FaLocationArrow style={{ marginRight: "1em" }} />
+                        Get Directions
+                      </button>
+                    </div>
+                    <div className={styles.tableColumn}>
+                      <div style={{ marginLeft: "3em" }}>
+                        <button
+                          onClick={() => handleAppointments(item)}
+                          style={{
+                            marginRight: "1em",
+                            padding: "0.5em",
+                            background: "#1a8efd",
+                            border: "none",
+                            borderRadius: "6px",
+                            color: "white",
+                          }}
+                          disabled={isPending}
+                        >
+                          Check In
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </>
+      )}
     </>
   );
 };

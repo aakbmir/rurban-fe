@@ -53,7 +53,9 @@ function Signin() {
         <img className={styles.leftDivLogo} src="1.png" alt="background" />
       </div>
       <div className={styles.formDivSection}>
-        <img className={styles.logoImg} alt="hello" src="1.png"></img>
+        <div className={styles.imageDiv}>
+          <img className={styles.logoImg} alt="hello" src="1.png"></img>
+        </div>
 
         <div className={styles.textDescription}>
           <h5>Welcome back! Log in to your account</h5>

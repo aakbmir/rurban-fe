@@ -84,7 +84,10 @@ function Signin() {
         <img className={styles.leftDivLogo} src="/1.png" alt="background" />
       </div>
       <div className={styles.formSection}>
-        <img className={styles.logoImg} alt="hello" src="/1.png"></img>
+        <div className={styles.imageDiv}>
+          <img className={styles.logoImg} alt="hello" src="/1.png"></img>
+        </div>
+
         <div className={styles.textDescription}>
           <h3>Create a new Account</h3>
           <form
@@ -301,7 +304,7 @@ function Signin() {
                 </>
               )}
             </div>
-            {isHintOpen && (
+            {errors?.password?.message && isHintOpen && (
               <div className={styles.passwordPattern}>
                 <ul style={{ color: "black" }}>
                   <li>Must be atleast 8 characters long</li>

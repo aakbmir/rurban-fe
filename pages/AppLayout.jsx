@@ -14,7 +14,7 @@ export default function AppLayout() {
           path=":user/hospitals"
           element={
             <>
-              <DashboardNavbar feature="Hospitals" />
+              <DashboardNavbar feature="Patients" />
               <HospitalsList records="all" />
             </>
           }
@@ -23,7 +23,7 @@ export default function AppLayout() {
           path=":user/checkIns"
           element={
             <>
-              <DashboardNavbar feature="Hospitals" />
+              <DashboardNavbar feature="Patients" />
               <UserAppointments records="all" />
             </>
           }

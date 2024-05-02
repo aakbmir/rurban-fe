@@ -23,6 +23,7 @@ body, html {
 }
 
 .leftDivLogo {
+  visibility: hidden;
   height:22%;
   width:-webkit-fill-available
 }
@@ -36,13 +37,13 @@ body, html {
 }
 
 .textDescription {
-  font-family: Cambria, sans-serif;
+  
   font-size: 18px;
   text-align:center
 }
 
 .textDescription h3 {
-  font-family: Cambria, sans-serif;
+  
   margin: 0;
 }
 
@@ -150,7 +151,8 @@ body, html {
   }
   
   .logoImg {
-    display:none
+    max-width: 20em;
+    padding: 0; 
   }
 
   .formSection {
@@ -163,7 +165,7 @@ body, html {
   }
 
   .textDescription h3 {
-    font-family: Cambria, sans-serif; 
+    
   }
 
   .inputFieldset {
@@ -204,10 +206,13 @@ body, html {
 
   .mainDiv {  
     align-items: start;
+    background: linear-gradient(to right, #ECF2FF, #FBFCFF); 
+    height: fit-content;
   }
 
   .logoImg {
-    display:none
+    max-width: 20em;
+    padding: 0; 
   }
   
   .formSection {

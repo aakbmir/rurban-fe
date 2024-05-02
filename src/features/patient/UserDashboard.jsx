@@ -5,7 +5,7 @@ import HospitalsList from "./HospitalsList";
 function UserDashboard() {
   return (
     <div>
-      <DashboardNavbar feature="Hospitals" />
+      <DashboardNavbar feature="Patients" />
       <UserAppointments records={1} />
       <HospitalsList />
     </div>

@@ -32,13 +32,13 @@
 }
 
 .textDescription {
-  font-family: Cambria, sans-serif;
+  
   font-size: 20px;
   margin-top: 1em;
 }
 
 .textDescription h5 {
-  font-family: Cambria, sans-serif;
+  
   margin: 0;
   margin-bottom: 2em;
 }
@@ -93,7 +93,7 @@
 .btnUser { 
   float: left;
   width: 65%;
-  height: 2em;
+  height: 3em;
   color: #fff;
   font-size: 18px;
   background: #33528b;
@@ -160,7 +160,7 @@
   }
 
   .textDescription h5 {
-    font-family: Cambria, sans-serif;
+    
     margin: 0;
     margin-bottom: 3em;
   }
@@ -190,12 +190,23 @@
   .mainDiv {
     padding-top: 3em;
     align-items: baseline;    
+    background: linear-gradient(to right, #ECF2FF, #FBFCFF); 
   }
 
   .formDivSection {
     width: 100%;
   }
 
+  .imageDiv {
+    min-height: 40vh;
+  }
+
+  .logoImg {
+    max-width: 25em;
+    padding: 0; 
+  }
+
+  
   .form {
     margin-left: 0%;
   }

@@ -9,7 +9,7 @@ function HomePage() {
   return (
     <div className={styles.mainDiv}>
       <div className={styles.leftDivSection}>
-        <img className={styles.leftDivLogo} src="3.png" alt="Doctor" />
+        <img className={styles.leftDivLogo} src="/1.png" alt="Doctor" />
         <p className={styles.textDescription}>
           Talk to online doctors and get medical advice, online prescriptions,
           refills and medical notes within minutes. On-demand healthcare

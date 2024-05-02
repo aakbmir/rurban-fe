@@ -80,157 +80,169 @@ function UserAppointments({ records }) {
     }
   }
 
-  if (isCheckInLoading) return <Spinner />;
-  if (!checkIns && checkIns.length === 0)
-    return <Empty resourceName="Upcoming Check In" />;
-
   return (
     <>
       <div className={styles.navTabName}>
         <span style={{ width: "80%" }}>Check Ins</span>
       </div>
-
-      <div className={styles.mobileNav}>
-        <div className={styles.cardContainer}>
-          {checkIns.map((item, index) => (
-            <div key={index} className={styles.card}>
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <div className={styles.checkInLeftDiv}>
-                  <span className={styles.bookingDate}>
-                    {formatDay(item.bookingDate)},{" "}
-                    {formatDate(item.bookingDate)}
-                  </span>
-                  <span className={styles.checkInTime}>
-                    {showTime(item.bookingDate)}
-                  </span>
-                </div>
-                <div className={styles.checkInRightDiv}>
-                  <div className={styles.clinicName}>
-                    {item.clinicId.clinicName}
-                  </div>
-                </div>
-              </div>
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <div className={styles.checkInLeftDiv}>
-                  <div className={styles.clinicContact}>
-                    <FaPhoneAlt className={styles.icon} />
-                    {item.clinicId.clinicContact}
-                  </div>
-                  {item.bookingStatus === "Booked" && (
-                    <div className={styles.clinicContact}>
-                      <span style={{ color: "red" }}>
-                        ETA: {bookingDistances[index]?.duration} mins
+      {isCheckInLoading ? (
+        <Spinner />
+      ) : !checkIns && checkIns.length === 0 ? (
+        <Empty resourceName="Upcoming Check In" />
+      ) : (
+        <>
+          <div className={styles.mobileNav}>
+            <div className={styles.cardContainer}>
+              {checkIns.map((item, index) => (
+                <div key={index} className={styles.card}>
+                  <div
+                    style={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <div className={styles.checkInLeftDiv}>
+                      <span className={styles.bookingDate}>
+                        {formatDay(item.bookingDate)},{" "}
+                        {formatDate(item.bookingDate)}
+                      </span>
+                      <span className={styles.checkInTime}>
+                        {showTime(item.bookingDate)}
                       </span>
                     </div>
-                  )}
-                </div>
-                <div className={styles.checkInRightDiv}>
+                    <div className={styles.checkInRightDiv}>
+                      <div className={styles.clinicName}>
+                        {item.clinicId.clinicName}
+                      </div>
+                    </div>
+                  </div>
                   <div
-                    className={styles.clinicContact}
-                    style={{ marginBottom: "8px" }}
+                    style={{ display: "flex", justifyContent: "space-between" }}
                   >
-                    Status:
-                    <span
-                      className={`${styles.bookingStatus} ${
-                        item.bookingStatus === "Booked"
-                          ? styles.bookingStatusConfirmed
-                          : styles.bookingStatusCancelled
+                    <div className={styles.checkInLeftDiv}>
+                      <div className={styles.clinicContact}>
+                        <FaPhoneAlt className={styles.icon} />
+                        {item.clinicId.clinicContact}
+                      </div>
+                      {item.bookingStatus === "Booked" && (
+                        <div className={styles.clinicContact}>
+                          <span style={{ color: "red" }}>
+                            ETA: {bookingDistances[index]?.duration} mins
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                    <div className={styles.checkInRightDiv}>
+                      <div
+                        className={styles.clinicContact}
+                        style={{ marginBottom: "8px" }}
+                      >
+                        Status:
+                        <span
+                          className={`${styles.bookingStatus} ${
+                            item.bookingStatus === "Booked"
+                              ? styles.bookingStatusConfirmed
+                              : styles.bookingStatusCancelled
+                          }`}
+                        >
+                          {item.bookingStatus}
+                        </span>
+                      </div>
+                      {item.bookingStatus === "Booked" && (
+                        <div style={{ marginBottom: "8px" }}>
+                          <button
+                            className={styles.cancelBtn}
+                            onClick={() => cancelAppointment(item)}
+                          >
+                            Cancel Appointment
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className={styles.desktopNav}>
+            <div className={styles.cardContainer}>
+              <div
+                role="table"
+                className={`${styles.desktopNav} ${styles.table}`}
+              >
+                <header role="row" className={styles.header}>
+                  <div>Name</div>
+                  <div>Contact</div>
+                  <div>Booking Status</div>
+                  <div>Booking Date</div>
+                  <div>Cancellation Date</div>
+                  <div>Check In Status</div>
+                  <div>Check In Date</div>
+                  <div>ETA</div>
+                  <div></div>
+                </header>
+
+                {checkIns.map((item, index) => (
+                  <div role="row" key={item.id} className={styles.tableData}>
+                    <div className={styles.tableColumn}>
+                      {item.clinicId.clinicName}
+                    </div>
+                    <div className={styles.tableColumn}>
+                      {item.clinicId.clinicContact}
+                    </div>
+                    <div className={styles.tableColumn}>
+                      <span
+                        className={`${
+                          item.bookingStatus === "Booked"
+                            ? styles.confirm
+                            : styles.cancel
+                        }`}
+                      >
+                        {item.bookingStatus}
+                      </span>
+                    </div>
+                    <div className={styles.tableColumn}>
+                      {formatFullDate(item.bookingDate)}
+                    </div>
+                    <div className={styles.tableColumn}>
+                      <span className={styles.cancel}>
+                        {item.bookingCancellationDate
+                          ? formatFullDate(item.bookingCancellationDate)
+                          : "-"}
+                      </span>
+                    </div>
+                    <div
+                      className={`${styles.tableColumn} ${
+                        item.checkInStatus === "Confirmed"
+                          ? styles.confirm
+                          : styles.cancel
                       }`}
                     >
-                      {item.bookingStatus}
-                    </span>
-                  </div>
-                  {item.bookingStatus === "Booked" && (
-                    <div style={{ marginBottom: "8px" }}>
+                      <span style={{ marginLeft: "0.4em" }}>
+                        {item.checkInStatus}
+                      </span>
+                    </div>
+                    <div className={styles.tableColumn}>
+                      {item.checkInDate
+                        ? formatFullDate(item.checkInDate)
+                        : "-"}
+                    </div>
+                    <div className={styles.tableColumn}>
+                      {bookingDistances[index]?.duration} mins
+                    </div>
+                    <div>
                       <button
-                        className={styles.cancelBtn}
                         onClick={() => cancelAppointment(item)}
+                        className={styles.cancelBtnn}
+                        title="Cancel Appointment"
                       >
-                        Cancel Appointment
+                        <GiCancel size={20} color="red" />
                       </button>
                     </div>
-                  )}
-                </div>
+                  </div>
+                ))}
               </div>
             </div>
-          ))}
-        </div>
-      </div>
-      <div className={styles.desktopNav}>
-        <div className={styles.cardContainer}>
-          <div role="table" className={`${styles.desktopNav} ${styles.table}`}>
-            <header role="row" className={styles.header}>
-              <div>Name</div>
-              <div>Contact</div>
-              <div>Booking Status</div>
-              <div>Booking Date</div>
-              <div>Cancellation Date</div>
-              <div>Check In Status</div>
-              <div>Check In Date</div>
-              <div>ETA</div>
-              <div></div>
-            </header>
-
-            {checkIns.map((item, index) => (
-              <div role="row" key={item.id} className={styles.tableData}>
-                <div className={styles.tableColumn}>
-                  {item.clinicId.clinicName}
-                </div>
-                <div className={styles.tableColumn}>
-                  {item.clinicId.clinicContact}
-                </div>
-                <div className={styles.tableColumn}>
-                  <span
-                    className={`${
-                      item.bookingStatus === "Booked"
-                        ? styles.confirm
-                        : styles.cancel
-                    }`}
-                  >
-                    {item.bookingStatus}
-                  </span>
-                </div>
-                <div className={styles.tableColumn}>
-                  {formatFullDate(item.bookingDate)}
-                </div>
-                <div className={styles.tableColumn}>
-                  <span className={styles.cancel}>
-                    {item.bookingCancellationDate
-                      ? formatFullDate(item.bookingCancellationDate)
-                      : "-"}
-                  </span>
-                </div>
-                <div
-                  className={`${styles.tableColumn} ${
-                    item.checkInStatus === "Confirmed"
-                      ? styles.confirm
-                      : styles.cancel
-                  }`}
-                >
-                  <span style={{ marginLeft: "0.4em" }}>
-                    {item.checkInStatus}
-                  </span>
-                </div>
-                <div className={styles.tableColumn}>
-                  {item.checkInDate ? formatFullDate(item.checkInDate) : "-"}
-                </div>
-                <div className={styles.tableColumn}>
-                  {bookingDistances[index]?.duration} mins
-                </div>
-                <div>
-                  <button
-                    onClick={() => cancelAppointment(item)}
-                    className={styles.cancelBtnn}
-                    title="Cancel Appointment"
-                  >
-                    <GiCancel size={20} color="red" />
-                  </button>
-                </div>
-              </div>
-            ))}
           </div>
-        </div>
-      </div>
+        </>
+      )}
     </>
   );
 }
