@@ -6,6 +6,7 @@ import { userLogin } from "../../services/login.service";
 import { toast } from "react-toastify";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
+import FormRow from "../common/FormRow";
 
 function Signin() {
   const navigate = useNavigate();
@@ -48,81 +49,78 @@ function Signin() {
   }
 
   return (
-    <div className={styles.mainDiv}>
-      <div className={styles.leftDivSection}>
-        <img className={styles.leftDivLogo} src="1.png" alt="background" />
-      </div>
-      <div className={styles.formDivSection}>
-        <div className={styles.imageDiv}>
-          <img className={styles.logoImg} alt="hello" src="1.png"></img>
-        </div>
+    <div className={styles.mainsection}>
+      <div className={styles.leftdiv}>
+        <img alt="logo" className={styles.logoimg} src="/1.png" />
+        <div className={styles.brandnamediv}>
+          <span className={styles.brandname}>Rurban</span>
+          <p></p>
+          <span className={styles.logintext}>
+            Please fill your details to access your account.
+          </span>
 
-        <div className={styles.textDescription}>
-          <h5>Welcome back! Log in to your account</h5>
           <form
             className={styles.form}
             onSubmit={handleSubmit(onSubmit, onError)}
           >
-            <fieldset
-              className={
-                errors?.username?.message
-                  ? styles.errorFieldset
-                  : styles.inputFieldset
-              }
-            >
-              <input
-                className={styles.inputVal}
-                placeholder="Username"
-                type="text"
-                id="username"
-                {...register("username", {
-                  required: "This field is required",
-                  minLength: {
-                    value: 5,
-                    message: "min characters allowed: 4",
-                  },
-                })}
-              ></input>
-            </fieldset>
-            <div className={styles.locationError}>
-              {errors?.username?.message && (
-                <span className={styles.errorMessage}>
-                  {errors?.username?.message}
-                </span>
-              )}
-            </div>
-            <fieldset
-              className={
-                errors?.password?.message
-                  ? styles.errorFieldset
-                  : styles.inputFieldset
-              }
-            >
-              <input
-                className={styles.inputVal}
-                placeholder="Password"
-                type={`${showPassword ? "text" : "password"}`}
-                id="password"
-                {...register("password", {
-                  required: "This field is required",
-                })}
-              ></input>
-              <button
-                className={styles.transparentButton}
-                type="button"
-                onClick={() => setShowPassword((pre) => !pre)}
+            <FormRow label="Email" error={errors?.username?.message}>
+              <div
+                className={`${
+                  errors?.username?.message
+                    ? styles.errorFieldset
+                    : styles.inputFieldset
+                } ${styles.formrowdiv}`}
               >
-                {!showPassword && <FaEyeSlash color="#666464" />}
-                {showPassword && <FaEye color="#666464" />}
-              </button>
-            </fieldset>
-            <div className={styles.locationError}>
-              {errors?.password?.message && (
-                <span className={styles.errorMessage}>
-                  {errors?.password?.message}
-                </span>
-              )}
-            </div>
+                <p></p>
+                <input
+                  className={styles.input}
+                  placeholder="abc@xxx.com"
+                  type="text"
+                  id="username"
+                  {...register("username", {
+                    required: "This field is required",
+                    minLength: {
+                      value: 5,
+                      message: "min characters allowed: 4",
+                    },
+                  })}
+                ></input>
+              </div>
+            </FormRow>
+            <FormRow label="Password" error={errors?.password?.message}>
+              <div
+                className={`${
+                  errors?.passwword?.message
+                    ? styles.errorFieldset
+                    : styles.inputFieldset
+                } ${styles.formrowdiv}`}
+              >
+                <p></p>
+                <input
+                  className={styles.input}
+                  placeholder="......"
+                  type={`${showPassword ? "text" : "password"}`}
+                  id="password"
+                  {...register("password", {
+                    required: "This field is required",
+                    pattern: {
+                      value:
+                        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,16}$/,
+                      message: "Invalid Password",
+                    },
+                  })}
+                ></input>
+                <button
+                  className={styles.transparentButton}
+                  type="button"
+                  onClick={() => setShowPassword((pre) => !pre)}
+                >
+                  {!showPassword && <FaEyeSlash color="#667085" />}
+                  {showPassword && <FaEye color="#667085" />}
+                </button>
+              </div>
+            </FormRow>
+
             <button
               disabled={isPending}
               className={`${styles.btnUser} ${
@@ -131,8 +129,8 @@ function Signin() {
             >
               {isPending ? "Signing in..." : "Sign in"}
             </button>
-            <div className={styles.mobileLogin}>
-              <span className={styles.register}>
+            <div className={styles.register}>
+              <span>
                 Don&apos;t have an account?
                 <button
                   onClick={() => navigate("/")}
@@ -145,7 +143,114 @@ function Signin() {
           </form>
         </div>
       </div>
+      <div className={styles.rightdiv}>
+        <img
+          alt="home"
+          src="https://thumbs.dreamstime.com/b/double-exposure-smart-medical-doctor-working-operating-room-as-concept-43619820.jpg"
+        ></img>
+      </div>
     </div>
+    // <div className={styles.mainDiv}>
+    //   <div className={styles.formDivSection}>
+    //     <div className={styles.imageDiv}>
+    //       <img className={styles.logoImg} alt="hello" src="1.png"></img>
+    //     </div>
+
+    //     <div className={styles.textDescription}>
+    //       <h5>Welcome back! Log in to your account</h5>
+    //       <form
+    //         className={styles.form}
+    //         onSubmit={handleSubmit(onSubmit, onError)}
+    //       >
+    //         <fieldset
+    //           className={
+    //             errors?.username?.message
+    //               ? styles.errorFieldset
+    //               : styles.inputFieldset
+    //           }
+    //         >
+    //           <input
+    //             className={styles.inputVal}
+    //             placeholder="Username"
+    //             type="text"
+    //             id="username"
+    //             {...register("username", {
+    //               required: "This field is required",
+    //               minLength: {
+    //                 value: 5,
+    //                 message: "min characters allowed: 4",
+    //               },
+    //             })}
+    //           ></input>
+    //         </fieldset>
+    //         <div className={styles.locationError}>
+    //           {errors?.username?.message && (
+    //             <span className={styles.errorMessage}>
+    //               {errors?.username?.message}
+    //             </span>
+    //           )}
+    //         </div>
+    //         <fieldset
+    //           className={
+    //             errors?.password?.message
+    //               ? styles.errorFieldset
+    //               : styles.inputFieldset
+    //           }
+    //         >
+    //           <input
+    //             className={styles.inputVal}
+    //             placeholder="Password"
+    //             type={`${showPassword ? "text" : "password"}`}
+    //             id="password"
+    //             {...register("password", {
+    //               required: "This field is required",
+    //             })}
+    //           ></input>
+    //           <button
+    //             className={styles.transparentButton}
+    //             type="button"
+    //             onClick={() => setShowPassword((pre) => !pre)}
+    //           >
+    //             {!showPassword && <FaEyeSlash color="#667085" />}
+    //             {showPassword && <FaEye color="#667085" />}
+    //           </button>
+    //         </fieldset>
+    //         <div className={styles.locationError}>
+    //           {errors?.password?.message && (
+    //             <span className={styles.errorMessage}>
+    //               {errors?.password?.message}
+    //             </span>
+    //           )}
+    //         </div>
+    //         <button
+    //           disabled={isPending}
+    //           className={`${styles.btnUser} ${
+    //             isPending ? styles.disabledBtn : ""
+    //           }`}
+    //         >
+    //           {isPending ? "Signing in..." : "Sign in"}
+    //         </button>
+    //         <div className={styles.mobileLogin}>
+    //           <span className={styles.register}>
+    //             Don&apos;t have an account?
+    //             <button
+    //               onClick={() => navigate("/")}
+    //               className={styles.homeBtn}
+    //             >
+    //               Sign up
+    //             </button>
+    //           </span>
+    //         </div>
+    //       </form>
+    //     </div>
+    //   </div>
+
+    //   <img
+    //     className={`${styles.leftDivSection} ${styles.leftDivLogo}`}
+    //     src="1.png"
+    //     alt="background"
+    //   />
+    // </div>
   );
 }
 

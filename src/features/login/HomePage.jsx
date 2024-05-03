@@ -1,57 +1,55 @@
 import styles from "./HomePage.module.css";
 import { useNavigate } from "react-router-dom";
-import { TbHospital } from "react-icons/tb";
-import { FaUserAlt } from "react-icons/fa";
 
 function HomePage() {
   const navigate = useNavigate();
 
   return (
-    <div className={styles.mainDiv}>
-      <div className={styles.leftDivSection}>
-        <img className={styles.leftDivLogo} src="/1.png" alt="Doctor" />
-        <p className={styles.textDescription}>
-          Talk to online doctors and get medical advice, online prescriptions,
-          refills and medical notes within minutes. On-demand healthcare
-          services at your fingertips.
-        </p>
-      </div>
-      <div className={styles.textSection}>
-        <img className={styles.logoImg} alt="hello" src="/1.png"></img>
-        <div className={styles.container}>
-          <h1>Get started!</h1>
-          <div className={styles.btnGroup}>
+    <div className={styles.mainsection}>
+      <div className={styles.leftdiv}>
+        <img alt="logo" className={styles.logoimg} src="/1.png" />
+        <div className={styles.brandnamediv}>
+          <span className={styles.hometext}>Welcome to </span>
+          <span className={styles.brandname}>Rurban</span>
+          <p></p>
+          <span className={styles.homedesc}>
+            Talk to online doctors and get medical advice, online prescriptions,
+            refills and medical notes within minutes. On-demand healthcare
+            services at your fingertips.
+          </span>
+          <div className={styles.btngrp}>
+            <p className={styles.logintext}>Sign in to access your account</p>
             <button
-              className={styles.btnSignin}
+              className={styles.loginbtn}
               onClick={() => navigate("/signin")}
             >
-              <FaUserAlt
-                size={20}
-                style={{ height: "1.2em", marginRight: "1em" }}
-              />
-              Log In
+              Login
             </button>
-          </div>
-          <p className={styles.registerText}>Don&apos;t have an account?</p>
-          <div className={styles.btnGroup}>
-            <button
-              className={styles.btnSignUpPatient}
-              onClick={() => navigate("/signup/user")}
-            >
-              <FaUserAlt size={20} style={{ marginRight: "1em" }} />
-              Patient Sign up
-            </button>
-          </div>
-          <div className={styles.btnGroup}>
-            <button
-              className={styles.btnSignUpPatient}
-              onClick={() => navigate("/signup/er")}
-            >
-              <TbHospital size={20} style={{ marginRight: "1em" }} />
-              ER Sign up
-            </button>
+            <div className={styles.signupdiv}>
+              <span className={styles.logintext}>
+                Don&apos;t have an account?
+                <button
+                  className={styles.registerbtn}
+                  onClick={() => navigate("/signup/user")}
+                >
+                  Sign Up as a patient
+                </button>
+                <button
+                  className={styles.registerbtn}
+                  onClick={() => navigate("/signup/er")}
+                >
+                  Sign up as an ER
+                </button>
+              </span>
+            </div>
           </div>
         </div>
+      </div>
+      <div className={styles.rightdiv}>
+        <img
+          alt="home"
+          src="https://i.pinimg.com/736x/c6/7c/c1/c67cc114fc289a3eacc442da873053b2.jpg"
+        ></img>
       </div>
     </div>
   );
