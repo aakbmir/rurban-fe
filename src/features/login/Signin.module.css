@@ -102,6 +102,11 @@
   border-radius: 7em;
 }
 
+.disabledBtn {
+  background:grey;
+  cursor: not-allowed;
+}
+
 @media screen and (max-width: 600px){
   .leftdiv {
     width: 100%

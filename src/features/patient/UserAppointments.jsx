@@ -87,7 +87,7 @@ function UserAppointments({ records }) {
       </div>
       {isCheckInLoading ? (
         <Spinner />
-      ) : !checkIns && checkIns.length === 0 ? (
+      ) : !checkIns || checkIns.length === 0 ? (
         <Empty resourceName="Upcoming Check In" />
       ) : (
         <>

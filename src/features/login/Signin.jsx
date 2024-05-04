@@ -22,15 +22,31 @@ function Signin() {
   const { mutateAsync, isPending } = useMutation({
     mutationFn: userLogin,
     onSuccess: (data) => {
-      localStorage.setItem("rurban_cro_nm_ddn", data.details.name);
-      localStorage.setItem("rurban_cro_id_ddi", data.details.id);
-      toast.success("Login Successful!!", {
-        position: "bottom-center",
-      });
-      if (data.registerType === "Patient") {
-        navigate("/dashboard/user/home?tab=hospitalList");
+      if (data.status === 200) {
+        console.log(data);
+        console.log("data", data.data.details);
+        localStorage.setItem("rurban_cro_nm_ddn", data.data.details.name);
+        localStorage.setItem("rurban_cro_id_ddi", data.data.details.id);
+        toast.success("Login Successful!!", {
+          position: "bottom-center",
+        });
+        if (data.data.registerType === "Patient") {
+          navigate("/dashboard/user/home?tab=hospitalList");
+        } else {
+          navigate("/dashboard/er/home?tab=patientList");
+        }
+      } else if (data.status === 401) {
+        toast.error("Invalid Credentials!!", {
+          position: "bottom-center",
+        });
+      } else if (data.status === 404) {
+        toast.error("User does not exist!!", {
+          position: "bottom-center",
+        });
       } else {
-        navigate("/dashboard/er/home?tab=patientList");
+        toast.error("Error while logging in !!", {
+          position: "bottom-center",
+        });
       }
     },
     onError: () => {
@@ -103,11 +119,6 @@ function Signin() {
                   id="password"
                   {...register("password", {
                     required: "This field is required",
-                    pattern: {
-                      value:
-                        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,16}$/,
-                      message: "Invalid Password",
-                    },
                   })}
                 ></input>
                 <button

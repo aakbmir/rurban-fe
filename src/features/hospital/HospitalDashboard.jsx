@@ -7,7 +7,6 @@ import Empty from "../../ui/Empty";
 import HospitalAppointmentList from "./HospitalAppointmentList";
 
 function HospitalDashboard() {
-  console.log("inside hd");
   const { data: patientList, isLoading } = useQuery({
     queryKey: ["Patients"],
     queryFn: fetchHospitalCheckins,

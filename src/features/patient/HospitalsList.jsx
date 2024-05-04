@@ -81,7 +81,7 @@ const HospitalsList = () => {
       <div className={styles.navTabName}>Hospitals</div>;
       {isHospitalLoading ? (
         <Spinner />
-      ) : hospitals && hospitals.length === 0 ? (
+      ) : !hospitals || hospitals.length === 0 ? (
         <Empty resourceName="Hospitals" />
       ) : (
         <>

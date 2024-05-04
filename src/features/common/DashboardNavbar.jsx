@@ -5,12 +5,10 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 
 function DashboardNavbar({ feature }) {
-  console.log(feature);
   const username = localStorage.getItem("rurban_cro_nm_ddn");
   const [nav, setNav] = useState(false);
 
   function logout() {
-    console.log("inside");
     localStorage.clear();
     sessionStorage.clear();
   }
