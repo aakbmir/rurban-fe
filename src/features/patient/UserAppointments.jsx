@@ -1,4 +1,3 @@
-import { MdMyLocation } from "react-icons/md";
 import { FaCalendar, FaClock, FaLocationArrow } from "react-icons/fa";
 import styles from "../../styles/UserAppointments.module.css";
 import {
@@ -10,7 +9,6 @@ import {
 import { cancelCheckIn } from "../../services/data.service";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { GiCancel } from "react-icons/gi";
 import { useEffect, useState } from "react";
 import { useUserCheckInQuery } from "../../hooks/useUserCheckInQuery";
 import Spinner from "../common/Spinner";
@@ -134,7 +132,11 @@ function UserAppointments({ records }) {
                         width: "60%",
                       }}
                     >
-                      <FaCalendar size={20} style={{ marginRight: "0.7em" }} />
+                      <FaCalendar
+                        size={20}
+                        color="black"
+                        style={{ marginRight: "0.7em" }}
+                      />
                       <span className={styles.appointmenttext}>
                         {formatDay(item.bookingDate)},
                         {formatDate(item.bookingDate)}
@@ -146,14 +148,18 @@ function UserAppointments({ records }) {
                         alignItems: "center",
                       }}
                     >
-                      <FaClock size={20} style={{ marginRight: "0.7em" }} />
+                      <FaClock
+                        size={20}
+                        color="black"
+                        style={{ marginRight: "0.7em" }}
+                      />
                       <span className={styles.appointmenttext}>
                         {showTime(item.bookingDate)}
                       </span>
                     </div>
                   </div>
                   <div className={styles.topdiv}>
-                    <div style={{ width: "88%" }}>
+                    <div>
                       <p className={styles.hospitalname}>
                         {item.clinicId.clinicName}
                       </p>
@@ -161,16 +167,10 @@ function UserAppointments({ records }) {
                         {item.clinicId.clinicContact}
                       </p>
                     </div>
-                    <div style={{ width: "12%" }}>
-                      <MdMyLocation
-                        size={30}
-                        onClick={() => getDirections(item.patientLocation)}
-                      />
-                    </div>
                   </div>
                   <br />
                   <div className={styles.topdiv}>
-                    <div style={{ width: "50%" }}>
+                    <div className={styles.status} style={{ width: "50%" }}>
                       Check In Status:
                       <p
                         className={`${styles.status} ${
@@ -182,7 +182,7 @@ function UserAppointments({ records }) {
                         {item.checkInStatus}
                       </p>
                     </div>
-                    <div style={{ width: "50%" }}>
+                    <div className={styles.status} style={{ width: "50%" }}>
                       Booking Status:
                       <p
                         className={`${styles.status} ${
@@ -195,15 +195,35 @@ function UserAppointments({ records }) {
                       </p>
                     </div>
                   </div>
-                  <div className={styles.topdiv}>
-                    <span className={styles.eta}>ETA : 16 mins</span>
-                    <button
-                      className={styles.cancelBtn}
-                      onClick={() => cancelAppointment(item)}
-                    >
-                      Cancel
-                    </button>
-                  </div>
+
+                  {item.bookingStatus === "Booked" && !item.checkInStatus && (
+                    <div className={styles.topdiv}>
+                      <div style={{ width: "50%" }}>
+                        <span className={styles.eta}>ETA : 16 mins</span>
+                      </div>
+                      <div
+                        style={{
+                          width: "50%",
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <button
+                          className={styles.cancelBtn}
+                          onClick={() => cancelAppointment(item)}
+                        >
+                          Cancel
+                        </button>
+
+                        <button
+                          className={styles.cancelBtn}
+                          onClick={() => getDirections(item.patientLocation)}
+                        >
+                          <FaLocationArrow size={20} />
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
