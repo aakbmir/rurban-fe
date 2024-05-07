@@ -39,7 +39,6 @@ function App() {
               <Route path="signin" element={<Signin />} />
               <Route path="signup/:user" element={<Signup />} />
               <Route path="login" element={<HomePage />} />
-
               <Route
                 path="dashboard/*"
                 element={
@@ -48,15 +47,7 @@ function App() {
                   </ProtectedRoute>
                 }
               />
-
-              {/* <Route exact index element={<Navigate replace to="cities" />} />
-                <Route exact path="cities" element={<CityList />} />
-                <Route exact path="cities/:id" element={<City />} />
-                <Route exact path="countries" element={<CountryList />} />
-                <Route path="form" element={<Form />} />
-              </Route> */}
-
-              <Route path="*" element={<PageNotFound />} />
+              <Route path="*" element={<HomePage />} />
             </Routes>
           </Suspense>
         </BrowserRouter>

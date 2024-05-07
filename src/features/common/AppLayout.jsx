@@ -3,6 +3,7 @@ import Dashboard from "./Dashboard";
 import UserAppointments from "./../patient/UserAppointments";
 import DashboardNavbar from "./DashboardNavbar";
 import HospitalsList from "../patient/HospitalsList";
+import PageNotFound from "./PageNotFound";
 
 export default function AppLayout() {
   return (
@@ -27,6 +28,7 @@ export default function AppLayout() {
             </>
           }
         />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </>
   );
