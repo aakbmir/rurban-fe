@@ -181,7 +181,7 @@ function UserAppointments({ records }) {
                       Check In Status:
                       <p
                         className={`${styles.status} ${
-                          item.checkInStatus === "Confirmed"
+                          item.checkInStatus === "Checked In"
                             ? styles.bookingStatusConfirmed
                             : styles.bookingStatusCancelled
                         }`}
