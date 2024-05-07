@@ -9,13 +9,13 @@ import {
 import { cancelCheckIn } from "../../services/data.service";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useUserCheckInQuery } from "../../hooks/useUserCheckInQuery";
 import Spinner from "../common/Spinner";
 import Empty from "../common/Empty";
 import ModalMain from "../common/ModalMain";
 
-const API_KEY = "5b3ce3597851110001cf62485841300cbc6947e0ae08e8fa3c83c194";
+//const API_KEY = "5b3ce3597851110001cf62485841300cbc6947e0ae08e8fa3c83c194";
 
 function UserAppointments({ records }) {
   const { isLoading, isCheckInLoading, checkIns } =
@@ -31,26 +31,33 @@ function UserAppointments({ records }) {
     },
   });
 
-  const [bookingDistances, setBookingDistances] = useState([]);
-  useEffect(() => {
-    const calculateDistances = async () => {
-      if (checkIns) {
-        const distances = await Promise.all(
-          checkIns.map((booking) =>
-            calculateDistance(
-              booking.patientLocation.split(",")[0],
-              booking.patientLocation.split(",")[1],
-              booking.clinicId.clinicLocation.split(",")[0],
-              booking.clinicId.clinicLocation.split(",")[1]
-            )
-          )
-        );
-        setBookingDistances(distances);
-      }
-    };
+  //  const [bookingDistances, setBookingDistances] = useState([]);
+  // useEffect(() => {
+  //   const calculateDistances = async () => {
+  //     if (checkIns) {
+  //       const distances = await Promise.all(
+  //         checkIns.map((booking) => {
+  //           console.log(booking.checkInStatus);
+  //           if (
+  //             booking.checkInStatus === null &&
+  //             booking.bookingStatus === "Booked"
+  //           ) {
+  //             return calculateDistance(
+  //               booking.patientLocation.split(",")[0],
+  //               booking.patientLocation.split(",")[1],
+  //               booking.clinicId.clinicLocation.split(",")[0],
+  //               booking.clinicId.clinicLocation.split(",")[1]
+  //             );
+  //           }
+  //           return null;
+  //         })
+  //       );
+  //       setBookingDistances(distances);
+  //     }
+  //   };
 
-    calculateDistances();
-  }, [checkIns]);
+  //   calculateDistances();
+  // }, [checkIns]);
 
   function getDirections(clinicLocation) {
     const lat = clinicLocation.split(",")[0];
@@ -63,30 +70,30 @@ function UserAppointments({ records }) {
     }
   }
 
-  async function calculateDistance(itemLat, itemLng, clinicLat, clinicLng) {
-    try {
-      if (itemLat && itemLng && clinicLat && clinicLng) {
-        const origin = `${itemLng},${itemLat}`;
-        const destination = `${clinicLng},${clinicLat}`;
+  // async function calculateDistance(itemLat, itemLng, clinicLat, clinicLng) {
+  //   try {
+  //     if (itemLat && itemLng && clinicLat && clinicLng) {
+  //       const origin = `${itemLng},${itemLat}`;
+  //       const destination = `${clinicLng},${clinicLat}`;
 
-        const response = await fetch(
-          `https://api.openrouteservice.org/v2/directions/driving-car?api_key=${API_KEY}&start=${origin}&end=${destination}`
-        );
-        const data = await response.json();
-        if (data?.features) {
-          return {
-            distance: data.features[0].properties.summary.distance,
-            duration: Math.floor(
-              data.features[0].properties.summary.duration / 60
-            ),
-          };
-        }
-      }
-    } catch (error) {
-      console.error("Failed to calculate distance:", error);
-      return null;
-    }
-  }
+  //       const response = await fetch(
+  //         `https://api.openrouteservice.org/v2/directions/driving-car?api_key=${API_KEY}&start=${origin}&end=${destination}`
+  //       );
+  //       const data = await response.json();
+  //       if (data?.features) {
+  //         return {
+  //           distance: data.features[0].properties.summary.distance,
+  //           duration: Math.floor(
+  //             data.features[0].properties.summary.duration / 60
+  //           ),
+  //         };
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.error("Failed to calculate distance:", error);
+  //     return null;
+  //   }
+  // }
 
   const [isOpenModal, setIsOpenModal] = useState(false);
   function cancelAppointment(item) {
@@ -198,12 +205,9 @@ function UserAppointments({ records }) {
 
                   {item.bookingStatus === "Booked" && !item.checkInStatus && (
                     <div className={styles.topdiv}>
-                      <div style={{ width: "50%" }}>
-                        <span className={styles.eta}>ETA : 16 mins</span>
-                      </div>
                       <div
                         style={{
-                          width: "50%",
+                          width: "100%",
                           display: "flex",
                           justifyContent: "space-between",
                         }}
