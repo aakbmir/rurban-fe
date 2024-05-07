@@ -1,0 +1,24 @@
+.navTabName {
+  margin-left: 1em;
+  font-size: 2em;
+  margin-top: 1em;
+}
+
+
+.mobileNav {
+  display:none
+}
+
+@media screen and (max-width: 900px) {
+  .navTabName {
+    display:none
+  }
+
+  .desktopNav {
+    display:none
+  }
+
+  .mobileNav {
+    display: block
+  }
+}

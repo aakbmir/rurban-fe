@@ -8,10 +8,13 @@
   box-shadow: 1px 1px 6px -3px gray;
 }
 
+.desktopNavbar {
+  width: 100%;
+  display: flex;
+}
+
 .navbarTitle {
-  font-weight: bold;
-  
-  width: 20%;
+  width: 60%;
   display: flex;
   align-items: center;
 }
@@ -121,14 +124,23 @@
     height: fit-content;
     color:#656363;
     padding-bottom:1em;
+    box-shadow: none;
   }
 
   .navbarTitle {
-    font-weight: bold;
-    
-    width: 65%;
+    width: 80%;
     display: flex;
-    align-items: center;
+    justify-content: start;
+  }
+
+  .welcometext {
+    font-size: 13px;
+    font-weight: normal
+  }
+
+  .usertext {
+    font-size: 15px;
+    font-weight: bold
   }
 
   .desktopNavbar {
@@ -144,7 +156,18 @@
   }
     
   .mobileNav {
-    display: block;
-    width:100%
+    width: 100%;
+    
+    display: flex;
+    justify-content: space-between;
+    padding: 8px
+  }
+
+  .navbarImg {
+    height: 4em;
+  }
+
+  .navbarLinks {
+    letter-spacing: 0px;
   }
 }

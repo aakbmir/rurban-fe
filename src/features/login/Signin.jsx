@@ -1,4 +1,4 @@
-import styles from "./Signin.module.css";
+import styles from "../../styles/Signin.module.css";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
@@ -23,8 +23,6 @@ function Signin() {
     mutationFn: userLogin,
     onSuccess: (data) => {
       if (data.status === 200) {
-        console.log(data);
-        console.log("data", data.data.details);
         localStorage.setItem("rurban_cro_nm_ddn", data.data.details.name);
         localStorage.setItem("rurban_cro_id_ddi", data.data.details.id);
         toast.success("Login Successful!!", {

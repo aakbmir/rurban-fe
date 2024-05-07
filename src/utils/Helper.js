@@ -18,7 +18,7 @@ export function formatDateFirst(dateObj) {
 
 export function formatFullDate(dateObj) {
   var date = new Date(dateObj);
-  var formattedDate = format(date, "dd/MM/yyyy hh:mm a");
+  var formattedDate = format(date, "MMM dd, yyyy hh:mm a");
   return formattedDate;
 }
 

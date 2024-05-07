@@ -4,11 +4,11 @@ import HospitalsList from "./HospitalsList";
 
 function UserDashboard() {
   return (
-    <div>
-      <DashboardNavbar feature="Patients" />
+    <>
+      <DashboardNavbar user="patient" />
       <UserAppointments records={1} />
       <HospitalsList />
-    </div>
+    </>
   );
 }
 

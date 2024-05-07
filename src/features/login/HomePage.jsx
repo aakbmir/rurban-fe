@@ -1,4 +1,4 @@
-import styles from "./HomePage.module.css";
+import styles from "../../styles/HomePage.module.css";
 import { useNavigate } from "react-router-dom";
 
 function HomePage() {

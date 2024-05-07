@@ -1,4 +1,4 @@
-import styles from "./Signup.module.css";
+import styles from "../../styles/Signup.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { useEffect, useState } from "react";
@@ -235,7 +235,7 @@ function Signin() {
                   <input
                     className={styles.input}
                     placeholder="www.rurban.com"
-                    type="number"
+                    type="text"
                     id="website"
                     {...register("website")}
                   ></input>

@@ -1,18 +1,32 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import styles from "./DashboardNavbar.module.css";
+import { Link, useNavigate } from "react-router-dom";
+import styles from "../../styles/DashboardNavbar.module.css";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoIosCloseCircleOutline } from "react-icons/io";
+import { MdLogout } from "react-icons/md";
+import { useQueryClient } from "@tanstack/react-query";
 
-function DashboardNavbar({ feature }) {
+function DashboardNavbar({ user }) {
   const username = localStorage.getItem("rurban_cro_nm_ddn");
   const [nav, setNav] = useState(false);
+  const navigate = useNavigate();
+
+  const queryClient = useQueryClient();
+
+  function clearClientQuery() {
+    // queryClient.invalidateQueries(["UserCheckIns"]);
+  }
 
   function logout() {
     localStorage.clear();
     sessionStorage.clear();
   }
 
+  function exit() {
+    localStorage.clear();
+    sessionStorage.clear();
+    navigate("/");
+  }
   function openNav() {
     setNav(!nav);
   }
@@ -21,45 +35,66 @@ function DashboardNavbar({ feature }) {
 
   return (
     <div className={styles.navbarSection}>
-      <div className={styles.navbarTitle}>
-        <img alt="logo" className={styles.navbarImg} src="/1.png" />
-        {feature === "Patient" && (
-          <span className={styles.navbarLinks}>Hi, {username}</span>
-        )}
-      </div>
-
       <div className={styles.desktopNavbar}>
-        <ul className={styles.navbarItems}>
-          <li>
-            <Link
-              to={`/dashboard/user/home?tab=hospitalList`}
-              className={styles.navbarLinks}
-            >
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link to="/dashboard/user/hospitals" className={styles.navbarLinks}>
-              Hospitals
-            </Link>
-          </li>
-          <li>
-            <Link to="/dashboard/user/checkIns" className={styles.navbarLinks}>
-              My Check Ins
-            </Link>
-          </li>
-          <li>
-            <Link to="/" onClick={logout} className={styles.navbarLinks}>
-              Logout
-            </Link>
-          </li>
-        </ul>
+        <div className={styles.navbarTitle}>
+          <img alt="logo" className={styles.navbarImg} src="/1.png" />
+          {user === "patient" && (
+            <span className={styles.navbarLinks}>Hi, {username}</span>
+          )}
+          {user === "hospital" && (
+            <span className={styles.navbarLinks}>Hi, {username}</span>
+          )}
+        </div>
+        {user === "patient" && (
+          <ul className={styles.navbarItems}>
+            <li>
+              <Link
+                onClick={clearClientQuery}
+                to={`/dashboard/user/home?tab=hospitalList`}
+                className={styles.navbarLinks}
+              >
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/dashboard/user/hospitals"
+                className={styles.navbarLinks}
+              >
+                Hospitals
+              </Link>
+            </li>
+            <li>
+              <Link
+                onClick={clearClientQuery}
+                to="/dashboard/user/checkIns"
+                className={styles.navbarLinks}
+              >
+                My Check Ins
+              </Link>
+            </li>
+            <li>
+              <Link to="/" onClick={logout} className={styles.navbarLinks}>
+                Logout
+              </Link>
+            </li>
+          </ul>
+        )}
+        {user === "hospital" && (
+          <ul className={styles.navbarItems}>
+            <li>
+              <Link to="/" onClick={logout} className={styles.navbarLinks}>
+                Logout
+              </Link>
+            </li>
+          </ul>
+        )}
       </div>
 
       <div className={`${styles.mobileNavbar} ${completedClass}`}>
         <div onClick={openNav} className={styles.mobileNavbarClose}>
           <IoIosCloseCircleOutline
-            size={15}
+            size={30}
             color="black"
             className={styles.hambIcon}
           />
@@ -88,34 +123,34 @@ function DashboardNavbar({ feature }) {
               Logout
             </Link>
           </li>
-          {/* <li>
-            <button className={styles.logoutBtn} onClick={() => logout()}>
-              <IoLogOutOutline size={30} />
-            </button>
-          </li> */}
         </ul>
       </div>
 
       <div className={styles.mobileNav}>
-        <div className={styles.navTabUser}>
-          <div style={{ marginBottom: "0.6em", fontSize: "12px" }}>
-            {feature === "Hospitals" && (
-              <div style={{ fontSize: "17px" }}>Welcome, {username}</div>
-            )}
-            {feature !== "Hospitals" && (
-              <>
-                <div style={{ fontSize: "17px" }}>Hi, {username}</div>
+        <div className={styles.navbarTitle}>
+          <img alt="logo" className={styles.navbarImg} src="/1.png" />
 
-                <GiHamburgerMenu
-                  size={15}
-                  style={{ float: "right" }}
-                  onClick={openNav}
-                  className={styles.hambIcon}
-                />
-              </>
-            )}
-          </div>
+          <span className={styles.navbarLinks}>
+            <p className={styles.welcometext}>Welcome back,</p>
+            <span className={styles.usertext}>{username}</span>
+          </span>
         </div>
+        {user === "patient" && (
+          <GiHamburgerMenu
+            size={30}
+            style={{ float: "right" }}
+            onClick={openNav}
+            className={styles.hambIcon}
+          />
+        )}
+        {user === "hospital" && (
+          <MdLogout
+            size={30}
+            style={{ float: "right" }}
+            onClick={exit}
+            className={styles.hambIcon}
+          />
+        )}
       </div>
     </div>
   );

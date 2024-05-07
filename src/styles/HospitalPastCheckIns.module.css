@@ -1,0 +1,391 @@
+/* .navTabName {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1em;
+  margin-left: 1.5em;
+  font-size: 2em;
+  font-weight: normal;
+  width:88%;
+}
+
+.desktopNav {
+}
+
+.table {
+  border: 1px solid #c1c3c4;
+  font-size: 1rem;
+  overflow: hidden;
+  margin: 1em;
+  background: #fff;
+  border-radius: 0.7em;
+  margin-right: 3em;
+  margin-left: 3em;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1.2fr 0.7fr 0.4fr 0.8fr 1.3fr 1.2fr 1.2fr 0.7fr 0.7fr 1.2fr ;
+  column-gap: 0.3em;
+  align-items: center;
+  background-color: #33528b;
+  color:#fff;
+  border-bottom: 1px solid #c1c3c4;
+  font-weight: bolder;
+  padding: 0.5em;
+  padding-bottom: 1em;
+  padding-top: 1em; 
+}
+
+.headerColumns {
+  
+}
+
+.tableData {
+  display: grid;
+  grid-template-columns: 1.2fr 0.7fr 0.4fr 0.8fr 1.3fr 1.2fr 1.2fr 0.7fr 0.7fr 1.2fr;
+  column-gap: 0.3em;
+  align-items: center;
+  padding: 0.5rem;
+  border-bottom: 1px solid #c1c3c4;
+}
+
+.tableColumn {
+  font-size: 1.15em;
+  padding-top: 0.1em;
+  padding-bottom: 0.1em;
+  display: flex;
+}
+
+.table:nth-child(even) { 
+  background-color: #f3f3f3; 
+} 
+
+.confirm {
+  color: limegreen;
+  color: #00be64 !important;
+  background: #c3fce1;
+  padding: 0.5em;
+  border-radius: 7px;
+}
+
+.cancel {
+  color: red;  
+  color: #be0000 !important;
+  background:#fcc3c3;
+  padding: 0.5em;
+  border-radius: 7px;
+}
+
+.mobileNav {
+  display:none;
+}
+@media screen and (max-width: 900px) {
+
+  .navTabName {
+    width: 88%;
+    padding-top: 1em;
+    margin: auto;
+    font-size: 18px;
+    font-weight: bold;
+  }
+ 
+
+  .desktopNav {
+    display:none
+  }
+
+  .mobileNav {
+    display:block;
+  }
+
+  .cardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 1em;
+    border-radius: 20px
+  }
+  
+  .card {
+    width: calc(100% - 10px);
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    box-sizing: border-box;
+    height: fit-content;
+    padding: 1em;
+  }
+
+  .cardTopLeftDiv {
+    display: grid;
+    width: 30%;
+    border-right: 1px solid #dddddd;
+  }
+
+  .dateText {
+    text-align: right !important;
+    color: #32518b;
+    width: 85%;
+    font-size:1.17em
+  }
+
+  .timeText {
+    text-align: right !important;
+    color: #32518b;
+    width: 85%;
+    font-size:1.5em
+  }
+
+  .cardTopRightDiv {
+    display: block;
+    margin-left: 1em;
+    width: 70%
+  }
+
+  .patientName {
+    color: black;
+    font-size: 1.5em;
+    font-weight: 500;
+    display: block
+  }
+
+  .patientDetailText {
+    display: block;
+    color: black;
+    font-size: 1.2em;
+  }
+
+  .cardBottomLeftDiv {
+    display: grid;
+    width: 30%;
+    border-right: 1px solid #dddddd;
+  }
+
+  
+  .eta {
+    text-align: right !important;
+    color: red;
+    width: 85%;
+  }
+
+  .cardBottomRightDiv {
+    display: block;
+    margin-left: 1em;
+    width: 70%;
+    text-align: right
+  }
+
+  .innerDiv {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .bookingStatus {
+    color: green;
+    font-size: 1.3em;
+    width: 46%;
+    text-align: left;
+  }
+} */
+
+
+.navTabName {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1em;
+  margin-left: 1.5em;
+  font-size: 2em;
+  font-weight: normal;
+  width: 88%;
+}
+
+.desktopNav {
+}
+
+.table {
+  border: 1px solid #c1c3c4;
+  font-size: 1rem;
+  overflow: hidden;
+  margin: 1em;
+  background: #fff;
+  border-radius: 0.7em;
+  margin-right: 3em;
+  margin-left: 3em;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1.2fr 0.7fr 0.4fr 0.8fr 1.3fr 1.2fr 1.2fr 0.7fr 0.7fr 1.2fr;
+  column-gap: 0.3em;
+  align-items: center;
+  background-color: #33528b;
+  color: #fff;
+  border-bottom: 1px solid #c1c3c4;
+  font-weight: bolder;
+  padding: 0.5em;
+  padding-bottom: 1em;
+  padding-top: 1em; 
+}
+
+.headerColumns {
+  /* border-right: 1px solid #c1c3c4; */
+}
+
+.tableData {
+  display: grid;
+  grid-template-columns: 1.2fr 0.7fr 0.4fr 0.8fr 1.3fr 1.2fr 1.2fr 0.7fr 0.7fr 1.2fr;
+  column-gap: 0.3em;
+  align-items: center;
+  padding: 0.5rem;
+  border-bottom: 1px solid #c1c3c4;
+}
+
+.tableColumn {
+  font-size: 1.15em;
+  padding-top: 0.1em;
+  padding-bottom: 0.1em;
+  display: flex;
+}
+
+.table:nth-child(even) { 
+  background-color: #f3f3f3; 
+} 
+
+.confirm {
+  color: limegreen;
+  color: #00be64 !important;
+  background: #c3fce1;
+  padding: 0.5em;
+  border-radius: 7px;
+}
+
+.cancel {
+  color: red;  
+  color: #be0000 !important;
+  background: #fcc3c3;
+  padding: 0.5em;
+  border-radius: 7px;
+}
+
+.mobileNav {
+  display: none;
+}
+
+.eta {
+  text-align: right !important;
+  color: red;
+  width: 85%;
+  font-weight: bold
+}
+
+@media screen and (max-width: 900px) {
+
+  .navTabName {
+    width: 88%;
+    padding-top: 1em;
+    margin: auto;
+    font-size: 18px;
+    font-weight: bold;
+  }
+ 
+
+  .desktopNav {
+    display: none
+  }
+
+  .mobileNav {
+    display: block;
+  }
+
+  .cardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 1em;
+    border-radius: 20px;
+    
+  }
+  
+  .card {
+    width: calc(100% - 10px);
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    box-sizing: border-box;
+    height: fit-content;
+    padding: 0.5em;
+    
+  }
+
+  .cardTopLeftDiv {
+    width: 33%;
+    border-right: 1px solid #dddddd;
+  }
+
+  .dateText {
+    width: 85%;
+    font-size: 1.17em;
+    font-weight: bold
+  }
+
+  .timeText {
+    width: 85%;
+    font-size: 1.5em;
+    font-weight: bold
+  }
+
+  .cardTopRightDiv {
+    display: block;
+    margin-left: 1em;
+    width: 70%
+  }
+
+  .patientName {
+    color: black;
+    font-size: 1.5em;
+    font-weight: 600;
+    display: block
+  }
+
+  .patientDetailText {
+    display: block;
+    color: black;
+    font-size: 1.2em;
+  }
+
+  .status {
+    color: black;
+    font-size: 1.2em;
+  }
+
+  .cardBottomLeftDiv {   
+    width: 33%;
+    border-right: 1px solid #dddddd;
+  }
+
+  .eta {
+    text-align: left !important;
+    color: red;
+    width: 85%;
+    font-weight: normal
+  }
+
+  .cardBottomRightDiv {
+    display: block;
+    margin-left: 1em;
+    width: 70%;
+    text-align: right
+  }
+
+  .innerDiv {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .bookingStatus {
+    color: green;
+    font-size: 1.3em;
+    width: 46%;
+    text-align: left;
+  }
+}

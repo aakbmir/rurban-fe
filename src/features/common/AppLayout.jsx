@@ -1,11 +1,10 @@
 import { Route, Routes } from "react-router-dom";
-import Dashboard from "../src/features/common/Dashboard";
-import UserAppointments from "../src/features/patient/UserAppointments";
-import DashboardNavbar from "../src/features/common/DashboardNavbar";
-import HospitalsList from "../src/features/patient/HospitalsList";
+import Dashboard from "./Dashboard";
+import UserAppointments from "./../patient/UserAppointments";
+import DashboardNavbar from "./DashboardNavbar";
+import HospitalsList from "../patient/HospitalsList";
 
 export default function AppLayout() {
-  console.log("In AppLayout");
   return (
     <>
       <Routes>
@@ -14,7 +13,7 @@ export default function AppLayout() {
           path=":user/hospitals"
           element={
             <>
-              <DashboardNavbar feature="Patients" />
+              <DashboardNavbar user="patient" />
               <HospitalsList records="all" />
             </>
           }
@@ -23,7 +22,7 @@ export default function AppLayout() {
           path=":user/checkIns"
           element={
             <>
-              <DashboardNavbar feature="Patients" />
+              <DashboardNavbar user="patient" />
               <UserAppointments records="all" />
             </>
           }

@@ -41,7 +41,7 @@ export async function createCheckIn(data: any) {
     }
   );
   if (!res.ok) {
-    throw new Error("Error while booking your check in");
+    throw new Error("" + res.status);
   }
   return await res.json();
 }
@@ -74,6 +74,39 @@ export async function fetchHospitalCheckins() {
   );
   if (!res.ok) {
     throw new Error("Error while fetching checkins");
+  }
+  return await res.json();
+}
+
+export async function fetchPastHospitalCheckins() {
+  const clinicId = localStorage.getItem("rurban_cro_id_ddi");
+  const res = await fetch(
+    `https://rurban.onrender.com/api/v1/data/fetch-past-hospital-checkins?clinicId=${clinicId}`,
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  if (!res.ok) {
+    throw new Error("Error while fetching checkins");
+  }
+  return await res.json();
+}
+
+export async function clinicCheckInUpdate(data: any) {
+  const res = await fetch(
+    `https://rurban.onrender.com/api/v1/data/clinic-checkin-update`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }
+  );
+  if (!res.ok) {
+    throw new Error("Error while cancelling Check In ");
   }
   return await res.json();
 }

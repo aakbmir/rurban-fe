@@ -3,6 +3,7 @@ import { fetchCheckInsForUser } from "../services/data.service";
 
 export function useUserCheckInQuery(records) {
   const {
+    isLoading,
     isPending: isCheckInLoading,
     data: checkIns,
     error,
@@ -11,5 +12,5 @@ export function useUserCheckInQuery(records) {
     queryFn: () => fetchCheckInsForUser(records),
   });
 
-  return { isCheckInLoading, error, checkIns };
+  return { isLoading, isCheckInLoading, error, checkIns };
 }

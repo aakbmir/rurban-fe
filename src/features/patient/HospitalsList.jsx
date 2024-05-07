@@ -1,5 +1,5 @@
 import { FaLocationArrow, FaPhoneAlt } from "react-icons/fa";
-import styles from "./HospitalsList.module.css";
+import styles from "../../styles/HospitalsList.module.css";
 import { FaLocationDot } from "react-icons/fa6";
 import { createCheckIn } from "../../services/data.service";
 import { useGeoLocation } from "../../hooks/useGeoLocation";
@@ -7,9 +7,9 @@ import { useEffect, useState } from "react";
 import { useUrlPosition } from "../../hooks/useUrlPosition";
 import { toast } from "react-toastify";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useHospitalQuery } from "../../custom/useHospitalQuery";
+import { useHospitalQuery } from "../../hooks/useHospitalQuery";
 import Spinner from "../common/Spinner";
-import Empty from "../../ui/Empty";
+import Empty from "../common/Empty";
 
 const hosImage =
   "https://media.gettyimages.com/id/1312706413/photo/modern-hospital-building.jpg?s=612x612&w=gi&k=20&c=1-EC4Mxf--5u4ItDIzrIOrduXlbKRnbx9xWWtiifrDo=";
@@ -39,9 +39,7 @@ const HospitalsList = () => {
     if (!position) {
       toast.error("location Access is required");
       getPosition();
-      return null;
-    } else {
-      console.log("");
+      return;
     }
 
     toast.success("CheckIn in progress");
@@ -67,12 +65,16 @@ const HospitalsList = () => {
   const queryClient = useQueryClient();
   const { mutateAsync, isPending } = useMutation({
     mutationFn: createCheckIn,
-    onSuccess: () => {
+    onSuccess: (data) => {
       toast.success("Appointment successfully Booked");
       queryClient.invalidateQueries({ queryKey: ["UserCheckIns"] });
     },
     onError: (err) => {
-      toast.error(err.message);
+      if (err.toString().includes("409")) {
+        toast.error("There is already an open check In");
+      } else {
+        toast.error(err.message);
+      }
     },
   });
 
@@ -122,15 +124,8 @@ const HospitalsList = () => {
                   <div className={styles.firstDiv} style={{ marginTop: "1em" }}>
                     <div className={styles.firstLeftSectionButtonGroup}>
                       <button
+                        className={styles.btn}
                         onClick={() => getDirections(item.clinicLocation)}
-                        style={{
-                          marginRight: "1em",
-                          padding: "0.5em",
-                          background: "#1a8efd",
-                          border: "1px solid grey",
-                          borderRadius: "6px",
-                          color: "white",
-                        }}
                         disabled={isPending}
                       >
                         <FaLocationArrow style={{ marginRight: "1em" }} />
@@ -139,16 +134,10 @@ const HospitalsList = () => {
                     </div>
                     <div>
                       <button
+                        className={`${styles.btn} ${
+                          isPending ? styles.disabledBtn : ""
+                        }`}
                         onClick={() => handleAppointments(item)}
-                        style={{
-                          marginRight: "1em",
-
-                          padding: "0.5em",
-                          background: "#1a8efd",
-                          border: "1px solid grey",
-                          borderRadius: "6px",
-                          color: "white",
-                        }}
                         disabled={isPending}
                       >
                         Check In
@@ -195,7 +184,7 @@ const HospitalsList = () => {
                         onClick={() => getDirections(item.clinicLocation)}
                       >
                         <FaLocationArrow style={{ marginRight: "1em" }} />
-                        Get Directions
+                        Directions
                       </button>
                     </div>
                     <div className={styles.tableColumn}>
@@ -210,6 +199,7 @@ const HospitalsList = () => {
                             borderRadius: "6px",
                             color: "white",
                           }}
+                          className={styles}
                           disabled={isPending}
                         >
                           Check In

@@ -101,6 +101,20 @@ body {
   border: none;
 }
 
+.disabledBtn {
+  background:grey;
+  cursor:pointer;
+}
+
+.btn {
+  margin-right: 1em;
+  padding: 0.5em;
+  background: #1a8efd;
+  border: 1px solid grey;
+  border-radius: 6px;
+  color: white
+}
+
 .navTabName {
   display: flex;
   justify-content: space-between;

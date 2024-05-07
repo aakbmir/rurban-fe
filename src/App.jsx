@@ -11,15 +11,15 @@ import Signin from "./features/login/Signin";
 import Signup from "./features/login/Signup";
 import HomePage from "./features/login/HomePage";
 
-const PageNotFound = lazy(() => import("../pages/PageNotFound"));
-const AppLayout = lazy(() => import("../pages/AppLayout"));
+const PageNotFound = lazy(() => import("./features/common/PageNotFound"));
+const AppLayout = lazy(() => import("./features/common/AppLayout"));
 
 function App() {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
         // staleTime: 60 * 1000,
-        staleTime: 3000,
+        staleTime: 0,
         refetchOnWindowFocus: true,
       },
     },
@@ -27,7 +27,7 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* <ReactQueryDevtools /> */}
+      <ReactQueryDevtools />
       <AuthProvider>
         <ToastContainer autoClose={2000} />
         <BrowserRouter>
