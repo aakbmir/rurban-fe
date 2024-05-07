@@ -4,27 +4,22 @@ import styles from "../../styles/DashboardNavbar.module.css";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { MdLogout } from "react-icons/md";
-import { useQueryClient } from "@tanstack/react-query";
+import { useAuth } from "../../context/AuthContext";
 
 function DashboardNavbar({ user }) {
   const username = localStorage.getItem("rurban_cro_nm_ddn");
   const [nav, setNav] = useState(false);
   const navigate = useNavigate();
+  const { logout } = useAuth();
 
-  const queryClient = useQueryClient();
-
-  function clearClientQuery() {
-    // queryClient.invalidateQueries(["UserCheckIns"]);
-  }
-
-  function logout() {
+  function handleLogout() {
     localStorage.clear();
     sessionStorage.clear();
+    logout();
   }
 
   function exit() {
-    localStorage.clear();
-    sessionStorage.clear();
+    handleLogout();
     navigate("/");
   }
   function openNav() {
@@ -49,7 +44,6 @@ function DashboardNavbar({ user }) {
           <ul className={styles.navbarItems}>
             <li>
               <Link
-                onClick={clearClientQuery}
                 to={`/dashboard/user/home?tab=hospitalList`}
                 className={styles.navbarLinks}
               >
@@ -66,7 +60,6 @@ function DashboardNavbar({ user }) {
             </li>
             <li>
               <Link
-                onClick={clearClientQuery}
                 to="/dashboard/user/checkIns"
                 className={styles.navbarLinks}
               >
@@ -74,7 +67,11 @@ function DashboardNavbar({ user }) {
               </Link>
             </li>
             <li>
-              <Link to="/" onClick={logout} className={styles.navbarLinks}>
+              <Link
+                to="/"
+                onClick={handleLogout}
+                className={styles.navbarLinks}
+              >
                 Logout
               </Link>
             </li>
@@ -119,7 +116,7 @@ function DashboardNavbar({ user }) {
             </Link>
           </li>
           <li>
-            <Link to="/" onClick={logout}>
+            <Link to="/" onClick={handleLogout}>
               Logout
             </Link>
           </li>

@@ -7,11 +7,14 @@ import { toast } from "react-toastify";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import FormRow from "../common/FormRow";
+import { useAuth } from "../../context/AuthContext";
 
 function Signin() {
   const navigate = useNavigate();
-
   const [showPassword, setShowPassword] = useState(false);
+
+  const { login } = useAuth();
+
   const { register, handleSubmit, formState } = useForm({
     mode: "onBlur",
     reValidateMode: "onBlur",
@@ -28,6 +31,7 @@ function Signin() {
         toast.success("Login Successful!!", {
           position: "bottom-center",
         });
+        login();
         if (data.data.registerType === "Patient") {
           navigate("/dashboard/user/home?tab=hospitalList");
         } else {
