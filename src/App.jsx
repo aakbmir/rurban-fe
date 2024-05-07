@@ -33,7 +33,7 @@ function App() {
         <BrowserRouter>
           <Suspense fallback={<SpinnerFullPage />}>
             <Routes>
-              <Route index element={<Navigate replace to="home" />} />
+              <Route index element={<Navigate replace to="/home" />} />
               <Route path="home" element={<HomePage />} />
               <Route path="signin" element={<Signin />} />
               <Route path="signup/:user" element={<Signup />} />
