@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, HashRouter } from "react-router-dom";
 import { Suspense, lazy } from "react";
 import { AuthProvider } from "./context/AuthContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -31,7 +31,7 @@ function App() {
       <ReactQueryDevtools />
       <AuthProvider>
         <ToastContainer autoClose={2000} />
-        <BrowserRouter>
+        <HashRouter>
           <Suspense fallback={<SpinnerFullPage />}>
             <Routes>
               <Route index element={<Navigate replace to="/home" />} />
@@ -47,10 +47,10 @@ function App() {
                   </ProtectedRoute>
                 }
               />
-              <Route path="*" element={<HomePage />} />
+              <Route path="*" element={<PageNotFound />} />
             </Routes>
           </Suspense>
-        </BrowserRouter>
+        </HashRouter>
       </AuthProvider>
     </QueryClientProvider>
   );
