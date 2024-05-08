@@ -63,7 +63,6 @@ function HospitalUpcomingCheckIns() {
         <Empty resourceName="Upcoming Appointments" />
       ) : (
         <>
-          {upcomingCheckInsList.length}
           <div role="table" className={`${styles.desktopNav} ${styles.table}`}>
             <header role="row" className={styles.header}>
               <div className={styles.headerColumns}>Name</div>
