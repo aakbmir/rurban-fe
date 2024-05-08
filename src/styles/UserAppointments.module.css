@@ -230,12 +230,24 @@ body {
   .cancelBtn {
     background: rgb(26, 142, 253);
     color: #fff;
-    padding: 10px;
+    padding: 1.3em;
     border: none;
     width: 50%;
     font-size: 12px;
     border-radius: 20px;
     margin-right: 2px;
-    cursor: pointer
+    cursor: pointer;
+  }
+
+  .directionBtn {
+    background: grey;
+    color: #fff;
+    padding: 1.3em;
+    border: none;
+    width: 40%;
+    font-size: 12px;
+    border-radius: 20px;
+    margin-right: 2px;
+    cursor: pointer;
   }
 }

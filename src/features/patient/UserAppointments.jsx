@@ -205,27 +205,19 @@ function UserAppointments({ records }) {
 
                   {item.bookingStatus === "Booked" && !item.checkInStatus && (
                     <div className={styles.topdiv}>
-                      <div
-                        style={{
-                          width: "100%",
-                          display: "flex",
-                          justifyContent: "space-between",
-                        }}
+                      <button
+                        className={styles.cancelBtn}
+                        onClick={() => cancelAppointment(item)}
                       >
-                        <button
-                          className={styles.cancelBtn}
-                          onClick={() => cancelAppointment(item)}
-                        >
-                          Cancel
-                        </button>
+                        Cancel
+                      </button>
 
-                        <button
-                          className={styles.cancelBtn}
-                          onClick={() => getDirections(item.patientLocation)}
-                        >
-                          <FaLocationArrow size={20} />
-                        </button>
-                      </div>
+                      <button
+                        className={styles.directionBtn}
+                        onClick={() => getDirections(item.patientLocation)}
+                      >
+                        Directions
+                      </button>
                     </div>
                   )}
                 </div>

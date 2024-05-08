@@ -114,13 +114,27 @@ body {
   border-radius: 6px;
   color: white */
 
-  margin-right: 1em;
-    padding: 1em;
-    background: #1a8efd;
-    border: 1px solid grey;
+  background: grey;
+    color: #fff;
+    padding: 1.3em;
+    border: none;
+    width: 50%;
+    font-size: 12px;
     border-radius: 20px;
-    color: white;
-    width: 200px;
+    margin-right: 2px;
+    cursor: pointer;
+}
+
+.directionBtn {
+  background: rgb(26, 142, 253);
+    color: #fff;
+    padding: 1.3em;
+    border: none;
+    width: 40%;
+    font-size: 12px;
+    border-radius: 20px;
+    margin-right: 2px;
+    cursor: pointer;
 }
 
 .navTabName {

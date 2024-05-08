@@ -135,28 +135,29 @@ const HospitalsList = () => {
                     </div>
                   </div>
 
-                  <div className={styles.firstDiv} style={{ marginTop: "1em" }}>
-                    <div>
-                      <button
-                        className={`${styles.btn} ${
-                          isPending ? styles.disabledBtn : ""
-                        }`}
-                        onClick={() => handleAppointments(item)}
-                        disabled={isPending}
-                      >
-                        Check In
-                      </button>
-                    </div>
-                    <div className={styles.firstLeftSectionButtonGroup}>
-                      <button
-                        className={styles.bt}
-                        onClick={() => getDirections(item.clinicLocation)}
-                        disabled={isPending}
-                      >
-                        <FaLocationArrow style={{ marginRight: "1em" }} />
-                        Get Directions
-                      </button>
-                    </div>
+                  <div
+                    className={styles.firstDiv}
+                    style={{
+                      marginTop: "1em",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <button
+                      className={`${styles.btn} ${
+                        isPending ? styles.disabledBtn : ""
+                      }`}
+                      onClick={() => handleAppointments(item)}
+                      disabled={isPending}
+                    >
+                      Check In
+                    </button>
+                    <button
+                      className={styles.directionBtn}
+                      onClick={() => getDirections(item.clinicLocation)}
+                      disabled={isPending}
+                    >
+                      Directions
+                    </button>
                   </div>
                 </div>
               ))}
