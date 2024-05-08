@@ -107,34 +107,27 @@ body {
 }
 
 .btn {
-  /* margin-right: 1em;
-  padding: 0.5em;
-  background: #1a8efd;
-  border: 1px solid grey;
-  border-radius: 6px;
-  color: white */
-
-  background: grey;
-    color: #fff;
-    padding: 1.3em;
-    border: none;
-    width: 50%;
-    font-size: 12px;
-    border-radius: 20px;
-    margin-right: 2px;
-    cursor: pointer;
+  background: #ecf3ff;
+  color:#465670;
+  padding: 1em;
+  border: none;
+  width: 50%;
+  font-size: 14px;
+  border-radius: 20px;
+  margin-right: 2px;
+  cursor: pointer;
 }
 
 .directionBtn {
-  background: rgb(26, 142, 253);
-    color: #fff;
-    padding: 1.3em;
-    border: none;
-    width: 40%;
-    font-size: 12px;
-    border-radius: 20px;
-    margin-right: 2px;
-    cursor: pointer;
+  background: grey;
+  color: #fff;
+  padding: 1em;
+  border: none;
+  width: 40%;
+  font-size: 14px;
+  border-radius: 20px;
+  margin-right: 2px;
+  cursor: pointer;
 }
 
 .navTabName {
@@ -145,7 +138,6 @@ body {
   font-size: 2em;
   font-weight: normal;
   /* font-family: 'Rubik', sans-serif; */
-  
   width:88%;
 }
 
@@ -170,7 +162,7 @@ body {
   .card {
     width: calc(100% - 10px);
     margin-bottom: 20px;
-    background-color: #ffffff;
+    background-color: #dcdee221;
     border: 1px solid #dddddd;
     border-radius: 10px;
     box-sizing: border-box;
@@ -212,11 +204,10 @@ body {
   }
 
   .navTabName {
-    font-size: 1.4em;
-    font-weight: normal;
-    width:88%;
-    margin-left: 0em;
+    width: 88%;
     padding-top: 1em;
-    margin:auto;
+    margin: auto;
+    font-size: 18px;
+    font-weight: bold;
   }
 }
