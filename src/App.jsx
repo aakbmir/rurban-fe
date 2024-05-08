@@ -11,6 +11,7 @@ import Signin from "./features/login/Signin";
 import Signup from "./features/login/Signup";
 import HomePage from "./features/login/HomePage";
 import ProtectedRoute from "./features/common/ProtectedRoute";
+import LocationAccess from "./features/common/LocationAccess";
 
 const PageNotFound = lazy(() => import("./features/common/PageNotFound"));
 const AppLayout = lazy(() => import("./features/common/AppLayout"));
@@ -38,6 +39,14 @@ function App() {
               <Route path="home" element={<HomePage />} />
               <Route path="signin" element={<Signin />} />
               <Route path="signup/:user" element={<Signup />} />
+              <Route
+                path="locationAccess"
+                element={
+                  <ProtectedRoute>
+                    <LocationAccess />
+                  </ProtectedRoute>
+                }
+              />
               <Route path="login" element={<HomePage />} />
               <Route
                 path="dashboard/*"

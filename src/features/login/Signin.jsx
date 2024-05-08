@@ -10,10 +10,9 @@ import FormRow from "../common/FormRow";
 import { useAuth } from "../../context/AuthContext";
 
 function Signin() {
+  const { login } = useAuth();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-
-  const { login } = useAuth();
 
   const { register, handleSubmit, formState } = useForm({
     mode: "onBlur",
@@ -21,19 +20,16 @@ function Signin() {
   });
 
   const { errors } = formState;
-
   const { mutateAsync, isPending } = useMutation({
     mutationFn: userLogin,
     onSuccess: (data) => {
       if (data.status === 200) {
         localStorage.setItem("rurban_cro_nm_ddn", data.data.details.name);
         localStorage.setItem("rurban_cro_id_ddi", data.data.details.id);
-        toast.success("Login Successful!!", {
-          position: "bottom-center",
-        });
+        localStorage.setItem("rurban_reg_type_unit", data.data.registerType);
         login();
-        if (data.data.registerType === "Patient") {
-          navigate("/dashboard/user/home?tab=hospitalList");
+        if (localStorage.getItem("rurban_reg_type_unit") === "Patient") {
+          navigate("/locationAccess");
         } else {
           navigate("/dashboard/er/home?tab=patientList");
         }
@@ -76,7 +72,6 @@ function Signin() {
           <span className={styles.logintext}>
             Please fill your details to access your account.
           </span>
-
           <form
             className={styles.form}
             onSubmit={handleSubmit(onSubmit, onError)}
@@ -163,107 +158,6 @@ function Signin() {
         ></img>
       </div>
     </div>
-    // <div className={styles.mainDiv}>
-    //   <div className={styles.formDivSection}>
-    //     <div className={styles.imageDiv}>
-    //       <img className={styles.logoImg} alt="hello" src="1.png"></img>
-    //     </div>
-
-    //     <div className={styles.textDescription}>
-    //       <h5>Welcome back! Log in to your account</h5>
-    //       <form
-    //         className={styles.form}
-    //         onSubmit={handleSubmit(onSubmit, onError)}
-    //       >
-    //         <fieldset
-    //           className={
-    //             errors?.username?.message
-    //               ? styles.errorFieldset
-    //               : styles.inputFieldset
-    //           }
-    //         >
-    //           <input
-    //             className={styles.inputVal}
-    //             placeholder="Username"
-    //             type="text"
-    //             id="username"
-    //             {...register("username", {
-    //               required: "This field is required",
-    //               minLength: {
-    //                 value: 5,
-    //                 message: "min characters allowed: 4",
-    //               },
-    //             })}
-    //           ></input>
-    //         </fieldset>
-    //         <div className={styles.locationError}>
-    //           {errors?.username?.message && (
-    //             <span className={styles.errorMessage}>
-    //               {errors?.username?.message}
-    //             </span>
-    //           )}
-    //         </div>
-    //         <fieldset
-    //           className={
-    //             errors?.password?.message
-    //               ? styles.errorFieldset
-    //               : styles.inputFieldset
-    //           }
-    //         >
-    //           <input
-    //             className={styles.inputVal}
-    //             placeholder="Password"
-    //             type={`${showPassword ? "text" : "password"}`}
-    //             id="password"
-    //             {...register("password", {
-    //               required: "This field is required",
-    //             })}
-    //           ></input>
-    //           <button
-    //             className={styles.transparentButton}
-    //             type="button"
-    //             onClick={() => setShowPassword((pre) => !pre)}
-    //           >
-    //             {!showPassword && <FaEyeSlash color="#667085" />}
-    //             {showPassword && <FaEye color="#667085" />}
-    //           </button>
-    //         </fieldset>
-    //         <div className={styles.locationError}>
-    //           {errors?.password?.message && (
-    //             <span className={styles.errorMessage}>
-    //               {errors?.password?.message}
-    //             </span>
-    //           )}
-    //         </div>
-    //         <button
-    //           disabled={isPending}
-    //           className={`${styles.btnUser} ${
-    //             isPending ? styles.disabledBtn : ""
-    //           }`}
-    //         >
-    //           {isPending ? "Signing in..." : "Sign in"}
-    //         </button>
-    //         <div className={styles.mobileLogin}>
-    //           <span className={styles.register}>
-    //             Don&apos;t have an account?
-    //             <button
-    //               onClick={() => navigate("/")}
-    //               className={styles.homeBtn}
-    //             >
-    //               Sign up
-    //             </button>
-    //           </span>
-    //         </div>
-    //       </form>
-    //     </div>
-    //   </div>
-
-    //   <img
-    //     className={`${styles.leftDivSection} ${styles.leftDivLogo}`}
-    //     src="1.png"
-    //     alt="background"
-    //   />
-    // </div>
   );
 }
 

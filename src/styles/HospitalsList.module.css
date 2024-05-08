@@ -54,8 +54,8 @@ body {
 
 .header {
   display: grid;
-  grid-template-columns: 2fr 2fr 2fr 2fr 2fr;
-  column-gap: 0.2em;
+  grid-template-columns: 3fr 0.7fr 1.5fr 2.5fr 1fr 1fr;
+  column-gap: 2em;
   align-items: center;
   background-color: #33528b;
   color: #fff;
@@ -68,8 +68,8 @@ body {
 
 .tableData {
   display: grid;
-  grid-template-columns: 2fr 2fr 2fr 2fr 2fr;
-  column-gap: 0.2em;
+  grid-template-columns: 3fr 0.7fr 1.5fr 2.5fr 1fr 1fr;
+  column-gap: 2em;
   align-items: center;
   padding: 0.5rem;
   border-bottom: 1px solid #c1c3c4;
@@ -107,12 +107,20 @@ body {
 }
 
 .btn {
-  margin-right: 1em;
+  /* margin-right: 1em;
   padding: 0.5em;
   background: #1a8efd;
   border: 1px solid grey;
   border-radius: 6px;
-  color: white
+  color: white */
+
+  margin-right: 1em;
+    padding: 1em;
+    background: #1a8efd;
+    border: 1px solid grey;
+    border-radius: 20px;
+    color: white;
+    width: 200px;
 }
 
 .navTabName {
@@ -158,24 +166,28 @@ body {
 
   .imgImage {
     height: 90%;
-    width: 70%;
+    width: 90%;
+    border-radius: 50%;
   }
 
   .itemDesc {
     width: 85%;
     padding-top: 0em;
   }
+
   .firstDiv {
     display: flex
   }
 
   .firstLeftSection {
-    width: 40%
+    width: 20%
   }
 
-  .firstLeftSectionButtonGroup {
-    width:60%
+  .firstRightSection {
+    width: 80%;
+    margin-left: 1em;
   }
+  
   .phone {
     margin-top: 5px;
     margin-bottom: 5px

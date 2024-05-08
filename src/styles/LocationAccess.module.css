@@ -1,0 +1,69 @@
+.loc {
+  color: #465670;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.locText {
+  color: #465670;
+  font-size: 16px;
+  margin-top: 1em;  
+}
+
+.allowButton {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  width: 80%;
+  border-radius: 5px;
+  border: none;
+  background: #38ce9e;
+  box-shadow: 3px 3px 18px 11px grey;
+  margin-top: 2em;
+}
+
+.cancelButton {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  width: 80%;
+  border-radius: 5px;
+  border: none;
+  color: rgb(1, 101, 252);
+  background: none;
+  margin-top: 2em;
+}
+  
+@media screen and (max-width: 900px) {
+  .loc {
+    color: #465670;
+    font-size: 24px;
+    font-weight: 500;
+  }
+
+  .locText {
+    color: #465670;
+    font-size: 16px;
+    margin-top: 1em;  
+  }
+
+  .allowButton {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 80%;
+    border-radius: 5px;
+    border: none;
+    background: #38ce9e;
+    box-shadow: 3px 3px 18px 11px grey;
+    margin-top: 2em;
+  }
+
+  .cancelButton {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 80%;
+    border-radius: 5px;
+    border: none;
+    color: rgb(1, 101, 252);
+    background: none;
+    margin-top: 2em;
+  }
+}

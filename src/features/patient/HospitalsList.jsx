@@ -1,6 +1,5 @@
 import { FaLocationArrow, FaPhoneAlt } from "react-icons/fa";
 import styles from "../../styles/HospitalsList.module.css";
-import { FaLocationDot } from "react-icons/fa6";
 import { createCheckIn } from "../../services/data.service";
 import { useGeoLocation } from "../../hooks/useGeoLocation";
 import { useEffect, useState } from "react";
@@ -99,12 +98,26 @@ const HospitalsList = () => {
                         src={hosImage}
                       ></img>
                     </div>
-                    <div>
-                      <h2>{item.clinicName}</h2>
+                    <div className={styles.firstRightSection}>
+                      <span style={{ fontSize: "14px", fontWeight: "bold" }}>
+                        {item.clinicName}
+                      </span>
                       {item.clinicContact ? (
                         <p className={styles.phone}>
                           <FaPhoneAlt className={styles.icon} />
                           {item.clinicContact}
+                          <button
+                            style={{
+                              background: "none",
+                              border: "1px solid grey",
+                              float: "right",
+                              padding: "0.3em",
+                              borderRadius: "1em",
+                              fontSize: "10px",
+                            }}
+                          >
+                            4.5 Kms
+                          </button>
                         </p>
                       ) : (
                         <p className={styles.phone}>
@@ -112,26 +125,17 @@ const HospitalsList = () => {
                           Not Available
                         </p>
                       )}
-                      {item.clinicWebsite && (
-                        <p>
-                          <FaLocationDot className={styles.icon} />
-                          {item.clinicWebsite}
-                        </p>
-                      )}
+                    </div>
+                  </div>
+                  <hr />
+                  <div className={styles.firstDiv} style={{ marginTop: "1em" }}>
+                    <div>
+                      <FaLocationArrow style={{ marginRight: "1em" }} />
+                      {item.clinicAddress}
                     </div>
                   </div>
 
                   <div className={styles.firstDiv} style={{ marginTop: "1em" }}>
-                    <div className={styles.firstLeftSectionButtonGroup}>
-                      <button
-                        className={styles.btn}
-                        onClick={() => getDirections(item.clinicLocation)}
-                        disabled={isPending}
-                      >
-                        <FaLocationArrow style={{ marginRight: "1em" }} />
-                        Get Directions
-                      </button>
-                    </div>
                     <div>
                       <button
                         className={`${styles.btn} ${
@@ -141,6 +145,16 @@ const HospitalsList = () => {
                         disabled={isPending}
                       >
                         Check In
+                      </button>
+                    </div>
+                    <div className={styles.firstLeftSectionButtonGroup}>
+                      <button
+                        className={styles.bt}
+                        onClick={() => getDirections(item.clinicLocation)}
+                        disabled={isPending}
+                      >
+                        <FaLocationArrow style={{ marginRight: "1em" }} />
+                        Get Directions
                       </button>
                     </div>
                   </div>
@@ -159,6 +173,7 @@ const HospitalsList = () => {
                   <div>Contact</div>
                   <div>Website</div>
                   <div>Location</div>
+                  <div>Direction</div>
                   <div></div>
                 </header>
 
@@ -171,6 +186,9 @@ const HospitalsList = () => {
                     <div className={styles.tableColumn}>
                       {item.clinicWebsite}
                     </div>
+                    <div className={styles.tableColumn}>
+                      {item.clinicAddress}
+                    </div>{" "}
                     <div className={styles.tableColumn}>
                       <button
                         style={{

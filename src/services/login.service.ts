@@ -1,6 +1,9 @@
 import axios from "axios";
 import bcrypt from "bcryptjs";
 
+const BASE_URL =
+  "https://api.geoapify.com/v1/geocode/reverse?apiKey=aa97884829aa43358881863890a63f74";
+
 export async function userLogin(data: any) {
   const hashedPassword = bcrypt.hashSync(
     data["password"],
@@ -51,6 +54,23 @@ export async function RegisterEr(data: any) {
     data["password"],
     "$2a$10$CwTycUXWue0Thq9StjUM0u"
   );
+  const lat = data["location"].toString().split(",")[0];
+  const lng = data["location"].toString().split(",")[1];
+
+  //&lat=55.340290092175515&lon=25.252149447573036&
+  const res = await fetch(`${BASE_URL}&lat=${lat}&lon=${lng}`);
+  //const res = await fetch(`${BASE_URL}?latitude=${lat}&longitude=${lng}`);
+  const dsss = await res.json();
+  console.log(dsss.features[0].properties.address_line2);
+  const address = dsss.features[0].properties.address_line2;
+  // console.log(dsss.locality);
+  // const address = dsss.locality
+  //   .toString()
+  //   .concat(", ")
+  //   .concat(
+  //     dsss.city.toString().concat(", ").concat(dsss.countryName.toString())
+  //   );
+  //  console.log(address);
   await axios
     .post("https://rurban.onrender.com/api/v1/auth/register-er", {
       name: data["name"],
@@ -61,6 +81,7 @@ export async function RegisterEr(data: any) {
       registerType: data["registerType"],
       location: data["location"].toString(),
       website: data["website"],
+      address: address,
     })
     .then(
       (response) => {
