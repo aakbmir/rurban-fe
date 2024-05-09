@@ -7,7 +7,7 @@ export function useHospitalQuery() {
     data: hospitals,
     error,
   } = useQuery({
-    queryKey: ["hospitals"],
+    queryKey: ["userHospitalList"],
     queryFn: fetchClinics,
   });
 

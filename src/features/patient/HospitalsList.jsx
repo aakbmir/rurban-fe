@@ -66,7 +66,7 @@ const HospitalsList = () => {
     mutationFn: createCheckIn,
     onSuccess: (data) => {
       toast.success("Appointment successfully Booked");
-      queryClient.invalidateQueries({ queryKey: ["UserCheckIns"] });
+      queryClient.invalidateQueries({ queryKey: ["UserUpcomingCheckIns"] });
     },
     onError: (err) => {
       if (err.toString().includes("409")) {
@@ -79,7 +79,7 @@ const HospitalsList = () => {
 
   return (
     <>
-      <div className={styles.navTabName}>Hospitals</div>;
+      <div className={styles.navTabName}>Available Hospitals</div>;
       {isHospitalLoading ? (
         <Spinner />
       ) : !hospitals || hospitals.length === 0 ? (
@@ -143,7 +143,7 @@ const HospitalsList = () => {
                     }}
                   >
                     <button
-                      className={`${styles.btn} ${
+                      className={`${styles.checkinBtn} ${
                         isPending ? styles.disabledBtn : ""
                       }`}
                       onClick={() => handleAppointments(item)}
@@ -174,8 +174,7 @@ const HospitalsList = () => {
                   <div>Contact</div>
                   <div>Website</div>
                   <div>Location</div>
-                  <div>Direction</div>
-                  <div></div>
+                  <div>Action</div>
                 </header>
 
                 {hospitals.map((item, index) => (
@@ -192,38 +191,20 @@ const HospitalsList = () => {
                     </div>{" "}
                     <div className={styles.tableColumn}>
                       <button
-                        style={{
-                          marginRight: "1em",
-                          padding: "0.5em",
-                          background: "#1a8efd",
-                          border: "none",
-                          borderRadius: "6px",
-                          color: "white",
-                        }}
+                        className={styles.directionBtn}
                         onClick={() => getDirections(item.clinicLocation)}
                       >
                         <FaLocationArrow style={{ marginRight: "1em" }} />
                         Directions
                       </button>
-                    </div>
-                    <div className={styles.tableColumn}>
-                      <div style={{ marginLeft: "3em" }}>
-                        <button
-                          onClick={() => handleAppointments(item)}
-                          style={{
-                            marginRight: "1em",
-                            padding: "0.5em",
-                            background: "#1a8efd",
-                            border: "none",
-                            borderRadius: "6px",
-                            color: "white",
-                          }}
-                          className={styles}
-                          disabled={isPending}
-                        >
-                          Check In
-                        </button>
-                      </div>
+
+                      <button
+                        className={styles.checkinBtn}
+                        onClick={() => handleAppointments(item)}
+                        disabled={isPending}
+                      >
+                        Check In
+                      </button>
                     </div>
                   </div>
                 ))}

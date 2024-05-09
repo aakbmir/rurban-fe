@@ -27,37 +27,9 @@ function UserAppointments({ records }) {
     mutationFn: cancelCheckIn,
     onSuccess: () => {
       toast.success("Check In Cancelled!");
-      queryClient.invalidateQueries(["UserCheckIns"]);
+      queryClient.invalidateQueries(["UserUpcomingCheckIns"]);
     },
   });
-
-  //  const [bookingDistances, setBookingDistances] = useState([]);
-  // useEffect(() => {
-  //   const calculateDistances = async () => {
-  //     if (checkIns) {
-  //       const distances = await Promise.all(
-  //         checkIns.map((booking) => {
-  //           console.log(booking.checkInStatus);
-  //           if (
-  //             booking.checkInStatus === null &&
-  //             booking.bookingStatus === "Booked"
-  //           ) {
-  //             return calculateDistance(
-  //               booking.patientLocation.split(",")[0],
-  //               booking.patientLocation.split(",")[1],
-  //               booking.clinicId.clinicLocation.split(",")[0],
-  //               booking.clinicId.clinicLocation.split(",")[1]
-  //             );
-  //           }
-  //           return null;
-  //         })
-  //       );
-  //       setBookingDistances(distances);
-  //     }
-  //   };
-
-  //   calculateDistances();
-  // }, [checkIns]);
 
   function getDirections(clinicLocation) {
     const lat = clinicLocation.split(",")[0];
@@ -69,31 +41,6 @@ function UserAppointments({ records }) {
       toast.error("Could not open directions");
     }
   }
-
-  // async function calculateDistance(itemLat, itemLng, clinicLat, clinicLng) {
-  //   try {
-  //     if (itemLat && itemLng && clinicLat && clinicLng) {
-  //       const origin = `${itemLng},${itemLat}`;
-  //       const destination = `${clinicLng},${clinicLat}`;
-
-  //       const response = await fetch(
-  //         `https://api.openrouteservice.org/v2/directions/driving-car?api_key=${API_KEY}&start=${origin}&end=${destination}`
-  //       );
-  //       const data = await response.json();
-  //       if (data?.features) {
-  //         return {
-  //           distance: data.features[0].properties.summary.distance,
-  //           duration: Math.floor(
-  //             data.features[0].properties.summary.duration / 60
-  //           ),
-  //         };
-  //       }
-  //     }
-  //   } catch (error) {
-  //     console.error("Failed to calculate distance:", error);
-  //     return null;
-  //   }
-  // }
 
   const [isOpenModal, setIsOpenModal] = useState(false);
   function cancelAppointment(item) {
@@ -110,7 +57,7 @@ function UserAppointments({ records }) {
 
   return (
     <>
-      <div className={styles.navTabName}>Check In</div>
+      <div className={styles.navTabName}>Manage Check In</div>
       {isOpenModal && (
         <ModalMain
           onClose={() => setIsOpenModal(false)}
@@ -135,7 +82,7 @@ function UserAppointments({ records }) {
                     <div
                       style={{
                         display: "flex",
-                        borderRight: "1px solid white",
+                        borderRight: "1px solid grey",
                         width: "60%",
                       }}
                     >
@@ -145,7 +92,7 @@ function UserAppointments({ records }) {
                         style={{ marginRight: "0.7em" }}
                       />
                       <span className={styles.appointmenttext}>
-                        {formatDay(item.bookingDate)},
+                        {formatDay(item.bookingDate)},{"  "}
                         {formatDate(item.bookingDate)}
                       </span>
                     </div>
@@ -165,6 +112,7 @@ function UserAppointments({ records }) {
                       </span>
                     </div>
                   </div>
+
                   <div className={styles.topdiv}>
                     <div>
                       <p className={styles.hospitalname}>
@@ -178,7 +126,7 @@ function UserAppointments({ records }) {
                   <br />
                   <div className={styles.topdiv}>
                     <div className={styles.status} style={{ width: "50%" }}>
-                      Check In Status:
+                      <span className={styles.status}>Check In Status:</span>
                       <p
                         className={`${styles.status} ${
                           item.checkInStatus === "Checked In"
@@ -189,7 +137,10 @@ function UserAppointments({ records }) {
                         {item.checkInStatus}
                       </p>
                     </div>
-                    <div className={styles.status} style={{ width: "50%" }}>
+                    <div
+                      className={styles.status}
+                      style={{ width: "50%", textAlign: "right" }}
+                    >
                       Booking Status:
                       <p
                         className={`${styles.status} ${
@@ -238,8 +189,7 @@ function UserAppointments({ records }) {
                   <div>Check In Status</div>
                   <div>Check In Date</div>
                   <div>Cancellation Date</div>
-                  <div>Location</div>
-                  <div></div>
+                  <div>Action</div>
                 </header>
 
                 {checkIns.map((item, index) => (
@@ -283,7 +233,6 @@ function UserAppointments({ records }) {
                         ? formatFullDate(item.checkInDate)
                         : "-"}
                     </div>
-
                     <div className={styles.tableColumn}>
                       <span>
                         {item.bookingCancellationDate
@@ -291,7 +240,6 @@ function UserAppointments({ records }) {
                           : "-"}
                       </span>
                     </div>
-
                     <div className={styles.tableColumn}>
                       <button
                         className={styles.directionBtn}
@@ -302,8 +250,7 @@ function UserAppointments({ records }) {
                         <FaLocationArrow style={{ marginRight: "0.4em" }} />
                         Directions
                       </button>
-                    </div>
-                    <div>
+
                       {item.bookingStatus === "Booked" &&
                         !item.checkInStatus && (
                           <button
@@ -322,6 +269,8 @@ function UserAppointments({ records }) {
           </div>
         </>
       )}
+      <br />
+      <hr style={{ borderTop: "1px solid grey", marginTop: "3em" }} />
     </>
   );
 }

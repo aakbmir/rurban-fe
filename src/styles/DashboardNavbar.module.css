@@ -8,6 +8,11 @@
   box-shadow: 1px 1px 6px -3px gray;
 }
 
+.navbarItems :global(.active) {
+  color: #33528b;
+  font-weight: bold;
+}
+
 .desktopNavbar {
   width: 100%;
   display: flex;

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import styles from "../../styles/DashboardNavbar.module.css";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoIosCloseCircleOutline } from "react-icons/io";
@@ -43,37 +43,37 @@ function DashboardNavbar({ user }) {
         {user === "patient" && (
           <ul className={styles.navbarItems}>
             <li>
-              <Link
+              <NavLink
                 to={`/dashboard/user/home?tab=hospitalList`}
                 className={styles.navbarLinks}
               >
                 Home
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link
+              <NavLink
                 to="/dashboard/user/hospitals"
                 className={styles.navbarLinks}
               >
                 Hospitals
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link
+              <NavLink
                 to="/dashboard/user/checkIns"
                 className={styles.navbarLinks}
               >
                 My Check Ins
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link
+              <NavLink
                 to="/"
                 onClick={handleLogout}
                 className={styles.navbarLinks}
               >
                 Logout
-              </Link>
+              </NavLink>
             </li>
           </ul>
         )}

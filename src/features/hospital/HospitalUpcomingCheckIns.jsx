@@ -1,4 +1,4 @@
-import { FaUserCheck, FaUserSlash } from "react-icons/fa";
+import { FaCalendar, FaClock, FaUserCheck, FaUserSlash } from "react-icons/fa";
 import {
   formatDateFirst,
   formatDateOfBirth,
@@ -17,7 +17,7 @@ import Spinner from "../common/Spinner";
 
 function HospitalUpcomingCheckIns() {
   const { data: upcomingCheckInsList, isLoading } = useQuery({
-    queryKey: ["upcomingCheckIns"],
+    queryKey: ["hospitalUpcomingCheckIns"],
     queryFn: fetchHospitalCheckins,
   });
 
@@ -25,8 +25,9 @@ function HospitalUpcomingCheckIns() {
   const { mutateAsync } = useMutation({
     mutationFn: clinicCheckInUpdate,
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: ["upcomingCheckIns"] });
-      queryClient.invalidateQueries({ queryKey: ["checkinList"] });
+      queryClient.invalidateQueries({ queryKey: ["hospitalUpcomingCheckIns"] });
+      queryClient.invalidateQueries({ queryKey: ["hospitalPastCheckIns"] });
+      queryClient.invalidateQueries({ queryKey: ["UserUpcomingCheckIns"] });
     },
     onError: () => {
       toast.error("Something went wrong!!", {
@@ -120,21 +121,23 @@ function HospitalUpcomingCheckIns() {
                 >
                   <button
                     onClick={() => handleCheckIn(patient.id, "checkIn")}
-                    title="Confirm check In"
+                    title="Confirm Patient CheckIn"
                     style={{
                       marginRight: "1.3em",
                       border: "none",
                       background: "none",
+                      color: "#33528b",
                     }}
                   >
                     <FaUserCheck size={20} />
                   </button>
                   <button
                     onClick={() => handleCheckIn(patient.id, "noshow")}
-                    title="Confirm No Sho"
+                    title="Confirm Patient as No-Show"
                     style={{
                       border: "none",
                       background: "none",
+                      color: "#f3726e",
                     }}
                   >
                     <FaUserSlash size={20} />
@@ -144,64 +147,169 @@ function HospitalUpcomingCheckIns() {
             ))}
           </div>
           <div className={styles.mobileNav}>
-            {upcomingCheckInsList.map((patient) => (
-              <div key={patient.id} className={styles.cardContainer}>
-                <div className={styles.card}>
-                  <div style={{ display: "flex" }}>
-                    <div className={styles.cardTopLeftDiv}>
-                      <span className={styles.dateText}>
-                        {formatDateFirst(patient.bookingDate)}
+            <div className={styles.cardContainer}>
+              {upcomingCheckInsList.map((patient) => (
+                <div key={patient.id} className={styles.card}>
+                  <div className={styles.appointmentdiv}>
+                    <div
+                      style={{
+                        display: "flex",
+                        borderRight: "1px solid grey",
+                        width: "60%",
+                      }}
+                    >
+                      <FaCalendar
+                        size={20}
+                        color="black"
+                        style={{ marginRight: "0.7em" }}
+                      />
+                      <span className={styles.appointmenttext}>
+                        {formatDateFirst(patient.checkInDate)}
                       </span>
-                      <div className={styles.timeText}>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      <FaClock
+                        size={20}
+                        color="black"
+                        style={{ marginRight: "0.7em" }}
+                      />
+                      <span className={styles.appointmenttext}>
                         {showTime(patient.bookingDate)}
-                      </div>
+                      </span>
                     </div>
-                    <div className={styles.cardTopRightDiv}>
-                      <span className={styles.patientName}>
+                  </div>
+
+                  <div className={styles.topdiv} style={{ display: "flex" }}>
+                    <div>
+                      <p className={styles.hospitalname}>
                         {patient.patientId.patientName}
-                      </span>
-                      <span className={styles.patientDetailText}>
-                        {formatDateOfBirth(patient.patientId.patientDob)}
-                      </span>
-                      <span className={styles.patientDetailText}>
+                      </p>
+                    </div>
+                    <div style={{ textAlign: "right" }}>
+                      <p className={styles.status}>
+                        {patient.patientId.patientDob}
+                      </p>
+                      <p className={styles.status}>
                         {patient.patientId.patientContact}
-                      </span>
+                      </p>
                     </div>
                   </div>
-                  <div style={{ display: "flex" }}>
-                    <div className={styles.cardBottomLeftDiv}>
-                      <h2 className={styles.eta}>30 Mins</h2>
-                    </div>
-                    <div className={styles.cardBottomRightDiv}>
-                      <div
-                        className={styles.innerDiv}
-                        style={{ display: "block" }}
+                  <br />
+
+                  <div className={styles.topdiv}>
+                    <div className={styles.status} style={{ width: "50%" }}>
+                      <span className={styles.status}>Check In Status:</span>
+                      <p
+                        className={`${styles.status} ${
+                          patient.checkInStatus === "Checked In"
+                            ? styles.bookingStatusConfirmed
+                            : styles.bookingStatusCancelled
+                        }`}
                       >
-                        <div style={{ textAlign: "left" }}>
-                          <span className={styles.status}>
-                            Booking Status:{" "}
-                          </span>
-                          <span className={styles.bookingStatus}>
-                            {patient.bookingStatus}
-                          </span>
-                        </div>
-                        <div style={{ textAlign: "left" }}>
-                          <span className={styles.status}>
-                            Check In Status:{" "}
-                          </span>
-                          <span className={styles.bookingStatus}>
-                            {patient.checkInStatus
-                              ? patient.checkInStatus
-                              : "-"}
-                          </span>
-                        </div>
-                      </div>
+                        {patient.checkInStatus}
+                      </p>
+                    </div>
+                    <div
+                      className={styles.status}
+                      style={{ width: "50%", textAlign: "right" }}
+                    >
+                      Booking Status:
+                      <p
+                        className={`${styles.status} ${
+                          patient.bookingStatus === "Booked"
+                            ? styles.bookingStatusConfirmed
+                            : styles.bookingStatusCancelled
+                        }`}
+                      >
+                        {patient.bookingStatus}
+                      </p>
                     </div>
                   </div>
+
+                  {patient.bookingStatus === "Booked" &&
+                    !patient.checkInStatus && (
+                      <div className={styles.topdiv}>
+                        <button
+                          className={styles.cancelBtn}
+                          onClick={() => handleCheckIn(patient.id, "checkIn")}
+                        >
+                          CheckIn
+                        </button>
+
+                        <button
+                          className={styles.directionBtn}
+                          onClick={() => handleCheckIn(patient.id, "noshow")}
+                        >
+                          No Show
+                        </button>
+                      </div>
+                    )}
                 </div>
-              </div>
-            ))}
+
+                // <div key={patient.id} className={styles.cardContainer}>
+                //   <div className={styles.card}>
+                //     <div style={{ display: "flex" }}>
+                //       <div className={styles.cardTopLeftDiv}>
+                //         <span className={styles.dateText}>
+                //           {formatDateFirst(patient.bookingDate)}
+                //         </span>
+                //         <div className={styles.timeText}>
+                //           {showTime(patient.bookingDate)}
+                //         </div>
+                //       </div>
+                //       <div className={styles.cardTopRightDiv}>
+                //         <span className={styles.patientName}>
+                //           {patient.patientId.patientName}
+                //         </span>
+                //         <span className={styles.patientDetailText}>
+                //           {formatDateOfBirth(patient.patientId.patientDob)}
+                //         </span>
+                //         <span className={styles.patientDetailText}>
+                //           {patient.patientId.patientContact}
+                //         </span>
+                //       </div>
+                //     </div>
+                //     <div style={{ display: "flex" }}>
+                //       <div className={styles.cardBottomLeftDiv}>
+                //         <h2 className={styles.eta}>30 Mins</h2>
+                //       </div>
+                //       <div className={styles.cardBottomRightDiv}>
+                //         <div
+                //           className={styles.innerDiv}
+                //           style={{ display: "block" }}
+                //         >
+                //           <div style={{ textAlign: "left" }}>
+                //             <span className={styles.status}>
+                //               Booking Status:{" "}
+                //             </span>
+                //             <span className={styles.bookingStatus}>
+                //               {patient.bookingStatus}
+                //             </span>
+                //           </div>
+                //           <div style={{ textAlign: "left" }}>
+                //             <span className={styles.status}>
+                //               Check In Status:{" "}
+                //             </span>
+                //             <span className={styles.bookingStatus}>
+                //               {patient.checkInStatus
+                //                 ? patient.checkInStatus
+                //                 : "-"}
+                //             </span>
+                //           </div>
+                //         </div>
+                //       </div>
+                //     </div>
+                //   </div>
+                // </div>
+              ))}
+            </div>
           </div>
+          <hr style={{ borderTop: "1px solid grey", marginTop: "3em" }} />
         </>
       )}
     </div>

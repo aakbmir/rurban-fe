@@ -8,7 +8,7 @@ export function useUserCheckInQuery(records) {
     data: checkIns,
     error,
   } = useQuery({
-    queryKey: ["UserCheckIns"],
+    queryKey: ["UserUpcomingCheckIns"],
     queryFn: () => fetchCheckInsForUser(records),
   });
 

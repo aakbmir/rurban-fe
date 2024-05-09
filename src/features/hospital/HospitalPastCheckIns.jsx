@@ -1,4 +1,4 @@
-import { FaBirthdayCake, FaPhone } from "react-icons/fa";
+import { FaCalendar, FaClock } from "react-icons/fa";
 import {
   formatDateFirst,
   formatDateOfBirth,
@@ -13,7 +13,7 @@ import Spinner from "../common/Spinner";
 
 function HospitalPastCheckIns() {
   const { data: checkInList, isLoading } = useQuery({
-    queryKey: ["checkinList"],
+    queryKey: ["hospitalPastCheckIns"],
     queryFn: fetchPastHospitalCheckins,
   });
 
@@ -88,9 +88,11 @@ function HospitalPastCheckIns() {
                 </div>
                 <div
                   className={`${styles.tableColumn} ${
-                    patient.checkInStatus === "Checked In"
-                      ? styles.confirm
-                      : styles.cancel
+                    patient.checkInStatus
+                      ? patient.checkInStatus === "Checked In"
+                        ? styles.confirm
+                        : styles.cancel
+                      : ""
                   }`}
                 >
                   <span style={{ marginLeft: "0.4em" }}>
@@ -103,57 +105,94 @@ function HospitalPastCheckIns() {
               </div>
             ))}
           </div>
+
           <div className={styles.mobileNav}>
-            {checkInList.map((patient) => (
-              <div key={patient.id} className={styles.cardContainer}>
-                <div className={styles.card}>
-                  <div style={{ display: "flex" }}>
-                    <div className={styles.cardTopLeftDiv}>
-                      <div>
-                        <h3 className={styles.dateText}>
-                          {formatDateFirst(patient.checkInDate)}
-                        </h3>
-                        <h2 className={styles.timeText}>
-                          {showTime(patient.checkInDate)}
-                        </h2>
-                      </div>
+            <div className={styles.cardContainer}>
+              {checkInList.map((patient) => (
+                <div key={patient.id} className={styles.card}>
+                  <div className={styles.appointmentdiv}>
+                    <div
+                      style={{
+                        display: "flex",
+                        borderRight: "1px solid grey",
+                        width: "60%",
+                      }}
+                    >
+                      <FaCalendar
+                        size={20}
+                        color="black"
+                        style={{ marginRight: "0.7em" }}
+                      />
+                      <span className={styles.appointmenttext}>
+                        {formatDateFirst(patient.checkInDate)}
+                      </span>
                     </div>
-                    <div className={styles.cardTopRightDiv}>
-                      <div>
-                        <span className={styles.patientName}>
-                          {patient.patientId.patientName}
-                          {calculateAge(patient.patientId.patientDob)}
-                        </span>
-                        <span className={styles.patientDetailText}>
-                          <FaBirthdayCake />
-                          {formatDateOfBirth(patient.patientId.patientDob)}
-                        </span>
-                        <span className={styles.patientDetailText}>
-                          <FaPhone /> {patient.patientId.patientContact}
-                        </span>
-                      </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      <FaClock
+                        size={20}
+                        color="black"
+                        style={{ marginRight: "0.7em" }}
+                      />
+                      <span className={styles.appointmenttext}>
+                        {showTime(patient.bookingDate)}
+                      </span>
                     </div>
                   </div>
-                  <div style={{ display: "flex" }}>
-                    <div className={styles.cardBottomLeftDiv}>
-                      <h2 className={styles.eta}>30 Mins</h2>
+
+                  <div className={styles.topdiv} style={{ display: "flex" }}>
+                    <div>
+                      <p className={styles.hospitalname}>
+                        {patient.patientId.patientName}
+                      </p>
                     </div>
-                    <div className={styles.cardBottomRightDiv}>
-                      <div className={styles.innerDiv}>
-                        <span className={styles.bookingStatus}>
-                          <span style={{ fontWeight: "bold" }}>Booking </span>
-                          Booked
-                        </span>
-                        <span className={styles.bookingStatus}>
-                          <span style={{ fontWeight: "bold" }}>Check In </span>
-                          Confirmed
-                        </span>
-                      </div>
+                    <div style={{ textAlign: "right" }}>
+                      <p className={styles.status}>
+                        {patient.patientId.patientDob}
+                      </p>
+                      <p className={styles.status}>
+                        {patient.patientId.patientContact}
+                      </p>
+                    </div>
+                  </div>
+                  <br />
+
+                  <div className={styles.topdiv}>
+                    <div className={styles.status} style={{ width: "50%" }}>
+                      <span className={styles.status}>Check In Status:</span>
+                      <p
+                        className={`${styles.status} ${
+                          patient.checkInStatus === "Checked In"
+                            ? styles.bookingStatusConfirmed
+                            : styles.bookingStatusCancelled
+                        }`}
+                      >
+                        {patient.checkInStatus}
+                      </p>
+                    </div>
+                    <div
+                      className={styles.status}
+                      style={{ width: "50%", textAlign: "right" }}
+                    >
+                      Booking Status:
+                      <p
+                        className={`${styles.status} ${
+                          patient.bookingStatus === "Booked"
+                            ? styles.bookingStatusConfirmed
+                            : styles.bookingStatusCancelled
+                        }`}
+                      >
+                        {patient.bookingStatus}
+                      </p>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </>
       )}
