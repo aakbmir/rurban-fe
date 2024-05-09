@@ -33,6 +33,14 @@ function Signin() {
         } else {
           navigate("/dashboard/er/home?tab=patientList");
         }
+      } else if (data.status === 403) {
+        toast.error(
+          "Email is not verified yet. Please verify the email before signing in",
+          {
+            position: "top-center",
+            autoClose: 10000,
+          }
+        );
       } else if (data.status === 401) {
         toast.error("Invalid Credentials!!", {
           position: "bottom-center",

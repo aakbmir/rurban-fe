@@ -44,7 +44,7 @@ function Signin() {
           position: "bottom-center",
         }
       );
-      navigate("/");
+      navigate("/app/verifyEmail");
     },
     onError: (error) => {
       //alert(error.message);

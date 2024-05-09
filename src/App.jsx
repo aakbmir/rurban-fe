@@ -12,6 +12,7 @@ import Signup from "./features/login/Signup";
 import HomePage from "./features/login/HomePage";
 import ProtectedRoute from "./features/common/ProtectedRoute";
 import LocationAccess from "./features/common/LocationAccess";
+import SignUpVerification from "../pages/SignUpVerification";
 
 const PageNotFound = lazy(() => import("./features/common/PageNotFound"));
 const AppLayout = lazy(() => import("./features/common/AppLayout"));
@@ -36,6 +37,7 @@ function App() {
           <Suspense fallback={<SpinnerFullPage />}>
             <Routes>
               <Route index element={<Navigate replace to="/home" />} />
+              <Route path="app/:action" element={<SignUpVerification />} />
               <Route path="home" element={<HomePage />} />
               <Route path="signin" element={<Signin />} />
               <Route path="signup/:user" element={<Signup />} />

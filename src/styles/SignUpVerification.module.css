@@ -1,0 +1,61 @@
+.mainDiv {
+  display:flex;
+  margin: auto;
+  text-align: center;
+  color: #465670;
+}
+
+.rightDiv {
+  width: 40%;
+  height: 98vh;
+}
+
+.img {
+  width: 100%;
+  margin-top: 15em;
+}
+
+
+.leftDiv {
+  width: 60%;
+  margin-top: 14em;
+}
+
+.btn {
+  background: #33528b;
+  padding: 10px;
+  border: none;
+  margin-top: 2em;
+  width: 16%;
+  border-radius: 7px;
+  color: #fff;
+}
+
+@media screen and (max-width: 900px) {
+  .mainDiv {
+    margin: auto;
+    text-align: center;
+    color: #465670;
+    margin-top:8em;
+  }
+
+  .rightDiv {
+    display: none;
+  }
+
+  .leftDiv {
+    width: 100%;
+    margin-top: 9em;
+  }
+
+  .img{
+    display: none;
+  }
+
+  .btn {
+    background: #33528b;
+    width: 36%;
+  }
+  
+}
+
