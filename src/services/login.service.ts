@@ -24,6 +24,30 @@ export async function userLogin(data: any) {
     });
 }
 
+export async function resubmitVerificationEmail(email: any) {
+  return axios
+    .get(
+      `https://rurban.onrender.com/api/v1/auth/resendVerificationEmail?email=${email}`
+    )
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return error.response;
+    });
+}
+
+export async function getCuuLoc() {
+  return axios
+    .get(`https://rurban.onrender.com/api/v1/data/status`)
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return error.response;
+    });
+}
+
 export async function RegisterUser(data: any) {
   const hashedPassword = bcrypt.hashSync(
     data["password"],
@@ -61,16 +85,14 @@ export async function RegisterEr(data: any) {
   const res = await fetch(`${BASE_URL}&lat=${lat}&lon=${lng}`);
   //const res = await fetch(`${BASE_URL}?latitude=${lat}&longitude=${lng}`);
   const dsss = await res.json();
-  console.log(dsss.features[0].properties.address_line2);
   const address = dsss.features[0].properties.address_line2;
-  // console.log(dsss.locality);
   // const address = dsss.locality
   //   .toString()
   //   .concat(", ")
   //   .concat(
   //     dsss.city.toString().concat(", ").concat(dsss.countryName.toString())
   //   );
-  //  console.log(address);
+
   await axios
     .post("https://rurban.onrender.com/api/v1/auth/register-er", {
       name: data["name"],

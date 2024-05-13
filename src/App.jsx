@@ -6,15 +6,15 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import SpinnerFullPage from "./features/common/SpinnerFullPage";
+import SpinnerFullPage from "../pages/SpinnerFullPage";
 import Signin from "./features/login/Signin";
 import Signup from "./features/login/Signup";
 import HomePage from "./features/login/HomePage";
 import ProtectedRoute from "./features/common/ProtectedRoute";
-import LocationAccess from "./features/common/LocationAccess";
+import LocationAccess from "../pages/LocationAccess";
 import SignUpVerification from "../pages/SignUpVerification";
 
-const PageNotFound = lazy(() => import("./features/common/PageNotFound"));
+const PageNotFound = lazy(() => import("../pages/PageNotFound"));
 const AppLayout = lazy(() => import("./features/common/AppLayout"));
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
       queries: {
         // staleTime: 60 * 1000,
         staleTime: 0,
-        refetchOnWindowFocus: true,
+        refetchOnWindowFocus: false,
       },
     },
   });

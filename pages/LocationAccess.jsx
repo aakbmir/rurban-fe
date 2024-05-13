@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 
-import styles from "../../styles/LocationAccess.module.css";
+import styles from "../src/styles/LocationAccess.module.css";
 import { useNavigate } from "react-router-dom";
 
 function LocationAccess() {
@@ -8,7 +8,6 @@ function LocationAccess() {
 
   function getPosition() {
     navigator.geolocation.getCurrentPosition((pos) => {
-      console.log("pos", pos);
       localStorage.setItem(
         "userLocation",
         pos.coords.latitude + "," + pos.coords.longitude
@@ -21,7 +20,6 @@ function LocationAccess() {
       position: "bottom-center",
     });
     if (action === "allow") {
-      console.log("first");
       getPosition();
     }
     navigate("/dashboard/user/home?tab=hospitalList");

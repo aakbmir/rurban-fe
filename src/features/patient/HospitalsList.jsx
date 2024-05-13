@@ -7,8 +7,8 @@ import { useUrlPosition } from "../../hooks/useUrlPosition";
 import { toast } from "react-toastify";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useHospitalQuery } from "../../hooks/useHospitalQuery";
-import Spinner from "../common/Spinner";
-import Empty from "../common/Empty";
+import Spinner from "../../../pages/Spinner";
+import Empty from "../../../pages/Empty";
 
 const hosImage =
   "https://media.gettyimages.com/id/1312706413/photo/modern-hospital-building.jpg?s=612x612&w=gi&k=20&c=1-EC4Mxf--5u4ItDIzrIOrduXlbKRnbx9xWWtiifrDo=";

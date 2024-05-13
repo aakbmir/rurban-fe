@@ -11,9 +11,9 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import { useUserCheckInQuery } from "../../hooks/useUserCheckInQuery";
-import Spinner from "../common/Spinner";
-import Empty from "../common/Empty";
-import ModalMain from "../common/ModalMain";
+import Spinner from "../../../pages/Spinner";
+import Empty from "../../../pages/Empty";
+import ModalMain from "../../../pages/ModalMain";
 
 //const API_KEY = "5b3ce3597851110001cf62485841300cbc6947e0ae08e8fa3c83c194";
 

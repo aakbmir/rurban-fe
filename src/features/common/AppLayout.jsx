@@ -3,7 +3,7 @@ import Dashboard from "./Dashboard";
 import UserAppointments from "./../patient/UserAppointments";
 import DashboardNavbar from "./DashboardNavbar";
 import HospitalsList from "../patient/HospitalsList";
-import PageNotFound from "./PageNotFound";
+import PageNotFound from "../../../pages/PageNotFound";
 
 export default function AppLayout() {
   return (

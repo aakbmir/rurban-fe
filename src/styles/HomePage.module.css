@@ -1,152 +1,8 @@
-/* .mainDiv {
-  height:100vh;
-  padding: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 24px;
-  background: linear-gradient(to right, #ECF2FF, #FBFCFF); 
-}
-
-.leftDivSection {
-  width: 40%;
-  max-width: 100%;
-  text-align: center;
-}
-
-.leftDivLogo{
-  
-  padding: 1em;
-  width: 70%;
-  height: auto;
-}
-
-.textDescription {
-  display: -webkit-inline-box;
-  color:black;
-  width: 475px;
-  margin: 32px 0;
-  color: rgb(77, 75, 75);
-  
-  font-size: 18px;
-  letter-spacing: .7px;
-  line-height: 1.6rem;
-}
-
-.textSection {
-  width: 60%;
-  padding: 0 32px;
-}
-
-.logoImg {
-  display: none;
-}
-
-.container {
-  color: #33528b;
-  text-align: center;
-  padding-top: 2em;
-}
-
-.container h1 {
-  line-height: 22px;
-  
-  margin: 0;
-  font-weight: bold;
-  margin-bottom: 1em;
-}
-
-.btnGroup {  
-  display: flex;
-  justify-content: center;
-}
-
-.btnSignin { 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color:#33528b;
-  font-size: 18px;  
-  background: #fff; 
-  border: 1px solid #33528b;
-  border-radius: 10px;
-  cursor: pointer;
-  outline: #0000;
-  padding: 14px 20px;
-  transition: all .4s ease;
-  width: 70%;
-  margin-bottom: 2em;
-}
-
-.registerText {
-  font-size: 1.1em
-}
-
-.btnSignUpPatient {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 18px;
-  color: #fff;
-  align-items: center;
-  
-  background-color: #33528b;
-  border: 1px solid #0000;
-  border-radius: 10px;
-  cursor: pointer;
-  outline: #0000;
-  padding: 14px 20px;
-  transition: all .4s ease;
-  width: 70%;
-  margin-top: 0.6em;
-  margin-bottom: 1em;
-}
-
-@media screen and (max-width: 900px) {
-  .mainDiv {
-    padding-top:3em;
-    align-items: baseline;    
-  }
-
-  .leftDivSection {
-    display: none;
-  }
-
-  .container {
-    padding-top: 4em;
-  }
-
-  .logoImg {
-    display: block;
-    height: 30vh;
-    border-radius: 100px 0cm 120px/30%;
-    width: 96%;
-    margin: auto;
-    padding-top: 2em;
-  }
-
-  .textSection {
-    width: 100%;
-    padding: 0;
-  }
-
-  .textDescription {
-    width: 100%;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .textDescription {
-    font-size: 16px;
-  }
-} */
-
 .mainsection {
   height: 100vh;
   display: flex;
   justify-content: flex-start;
-  width: 100%;
-  
+  width: 100%;  
 }
 
 .leftdiv {
@@ -232,7 +88,7 @@
   border-radius: 7em;
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 992px){
 .leftdiv {
   width: 100%
 }
@@ -240,7 +96,7 @@
 .logoimg {
   margin: auto;
   width: 20%;
-  margin-left: 13em;
+  margin-left: 42%;
   margin-top: 4em;
 }
 

@@ -1,5 +1,6 @@
 import { FaCalendar, FaClock } from "react-icons/fa";
 import {
+  calculateAge,
   formatDateFirst,
   formatDateOfBirth,
   formatFullDate,
@@ -8,25 +9,14 @@ import {
 import styles from "../../styles/HospitalPastCheckIns.module.css";
 import { useQuery } from "@tanstack/react-query";
 import { fetchPastHospitalCheckins } from "../../services/data.service";
-import Empty from "../common/Empty";
-import Spinner from "../common/Spinner";
+import Empty from "../../../pages/Empty";
+import Spinner from "../../../pages/Spinner";
 
 function HospitalPastCheckIns() {
   const { data: checkInList, isLoading } = useQuery({
     queryKey: ["hospitalPastCheckIns"],
     queryFn: fetchPastHospitalCheckins,
   });
-
-  function calculateAge(dob1) {
-    var today = new Date();
-    var birthDate = new Date(dob1); // create a date object directly from `dob1` argument
-    var age_now = today.getFullYear() - birthDate.getFullYear();
-    var m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-      age_now--;
-    }
-    return age_now;
-  }
 
   return (
     <div>

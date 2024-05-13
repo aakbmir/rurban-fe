@@ -1,5 +1,6 @@
 import { FaCalendar, FaClock, FaUserCheck, FaUserSlash } from "react-icons/fa";
 import {
+  calculateAge,
   formatDateFirst,
   formatDateOfBirth,
   formatFullDate,
@@ -12,8 +13,8 @@ import {
   fetchHospitalCheckins,
 } from "../../services/data.service";
 import { toast } from "react-toastify";
-import Empty from "../common/Empty";
-import Spinner from "../common/Spinner";
+import Empty from "../../../pages/Empty";
+import Spinner from "../../../pages/Spinner";
 
 function HospitalUpcomingCheckIns() {
   const { data: upcomingCheckInsList, isLoading } = useQuery({
@@ -42,17 +43,6 @@ function HospitalUpcomingCheckIns() {
       action: clickedBtn,
     };
     await mutateAsync(data);
-  }
-
-  function calculateAge(dob1) {
-    var today = new Date();
-    var birthDate = new Date(dob1); // create a date object directly from `dob1` argument
-    var age_now = today.getFullYear() - birthDate.getFullYear();
-    var m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-      age_now--;
-    }
-    return age_now;
   }
 
   return (
@@ -101,7 +91,8 @@ function HospitalUpcomingCheckIns() {
                   {formatFullDate(patient.estimatedAppointmentTime)}
                 </div>
                 <div className={`${styles.tableColumn} ${styles.eta}`}>
-                  {patient.eta} mins
+                  {patient.eta}
+                  mins
                 </div>
                 <div
                   className={`${styles.tableColumn} ${

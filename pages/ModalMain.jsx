@@ -1,4 +1,4 @@
-import styles from "../../styles/ModalMain.module.css";
+import styles from "../src/styles/ModalMain.module.css";
 import { MdClose } from "react-icons/md";
 
 function ModalMain({ children, onClose, onSubmit, cancel, submit }) {
