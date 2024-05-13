@@ -11,7 +11,7 @@ export async function userLogin(data: any) {
   );
 
   return axios
-    .post("https://rurban.onrender.com/api/v1/auth/login", {
+    .post("https://rurban-be.onrender.com/api/v1/auth/login", {
       username: data["username"],
       password: hashedPassword,
       registerType: data["registerType"],
@@ -27,7 +27,7 @@ export async function userLogin(data: any) {
 export async function resubmitVerificationEmail(email: any) {
   return axios
     .get(
-      `https://rurban.onrender.com/api/v1/auth/resendVerificationEmail?email=${email}`
+      `https://rurban-be.onrender.com/api/v1/auth/resendVerificationEmail?email=${email}`
     )
     .then((response) => {
       return response;
@@ -39,7 +39,7 @@ export async function resubmitVerificationEmail(email: any) {
 
 export async function getCuuLoc() {
   return axios
-    .get(`https://rurban.onrender.com/api/v1/data/status`)
+    .get(`https://rurban-be.onrender.com/api/v1/data/status`)
     .then((response) => {
       return response;
     })
@@ -54,7 +54,7 @@ export async function RegisterUser(data: any) {
     "$2a$10$CwTycUXWue0Thq9StjUM0u"
   );
   await axios
-    .post("https://rurban.onrender.com/api/v1/auth/register-user", {
+    .post("https://rurban-be.onrender.com/api/v1/auth/register-user", {
       name: data["name"],
       dob: data["dob"],
       email: data["email"],
@@ -94,7 +94,7 @@ export async function RegisterEr(data: any) {
   //   );
 
   await axios
-    .post("https://rurban.onrender.com/api/v1/auth/register-er", {
+    .post("https://rurban-be.onrender.com/api/v1/auth/register-er", {
       name: data["name"],
       dob: data["dob"],
       email: data["email"],

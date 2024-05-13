@@ -2,7 +2,7 @@ import axios from "axios";
 
 export async function fetchClinics() {
   const res = await fetch(
-    "https://rurban.onrender.com/api/v1/data/fetch-clinics",
+    "https://rurban-be.onrender.com/api/v1/data/fetch-clinics",
     {
       headers: {
         "Content-Type": "application/json",
@@ -18,7 +18,7 @@ export async function fetchClinics() {
 export async function fetchCheckInsForUser(records: any) {
   const userId = localStorage.getItem("rurban_cro_id_ddi");
   const res = await fetch(
-    `https://rurban.onrender.com/api/v1/data/fetch-user-checkins?userId=${userId}&records=${records}`,
+    `https://rurban-be.onrender.com/api/v1/data/fetch-user-checkins?userId=${userId}&records=${records}`,
     {
       headers: {
         "Content-Type": "application/json",
@@ -33,7 +33,7 @@ export async function fetchCheckInsForUser(records: any) {
 
 export async function createCheckIn(data: any) {
   const res = await fetch(
-    `https://rurban.onrender.com/api/v1/data/create-checkin`,
+    `https://rurban-be.onrender.com/api/v1/data/create-checkin`,
     {
       method: "POST",
       headers: {
@@ -50,7 +50,7 @@ export async function createCheckIn(data: any) {
 
 export async function cancelCheckIn(id: any) {
   const res = await fetch(
-    `https://rurban.onrender.com/api/v1/data/cancel-checkin?id=${id}`,
+    `https://rurban-be.onrender.com/api/v1/data/cancel-checkin?id=${id}`,
     {
       method: "DELETE",
       headers: {
@@ -67,7 +67,7 @@ export async function cancelCheckIn(id: any) {
 export async function fetchHospitalCheckins() {
   const clinicId = localStorage.getItem("rurban_cro_id_ddi");
   const res = await fetch(
-    `https://rurban.onrender.com/api/v1/data/fetch-hospital-checkins?clinicId=${clinicId}`,
+    `https://rurban-be.onrender.com/api/v1/data/fetch-hospital-checkins?clinicId=${clinicId}`,
     {
       headers: {
         "Content-Type": "application/json",
@@ -83,7 +83,7 @@ export async function fetchHospitalCheckins() {
 export async function fetchPastHospitalCheckins() {
   const clinicId = localStorage.getItem("rurban_cro_id_ddi");
   const res = await fetch(
-    `https://rurban.onrender.com/api/v1/data/fetch-past-hospital-checkins?clinicId=${clinicId}`,
+    `https://rurban-be.onrender.com/api/v1/data/fetch-past-hospital-checkins?clinicId=${clinicId}`,
     {
       headers: {
         "Content-Type": "application/json",
@@ -98,7 +98,7 @@ export async function fetchPastHospitalCheckins() {
 
 export async function clinicCheckInUpdate(data: any) {
   const res = await fetch(
-    `https://rurban.onrender.com/api/v1/data/clinic-checkin-update`,
+    `https://rurban-be.onrender.com/api/v1/data/clinic-checkin-update`,
     {
       method: "POST",
       headers: {
