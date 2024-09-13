@@ -23,7 +23,7 @@ function HospitalPastCheckIns() {
       <div className={styles.navTabName}>Past Appointments</div>
       {isLoading ? (
         <Spinner />
-      ) : !checkInList ? (
+      ) : !checkInList || checkInList.length === 0 ? (
         <Empty resourceName="Check Ins" />
       ) : (
         <>

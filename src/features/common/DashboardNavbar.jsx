@@ -5,6 +5,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { MdLogout } from "react-icons/md";
 import { useAuth } from "../../context/AuthContext";
+import { clearAuthHeader } from "../../utils/axios_helper";
 
 function DashboardNavbar({ user }) {
   const username = localStorage.getItem("rurban_cro_nm_ddn");
@@ -13,6 +14,7 @@ function DashboardNavbar({ user }) {
   const { logout } = useAuth();
 
   function handleLogout() {
+    clearAuthHeader();
     localStorage.clear();
     sessionStorage.clear();
     logout();

@@ -50,7 +50,7 @@ function HospitalUpcomingCheckIns() {
       <div className={styles.navTabName}>Upcoming Appointments</div>
       {isLoading ? (
         <Spinner />
-      ) : upcomingCheckInsList.length === 0 ? (
+      ) : !upcomingCheckInsList || upcomingCheckInsList.length === 0 ? (
         <Empty resourceName="Upcoming Appointments" />
       ) : (
         <>

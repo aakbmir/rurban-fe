@@ -1,14 +1,9 @@
 import axios from "axios";
+import { fetchRequestInterceptor } from "../utils/axios_helper";
 
 export async function fetchClinics() {
-  const res = await fetch(
-    "https://rurban-be.onrender.com/api/v1/data/fetch-clinics",
-    {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
+  const res = await fetchRequestInterceptor("GET", "api/v1/data/fetch-clinics");
+
   if (!res.ok) {
     throw new Error("Error while fetching Hospitals");
   }
@@ -17,14 +12,12 @@ export async function fetchClinics() {
 
 export async function fetchCheckInsForUser(records: any) {
   const userId = localStorage.getItem("rurban_cro_id_ddi");
-  const res = await fetch(
-    `https://rurban-be.onrender.com/api/v1/data/fetch-user-checkins?userId=${userId}&records=${records}`,
-    {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
+
+  const res = await fetchRequestInterceptor(
+    "GET",
+    `api/v1/data/fetch-user-checkins?userId=${userId}&records=${records}`
   );
+
   if (!res.ok) {
     throw new Error("Error while fetching upcoming check ins");
   }
@@ -32,16 +25,12 @@ export async function fetchCheckInsForUser(records: any) {
 }
 
 export async function createCheckIn(data: any) {
-  const res = await fetch(
-    `https://rurban-be.onrender.com/api/v1/data/create-checkin`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    }
+  const res = await fetchRequestInterceptor(
+    "POST",
+    "api/v1/data/create-checkin",
+    data
   );
+
   if (!res.ok) {
     throw new Error("" + res.status);
   }
@@ -49,14 +38,9 @@ export async function createCheckIn(data: any) {
 }
 
 export async function cancelCheckIn(id: any) {
-  const res = await fetch(
-    `https://rurban-be.onrender.com/api/v1/data/cancel-checkin?id=${id}`,
-    {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
+  const res = await fetchRequestInterceptor(
+    "DELETE",
+    `api/v1/data/cancel-checkin?id=${id}`
   );
   if (!res.ok) {
     throw new Error("Error while cancelling Check In ");
@@ -66,14 +50,12 @@ export async function cancelCheckIn(id: any) {
 
 export async function fetchHospitalCheckins() {
   const clinicId = localStorage.getItem("rurban_cro_id_ddi");
-  const res = await fetch(
-    `https://rurban-be.onrender.com/api/v1/data/fetch-hospital-checkins?clinicId=${clinicId}`,
-    {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
+  console.log("inside fetchHospitalCheckins");
+  const res = await fetchRequestInterceptor(
+    "GET",
+    `api/v1/data/fetch-hospital-checkins?clinicId=${clinicId}`
   );
+
   if (!res.ok) {
     throw new Error("Error while fetching checkins");
   }
@@ -82,14 +64,11 @@ export async function fetchHospitalCheckins() {
 
 export async function fetchPastHospitalCheckins() {
   const clinicId = localStorage.getItem("rurban_cro_id_ddi");
-  const res = await fetch(
-    `https://rurban-be.onrender.com/api/v1/data/fetch-past-hospital-checkins?clinicId=${clinicId}`,
-    {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
+  const res = await fetchRequestInterceptor(
+    "GET",
+    `api/v1/data/fetch-past-hospital-checkins?clinicId=${clinicId}`
   );
+
   if (!res.ok) {
     throw new Error("Error while fetching checkins");
   }
@@ -97,16 +76,12 @@ export async function fetchPastHospitalCheckins() {
 }
 
 export async function clinicCheckInUpdate(data: any) {
-  const res = await fetch(
-    `https://rurban-be.onrender.com/api/v1/data/clinic-checkin-update`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    }
+  const res = await fetchRequestInterceptor(
+    "POST",
+    `api/v1/data/clinic-checkin-update`,
+    data
   );
+
   if (!res.ok) {
     throw new Error("Error while cancelling Check In ");
   }

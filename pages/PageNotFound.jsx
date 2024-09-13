@@ -1,9 +1,11 @@
 import { useNavigate } from "react-router-dom";
+import { clearAuthHeader } from "./../src/utils/axios_helper";
 
 export default function PageNotFound() {
   const navigate = useNavigate();
 
   function logOut() {
+    clearAuthHeader();
     localStorage.clear();
     sessionStorage.clear();
     navigate("/");

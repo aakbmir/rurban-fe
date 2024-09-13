@@ -8,6 +8,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import FormRow from "../common/FormRow";
 import { useAuth } from "../../context/AuthContext";
+import { setAuthHeader } from "../../utils/axios_helper";
 
 function Signin() {
   const { login } = useAuth();
@@ -24,9 +25,9 @@ function Signin() {
     mutationFn: userLogin,
     onSuccess: (data) => {
       if (data.status === 200) {
-        localStorage.setItem("rurban_cro_nm_ddn", data.data.details.name);
-        localStorage.setItem("rurban_cro_id_ddi", data.data.details.id);
-        localStorage.setItem("rurban_reg_type_unit", data.data.registerType);
+        console.log("data", data);
+        setAuthHeader(data);
+
         login();
         if (localStorage.getItem("rurban_reg_type_unit") === "Patient") {
           navigate("/locationAccess");
