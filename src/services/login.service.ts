@@ -11,11 +11,14 @@ export async function userLogin(data: any) {
   );
 
   return axios
-    .post("https://rurban-be.onrender.com/api/v1/auth/login", {
-      username: data["username"],
-      password: hashedPassword,
-      registerType: data["registerType"],
-    })
+    .post(
+      "http://ec2-35-153-208-88.compute-1.amazonaws.com:8084/api/v1/auth/login",
+      {
+        username: data["username"],
+        password: hashedPassword,
+        registerType: data["registerType"],
+      }
+    )
     .then((response) => {
       return response;
     })
@@ -27,7 +30,7 @@ export async function userLogin(data: any) {
 export async function resubmitVerificationEmail(email: any) {
   return axios
     .get(
-      `https://rurban-be.onrender.com/api/v1/auth/resendVerificationEmail?email=${email}`
+      `http://ec2-35-153-208-88.compute-1.amazonaws.com:8084/api/v1/auth/resendVerificationEmail?email=${email}`
     )
     .then((response) => {
       return response;
@@ -39,7 +42,9 @@ export async function resubmitVerificationEmail(email: any) {
 
 export async function getCuuLoc() {
   return axios
-    .get(`https://rurban-be.onrender.com/api/v1/data/status`)
+    .get(
+      `http://ec2-35-153-208-88.compute-1.amazonaws.com:8084/api/v1/data/status`
+    )
     .then((response) => {
       return response;
     })
@@ -54,15 +59,18 @@ export async function RegisterUser(data: any) {
     "$2a$10$CwTycUXWue0Thq9StjUM0u"
   );
   await axios
-    .post("https://rurban-be.onrender.com/api/v1/auth/register-user", {
-      name: data["name"],
-      dob: data["dob"],
-      email: data["email"],
-      password: hashedPassword,
-      contact: data["contact"],
-      registerType: data["registerType"],
-      location: data["location"],
-    })
+    .post(
+      "http://ec2-35-153-208-88.compute-1.amazonaws.com:8084/api/v1/auth/register-user",
+      {
+        name: data["name"],
+        dob: data["dob"],
+        email: data["email"],
+        password: hashedPassword,
+        contact: data["contact"],
+        registerType: data["registerType"],
+        location: data["location"],
+      }
+    )
     .then(
       (response) => {
         console.log(response);
@@ -94,17 +102,20 @@ export async function RegisterEr(data: any) {
   //   );
 
   await axios
-    .post("https://rurban-be.onrender.com/api/v1/auth/register-er", {
-      name: data["name"],
-      dob: data["dob"],
-      email: data["email"],
-      password: hashedPassword,
-      contact: data["contact"],
-      registerType: data["registerType"],
-      location: data["location"].toString(),
-      website: data["website"],
-      address: address,
-    })
+    .post(
+      "http://ec2-35-153-208-88.compute-1.amazonaws.com:8084/api/v1/auth/register-er",
+      {
+        name: data["name"],
+        dob: data["dob"],
+        email: data["email"],
+        password: hashedPassword,
+        contact: data["contact"],
+        registerType: data["registerType"],
+        location: data["location"].toString(),
+        website: data["website"],
+        address: address,
+      }
+    )
     .then(
       (response) => {
         console.log(response);

@@ -112,7 +112,7 @@ function Signin() {
             <FormRow label="Password" error={errors?.password?.message}>
               <div
                 className={`${
-                  errors?.passwword?.message
+                  errors?.password?.message
                     ? styles.errorFieldset
                     : styles.inputFieldset
                 } ${styles.formrowdiv}`}
