@@ -22,9 +22,9 @@ export function clearAuthHeader() {
   window.localStorage.removeItem("auth_token");
 }
 
-const baseUrl = "http://ec2-35-153-208-88.compute-1.amazonaws.com:8084/";
+const baseUrl = "https://ec2-35-153-208-88.compute-1.amazonaws.com:8084/";
 axios.defaults.baseURL =
-  "http://ec2-35-153-208-88.compute-1.amazonaws.com:8084/";
+  "https://ec2-35-153-208-88.compute-1.amazonaws.com:8084/";
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
 export const axiosRequestInterceptor = (method, url, data) => {

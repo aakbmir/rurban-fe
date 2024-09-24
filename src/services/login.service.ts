@@ -12,7 +12,7 @@ export async function userLogin(data: any) {
 
   return axios
     .post(
-      "http://ec2-35-153-208-88.compute-1.amazonaws.com:8084/api/v1/auth/login",
+      "https://ec2-35-153-208-88.compute-1.amazonaws.com:8084/api/v1/auth/login",
       {
         username: data["username"],
         password: hashedPassword,
@@ -30,7 +30,7 @@ export async function userLogin(data: any) {
 export async function resubmitVerificationEmail(email: any) {
   return axios
     .get(
-      `http://ec2-35-153-208-88.compute-1.amazonaws.com:8084/api/v1/auth/resendVerificationEmail?email=${email}`
+      `https://ec2-35-153-208-88.compute-1.amazonaws.com:8084/api/v1/auth/resendVerificationEmail?email=${email}`
     )
     .then((response) => {
       return response;
@@ -43,7 +43,7 @@ export async function resubmitVerificationEmail(email: any) {
 export async function getCuuLoc() {
   return axios
     .get(
-      `http://ec2-35-153-208-88.compute-1.amazonaws.com:8084/api/v1/data/status`
+      `https://ec2-35-153-208-88.compute-1.amazonaws.com:8084/api/v1/data/status`
     )
     .then((response) => {
       return response;
@@ -60,7 +60,7 @@ export async function RegisterUser(data: any) {
   );
   await axios
     .post(
-      "http://ec2-35-153-208-88.compute-1.amazonaws.com:8084/api/v1/auth/register-user",
+      "https://ec2-35-153-208-88.compute-1.amazonaws.com:8084/api/v1/auth/register-user",
       {
         name: data["name"],
         dob: data["dob"],
@@ -103,7 +103,7 @@ export async function RegisterEr(data: any) {
 
   await axios
     .post(
-      "http://ec2-35-153-208-88.compute-1.amazonaws.com:8084/api/v1/auth/register-er",
+      "https://ec2-35-153-208-88.compute-1.amazonaws.com:8084/api/v1/auth/register-er",
       {
         name: data["name"],
         dob: data["dob"],
