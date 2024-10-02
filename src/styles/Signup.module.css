@@ -57,6 +57,13 @@
   outline: none;
 }
 
+.PhoneInput, input {
+  height: 40px !important;
+  width: 90% !important;
+  border: none !important;
+  outline: none !important;
+}
+
 .transparentButton {
   background: none;
   border: none

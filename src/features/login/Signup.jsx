@@ -7,14 +7,12 @@ import { useMutation } from "@tanstack/react-query";
 import { RegisterEr, RegisterUser } from "../../services/login.service";
 import { useGeoLocation } from "../../hooks/useGeoLocation";
 import { useUrlPosition } from "../../hooks/useUrlPosition";
-import {
-  FaCheckDouble,
-  FaEye,
-  FaEyeSlash,
-  FaLocationArrow,
-} from "react-icons/fa";
+import { FaCheckDouble, FaEye, FaEyeSlash, FaLocationArrow} from "react-icons/fa";
 import { toast } from "react-toastify";
 import FormRow from "../common/FormRow";
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
+import { parsePhoneNumberFromString } from 'libphonenumber-js';
 
 function Signin() {
   const { pathname } = useLocation();
@@ -34,12 +32,7 @@ function Signin() {
   const { mutate, isPending } = useMutation({
     mutationFn: userType === "Hospital" ? RegisterEr : RegisterUser,
     onSuccess: () => {
-      toast.success(
-        `${
-          userType === "Hospital"
-            ? "ER Successfully Registered"
-            : "User Successfully Registered"
-        } `,
+      toast.success(`${userType === "Hospital" ? "ER Successfully Registered" : "User Successfully Registered" } `,
         {
           position: "bottom-center",
         }
@@ -47,7 +40,6 @@ function Signin() {
       navigate("/app/verifyEmail");
     },
     onError: (error) => {
-      //alert(error.message);
       toast.error(error.message, { position: "bottom-center" });
     },
   });
@@ -64,6 +56,9 @@ function Signin() {
   const { position: geoLocationPosition, getPosition } = useGeoLocation();
   const [position, setPosition] = useState(null);
   const [lat, lng] = useUrlPosition();
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [countryCode, setCountryCode] = useState('ae'); // Default to UAE
+
 
   useEffect(() => {
     if (lat && lng) {
@@ -72,6 +67,24 @@ function Signin() {
     }
   }, [lat, lng]);
 
+
+  const handlePhoneChange = (value, country) => {
+    setCountryCode(country.countryCode); // Set country code
+    setPhoneNumber(value); // Set phone number including country code
+    setValue('fullPhoneNumber', `+${value}`);
+  };
+
+  const validatePhoneNumberLength = () => {
+    console.log(phoneNumber);
+    console.log(countryCode);
+    const parsedPhoneNumber = parsePhoneNumberFromString(phoneNumber, countryCode.toUpperCase());
+    console.log(parsedPhoneNumber)
+    if (parsedPhoneNumber) {
+      return parsedPhoneNumber.isValid();
+    }
+    return false;
+  };
+  
   useEffect(() => {
     if (geoLocationPosition) {
       setPosition((prev) => [geoLocationPosition.lat, geoLocationPosition.lng]);
@@ -90,31 +103,12 @@ function Signin() {
             Just a few quick things to get started
           </span>
 
-          <form
-            className={styles.form}
-            onSubmit={handleSubmit(onSubmit, onError)}
-          >
-            <FormRow
-              mandatory={true}
-              mb="0.5em"
-              label={`${
-                userType === "Patient" ? "Full Name" : "Hospital Name"
-              }`}
-              error={errors?.name?.message}
-            >
-              <div
-                className={`${
-                  errors?.name?.message
-                    ? styles.errorFieldset
-                    : styles.inputFieldset
-                } ${styles.formrowdiv}`}
-              >
+          <form className={styles.form} onSubmit={handleSubmit(onSubmit, onError)}>
+            <FormRow mandatory={true} mb="0.5em" error={errors?.name?.message}
+            label={`${userType === "Patient" ? "Full Name" : "Hospital Name"}`}>
+              <div className={`${errors?.name?.message ? styles.errorFieldset : styles.inputFieldset} ${styles.formrowdiv}`}>
                 <p></p>
-                <input
-                  className={styles.input}
-                  placeholder="John Doe"
-                  type="text"
-                  id="name"
+                <input className={styles.input} placeholder="John Doe" type="text" id="name"
                   {...register("name", {
                     required: "This field is required",
                     minLength: {
@@ -126,28 +120,12 @@ function Signin() {
               </div>
             </FormRow>
             {userType === "Patient" && (
-              <FormRow
-                mandatory={true}
-                mb="0.5em"
-                label="Date of Birth"
-                error={errors?.dob?.message}
-              >
-                <div
-                  className={`${
-                    errors?.dob?.message
-                      ? styles.errorFieldset
-                      : styles.inputFieldset
-                  } ${styles.formrowdiv}`}
-                >
+              <FormRow mandatory={true} mb="0.5em" label="Date of Birth" error={errors?.dob?.message}>
+                <div className={`${errors?.dob?.message ? styles.errorFieldset : styles.inputFieldset} ${styles.formrowdiv}`}>
                   <p></p>
-                  <input
-                    className={styles.input}
-                    placeholder="Date of Birth"
-                    type="text"
-                    onClick={(e) => (e.target.type = "date")}
-                    onFocus={(e) => (e.target.type = "date")}
-                    onBlur={(e) => (e.target.type = "date")}
-                    id="dob"
+                  <input className={styles.input} placeholder="Date of Birth" type="text"
+                    onClick={(e) => (e.target.type = "date")} onFocus={(e) => (e.target.type = "date")}
+                    onBlur={(e) => (e.target.type = "date")} id="dob"
                     {...register("dob", {
                       required: "This field is required",
                     })}
@@ -155,25 +133,10 @@ function Signin() {
                 </div>
               </FormRow>
             )}
-            <FormRow
-              mandatory={true}
-              mb="0.5em"
-              label="Email"
-              error={errors?.email?.message}
-            >
-              <div
-                className={`${
-                  errors?.email?.message
-                    ? styles.errorFieldset
-                    : styles.inputFieldset
-                } ${styles.formrowdiv}`}
-              >
+            <FormRow mandatory={true} mb="0.5em" label="Email" error={errors?.email?.message}>
+              <div className={`${errors?.email?.message ? styles.errorFieldset : styles.inputFieldset } ${styles.formrowdiv}`}>
                 <p></p>
-                <input
-                  className={styles.input}
-                  placeholder="JohnDoe@gmail.com"
-                  type="text"
-                  id="email"
+                <input className={styles.input} placeholder="JohnDoe@gmail.com" type="text" id="email"
                   {...register("email", {
                     required: "This field is required",
                     pattern: {
@@ -184,19 +147,8 @@ function Signin() {
                 ></input>
               </div>
             </FormRow>
-            <FormRow
-              mandatory={true}
-              mb="0.5em"
-              label="Contact"
-              error={errors?.contact?.message}
-            >
-              <div
-                className={`${
-                  errors?.email?.message
-                    ? styles.errorFieldset
-                    : styles.inputFieldset
-                } ${styles.formrowdiv}`}
-              >
+            <FormRow mandatory={true} mb="0.5em" label="Contact" error={errors?.contact?.message}>
+              <div className={`${errors?.email?.message? styles.errorFieldset: styles.inputFieldset} ${styles.formrowdiv}`}>
                 <p></p>
                 <input
                   className={styles.input}
@@ -215,6 +167,14 @@ function Signin() {
                     },
                   })}
                 ></input>
+                {/* <PhoneInput country={'ae'} className={styles.PhoneInput} style={{border:"none"}} id="contact" onChange={handlePhoneChange}
+                  {...register("contact", {
+                    
+                    validate: {
+                      validNumber: () => validatePhoneNumberLength() || 'Phone number is invalid for the selected country',
+                    }
+                  })}
+                ></PhoneInput> */}
               </div>
             </FormRow>
             {userType === "Hospital" && (
@@ -418,7 +378,7 @@ function Signin() {
                   onClick={() => navigate("/")}
                   className={styles.homeBtn}
                 >
-                  Sign in
+                  Login
                 </button>
               </span>
             </div>

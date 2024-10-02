@@ -144,7 +144,7 @@ function Signin() {
                 isPending ? styles.disabledBtn : ""
               }`}
             >
-              {isPending ? "Signing in..." : "Sign in"}
+              {isPending ? "LOGGING IN..." : "LOGIN"}
             </button>
             <div className={styles.register}>
               <span>
@@ -153,7 +153,7 @@ function Signin() {
                   onClick={() => navigate("/")}
                   className={styles.homeBtn}
                 >
-                  Sign up
+                  Register
                 </button>
               </span>
             </div>

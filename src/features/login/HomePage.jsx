@@ -13,9 +13,7 @@ function HomePage() {
           <span className={styles.brandname}>Rurban</span>
           <p></p>
           <span className={styles.homedesc}>
-            Talk to online doctors and get medical advice, online prescriptions,
-            refills and medical notes within minutes. On-demand healthcare
-            services at your fingertips.
+          A Platform enabling instant emergency check-ins, connecting patients with nearby hospitals for faster, more efficient care while allowing patients to notify hospitals in real-time for timely preparation.
           </span>
           <div className={styles.btngrp}>
             <p className={styles.logintext}>Sign in to access your account</p>
@@ -32,13 +30,13 @@ function HomePage() {
                   className={styles.registerbtn}
                   onClick={() => navigate("/signup/user")}
                 >
-                  Sign Up as a patient
+                  REGISTER AS PATIENT
                 </button>
                 <button
                   className={styles.registerbtn}
                   onClick={() => navigate("/signup/er")}
                 >
-                  Sign up as an ER
+                  REGISTER AS HOSPITAL
                 </button>
               </span>
             </div>

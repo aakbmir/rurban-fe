@@ -68,7 +68,8 @@ export async function RegisterUser(data: any) {
         console.log(response);
       },
       (error) => {
-        throw new Error(error.response.data.error);
+        console.log('errorrr : ', error);
+        throw new Error(error.response.data.message);
       }
     );
 }
@@ -110,7 +111,8 @@ export async function RegisterEr(data: any) {
         console.log(response);
       },
       (error) => {
-        throw new Error(error.response.data.error);
+        console.log('errorrr : ', error);
+        throw new Error(error.response.data.message);
       }
     );
 }
