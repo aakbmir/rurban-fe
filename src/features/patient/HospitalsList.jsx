@@ -82,13 +82,13 @@ const HospitalsList = () => {
       <div className={styles.navTabName}>Available Hospitals</div>;
       {isHospitalLoading ? (
         <Spinner />
-      ) : !hospitals || hospitals.length === 0 ? (
+      ) : !hospitals.data || hospitals.data.length === 0 ? (
         <Empty resourceName="Hospitals" />
       ) : (
         <>
           <div className={styles.mobileNav}>
             <div className={styles.cardContainer}>
-              {hospitals.map((item, index) => (
+              {hospitals.data.map((item, index) => (
                 <div key={index} className={styles.card}>
                   <div className={styles.firstDiv}>
                     <div className={styles.firstLeftSection}>
@@ -177,7 +177,7 @@ const HospitalsList = () => {
                   <div>Action</div>
                 </header>
 
-                {hospitals.map((item, index) => (
+                {hospitals.data.map((item, index) => (
                   <div role="row" key={item.id} className={styles.tableData}>
                     <div className={styles.tableColumn}>{item.clinicName}</div>
                     <div className={styles.tableColumn}>

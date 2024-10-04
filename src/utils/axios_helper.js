@@ -6,10 +6,10 @@ export const getAuthToken = () => {
 
 export const setAuthHeader = (data) => {
   if (data !== null) {
-    localStorage.setItem("rurban_cro_nm_ddn", data.data.details.name);
-    localStorage.setItem("rurban_cro_id_ddi", data.data.details.id);
-    localStorage.setItem("rurban_reg_type_unit", data.data.registerType);
-    window.localStorage.setItem("auth_token", data.data.token);
+    localStorage.setItem("rurban_cro_nm_ddn", data.data.data.name);
+    localStorage.setItem("rurban_cro_id_ddi", data.data.data.id);
+    localStorage.setItem("rurban_reg_type_unit", data.data.data.registerType);
+    window.localStorage.setItem("auth_token", data.data.data.token);
   } else {
     clearAuthHeader();
   }

@@ -23,7 +23,7 @@ function HospitalPastCheckIns() {
       <div className={styles.navTabName}>Past Appointments</div>
       {isLoading ? (
         <Spinner />
-      ) : !checkInList || checkInList.length === 0 ? (
+      ) : !checkInList.data || checkInList.data.length === 0 ? (
         <Empty resourceName="Check Ins" />
       ) : (
         <>
@@ -41,7 +41,7 @@ function HospitalPastCheckIns() {
               <div className={styles.headerColumns}>Check In Status</div>
               <div className={styles.headerColumns}>Check In Time</div>
             </header>
-            {checkInList.map((patient) => (
+            {checkInList.data.map((patient) => (
               <div key={patient.id} role="row" className={styles.tableData}>
                 <div className={styles.tableColumn}>
                   {patient.patientId.patientName}
@@ -98,7 +98,7 @@ function HospitalPastCheckIns() {
 
           <div className={styles.mobileNav}>
             <div className={styles.cardContainer}>
-              {checkInList.map((patient) => (
+              {checkInList.data.map((patient) => (
                 <div key={patient.id} className={styles.card}>
                   <div className={styles.appointmentdiv}>
                     <div

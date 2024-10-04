@@ -70,13 +70,13 @@ function UserAppointments({ records }) {
       )}
       {isCheckInLoading && isLoading ? (
         <Spinner />
-      ) : !checkIns || checkIns.length === 0 ? (
+      ) : !checkIns.data || checkIns.data.length === 0 ? (
         <Empty resourceName="Upcoming Check In" />
       ) : (
         <>
           <div className={styles.mobileNav}>
             <div className={styles.cardContainer}>
-              {checkIns.map((item, index) => (
+              {checkIns.data.map((item, index) => (
                 <div key={index} className={styles.card}>
                   <div className={styles.appointmentdiv}>
                     <div
@@ -192,7 +192,7 @@ function UserAppointments({ records }) {
                   <div>Action</div>
                 </header>
 
-                {checkIns.map((item, index) => (
+                {checkIns.data.map((item, index) => (
                   <div role="row" key={index} className={styles.tableData}>
                     <div className={styles.tableColumn}>
                       {item.clinicId.clinicName}

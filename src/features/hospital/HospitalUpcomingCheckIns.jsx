@@ -50,7 +50,7 @@ function HospitalUpcomingCheckIns() {
       <div className={styles.navTabName}>Upcoming Appointments</div>
       {isLoading ? (
         <Spinner />
-      ) : !upcomingCheckInsList || upcomingCheckInsList.length === 0 ? (
+      ) : !upcomingCheckInsList.data || upcomingCheckInsList.data.length === 0 ? (
         <Empty resourceName="Upcoming Appointments" />
       ) : (
         <>
@@ -67,7 +67,7 @@ function HospitalUpcomingCheckIns() {
               <div className={styles.headerColumns}>Booking Status</div>
               <div className={styles.headerColumns}></div>
             </header>
-            {upcomingCheckInsList.map((patient) => (
+            {upcomingCheckInsList.data.map((patient) => (
               <div key={patient.id} role="row" className={styles.tableData}>
                 <div className={styles.tableColumn}>
                   {patient.patientId.patientName}
@@ -139,7 +139,7 @@ function HospitalUpcomingCheckIns() {
           </div>
           <div className={styles.mobileNav}>
             <div className={styles.cardContainer}>
-              {upcomingCheckInsList.map((patient) => (
+              {upcomingCheckInsList.data.map((patient) => (
                 <div key={patient.id} className={styles.card}>
                   <div className={styles.appointmentdiv}>
                     <div
